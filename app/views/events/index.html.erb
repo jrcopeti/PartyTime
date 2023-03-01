@@ -1,0 +1,18 @@
+<h1>Events</h1>
+
+<% @events.each do |event| %>
+ <h3><%= link_to @event.title, event_path(@event) %></h3>
+    <ul>
+    <li><%= @event.description %></li>
+    <li><%= @event.status %></li>
+    <li><%= @event.category%></li>
+    <li><%= @event.capacity %></li>
+    <li><%= @event.dresscode %></li>
+    <li><%= @event.start_date %></li>
+    <li><%= @event.end_date %></li>
+    <li><%= @event.start_time%></li>
+    <li><%= @event.end_time %></li>
+  </ul>
+<% end %>
+
+<%= link_to "Back to events", events_path %>
