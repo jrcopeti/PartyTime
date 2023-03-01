@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Venues</h1>
+  <% @venues.each do |venue| %>
+    <h3><%= link_to venue.name, venue_path(venue.id) %></h3>
+  <% end %>
+
+ <%= link_to "Back to home", root_path %>
+</div>
