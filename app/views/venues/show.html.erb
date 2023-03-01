@@ -1,0 +1,9 @@
+<div class="container">
+  <h1><%=@venue.name%></h1>
+  <ul>
+    <li><%=@venue.definition %></li>
+    <li><%= @venue.address %></li>
+    <li><%=@venue.logo %></li>
+  </ul>
+  <%= link_to "Back to Venues", venues_path %>
+</div>

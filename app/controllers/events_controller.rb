@@ -1,10 +1,10 @@
 class EventsController < ApplicationController
-  
+
   def index
-    if params [:query].present?
-      @events = Event.where("end_date < ?", Time.now).global_search(params[:query])
+    if params[:query].present?
+      @events = Event.where("end_date > ?", Time.now).global_search(params[:query])
     else
-      @events = Event.where("end_date < ?", Time.now)
+      @events = Event.where("end_date > ?", Time.now)
     end
   end
 

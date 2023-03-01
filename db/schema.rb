@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema[7.0].define(version: 2023_02_28_202658) do
-
+ActiveRecord::Schema[7.0].define(version: 2023_03_01_102722) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,48 +58,44 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_202658) do
     t.string "category"
     t.integer "capacity"
     t.string "dresscode"
-    t.bigint "venues_id", null: false
-    t.bigint "users_id", null: false
+    t.bigint "venue_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
-    t.date "starts_at"
-    t.date "ends_at"
-
-    t.time "start_time"
-    t.time "end_time"
-    t.index ["users_id"], name: "index_events_on_users_id"
-    t.index ["venues_id"], name: "index_events_on_venues_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.index ["user_id"], name: "index_events_on_user_id"
+    t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
   create_table "lineups", force: :cascade do |t|
-    t.bigint "events_id", null: false
-    t.bigint "artists_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "artist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artists_id"], name: "index_lineups_on_artists_id"
-    t.index ["events_id"], name: "index_lineups_on_events_id"
+    t.index ["artist_id"], name: "index_lineups_on_artist_id"
+    t.index ["event_id"], name: "index_lineups_on_event_id"
   end
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
-    t.bigint "events_id", null: false
-    t.bigint "users_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["events_id"], name: "index_messages_on_events_id"
-    t.index ["users_id"], name: "index_messages_on_users_id"
+    t.index ["event_id"], name: "index_messages_on_event_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
     t.text "comment"
-    t.bigint "users_id", null: false
-    t.bigint "events_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["events_id"], name: "index_reviews_on_events_id"
-    t.index ["users_id"], name: "index_reviews_on_users_id"
+    t.index ["event_id"], name: "index_reviews_on_event_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -134,12 +128,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_202658) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "events", "users", column: "users_id"
-  add_foreign_key "events", "venues", column: "venues_id"
-  add_foreign_key "lineups", "artists", column: "artists_id"
-  add_foreign_key "lineups", "events", column: "events_id"
-  add_foreign_key "messages", "events", column: "events_id"
-  add_foreign_key "messages", "users", column: "users_id"
-  add_foreign_key "reviews", "events", column: "events_id"
-  add_foreign_key "reviews", "users", column: "users_id"
+  add_foreign_key "events", "users"
+  add_foreign_key "events", "venues"
+  add_foreign_key "lineups", "artists"
+  add_foreign_key "lineups", "events"
+  add_foreign_key "messages", "events"
+  add_foreign_key "messages", "users"
+  add_foreign_key "reviews", "events"
+  add_foreign_key "reviews", "users"
 end
