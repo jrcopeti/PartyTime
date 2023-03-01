@@ -1,18 +1,27 @@
 <h1>Events</h1>
 
+<%= form_with url: events_path, method: :get, class: "d-flex" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a Event"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
+
 <% @events.each do |event| %>
- <h3><%= link_to @event.title, event_path(@event) %></h3>
+ <h3><%= event.title %></h3>
     <ul>
-    <li><%= @event.description %></li>
-    <li><%= @event.status %></li>
-    <li><%= @event.category%></li>
-    <li><%= @event.capacity %></li>
-    <li><%= @event.dresscode %></li>
-    <li><%= @event.start_date %></li>
-    <li><%= @event.end_date %></li>
-    <li><%= @event.start_time%></li>
-    <li><%= @event.end_time %></li>
+    <li><%= event.description %></li>
+    <li><%= event.status %></li>
+    <li><%= event.category%></li>
+    <li><%= event.capacity %></li>
+    <li><%= event.dresscode %></li>
+    <li><%= event.start_date %></li>
+    <li><%= event.end_date %></li>
+    <li> <%= event.venue.name %></li>
   </ul>
 <% end %>
 
-<%= link_to "Back to events", events_path %>
+<%= link_to "Back to home", root_path %>
