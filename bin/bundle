@@ -17,7 +17,7 @@ m = Module.new do
     File.expand_path($0) == File.expand_path(__FILE__)
   end
 
-  def env_var_version
+  def   env_var_version
     ENV["BUNDLER_VERSION"]
   end
 
