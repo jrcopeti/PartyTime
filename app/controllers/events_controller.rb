@@ -2,14 +2,21 @@ class EventsController < ApplicationController
 
   def index
     if params[:query].present?
-      @events = Event.where("end_date > ?", Time.now).global_search(params[:query])
+      @events_by_date = Event.where("end_date > ?", Time.now).order("start_date ASC").global_search(params[:query]).group_by(&:start_date)
     else
-      @events = Event.where("end_date > ?", Time.now)
+      @events_by_date = Event.where("end_date > ?", Time.now).order("start_date ASC").group_by(&:start_date)
     end
   end
 
   def show
-    @events = Event.find(params[:id])
+    @venue = Venue.find(params[:venue_id])
+    @event = Event.find(params[:id])
+  end
+
+  def index_events_by_venue
+    @venue = Venue.find(params[:venue_id])
+    @event = Event.find(params[:venue_id]).where("end_date > ?", Time.now)
+
   end
 
   private
