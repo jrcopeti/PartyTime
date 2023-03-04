@@ -1,4 +1,7 @@
 
+puts "deleting all lineups"
+Lineup.all.delete_all
+
 puts "deleting all artists"
 Artist.all.delete_all
 
