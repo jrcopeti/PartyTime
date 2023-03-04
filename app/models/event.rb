@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :venue
   belongs_to :user
+  has_many :rsvps, dependent: :destroy
 
   # validate :end_date_after_start_date
 

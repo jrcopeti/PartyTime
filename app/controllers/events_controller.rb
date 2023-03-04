@@ -1,15 +1,24 @@
 class EventsController < ApplicationController
   def index
-    if params[:query].present?
-      @events_by_date = Event.where("end_date > ?", Time.now).order("start_date ASC").global_search(params[:query]).group_by(&:start_date)
-    else
-      @events_by_date = Event.where("end_date > ?", Time.now).order("start_date ASC").group_by(&:start_date)
+    # @events = Event.where('start_date <= ? AND end_date >= ?', DateTime.current, DateTime.current)
+    # How do we get all venues  that  have events??
+
+    @venues = Venue.joins(:events).where.not(events: {venue_id: nil}).geocoded
+    # The `geocoded` scope filters only events with coordinates
+    @markers = @venues.map do |venue|
+      {
+        lat: venue.latitude,
+        lng: venue.longitude
+      }
     end
   end
 
   def show
     set_venue
     set_event
+    @user = current_user
+    @rsvp = current_user.rsvp(@event) || Rsvp.new
+
   end
 
   def new
