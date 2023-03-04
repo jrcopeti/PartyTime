@@ -1,4 +1,4 @@
 class Lineup < ApplicationRecord
-  belongs_to :events
-  belongs_to :artists
+  belongs_to :event
+  belongs_to :artist
 end

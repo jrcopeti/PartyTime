@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     set_event
     @user = current_user
     @rsvp = current_user.rsvp(@event) || Rsvp.new
-
+    @artist = Event.find(params[:id])
   end
 
   def new

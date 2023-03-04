@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema[7.0].define(version: 2023_03_04_101954) do
-
+ActiveRecord::Schema[7.0].define(version: 2023_03_04_135810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_04_101954) do
     t.string "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
   create_table "events", force: :cascade do |t|
@@ -137,12 +136,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_04_101954) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo"
-<<<<<<< HEAD
+    t.string "image_url"
     t.float "latitude"
     t.float "longitude"
-=======
-    t.string "image_url"
->>>>>>> 5f22e7dfbf8b70cb4b5448ca22961c8202194f7b
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
