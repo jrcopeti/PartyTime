@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resources :events, only: %i[show edit ]
   end
 
-  resources :events, only: %i[index new create update destroy]
+  resources :events, only: %i[index new create update destroy] do
+    resources :rsvps, only: :create
+  end
   resources :profile, only: :show
   resources :users, only: %i[show edit update]
 end

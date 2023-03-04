@@ -1,11 +1,8 @@
 class User < ApplicationRecord
-  has_many :events
+  has_many :events, dependent: :destroy
+  has_many :rsvps, dependent: :destroy
   has_one_attached :photo
 
-  # if Rails.env.production?
-  #   geocoded_by :ip_address, latitude: :lat, longitude: :lon
-  #   after_validation :geocode
-  # end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -18,8 +15,12 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.full_name = auth.info.name # assuming the user model has a name
-      user.avatar_url = auth.info.image # assuming the user model has an image
+      user.full_name = auth.info.name
+      user.avatar_url = auth.info.image
     end
+  end
+
+  def rsvp(event)
+    rsvps.find_by(event_id: event.id)
   end
 end
