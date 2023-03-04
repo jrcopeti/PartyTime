@@ -5,6 +5,18 @@
     <li><%= @venue.address %></li>
     <li><%=@venue.logo %></li>
   </ul>
-   <%= link_to "See all the events at this venue", venue_events_path(@venue)  %>
+
+    <h2>Check all the upcoming events</h2>
+      <% @events.each do |event| %>
+      <ul>
+       <li><%=link_to event.title, venue_event_path(event.venue_id, event.id) %></li>
+       <li><%= event.venue.name%></li>
+       <li><%=event.start_date.strftime("%A, %B %e, %Y %I:%M %p") %> to <%= event.end_date.strftime("%A, %B %e, %Y %I:%M %p")%></li>
+       </ul>
+       <% end %>
+
+
+
+
   <%= link_to "Back to Venues", venues_path %>
 </div>
