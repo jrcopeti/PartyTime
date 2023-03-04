@@ -10,6 +10,9 @@ class EventsController < ApplicationController
   def show
     set_venue
     set_event
+    @user = current_user
+    @rsvp = current_user.rsvp(@event) || Rsvp.new
+
   end
 
   def new

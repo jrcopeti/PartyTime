@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.photo.purge if params[:user][:photo_delete] == '1'
     if @user.update(user_params)
       redirect_to user_path(current_user), notice: "Your profile has been updated."
     else
