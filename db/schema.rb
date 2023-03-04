@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_04_135810) do
+
+#ActiveRecord::Schema[7.0].define(version: 2023_03_04_135810) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_04_144945) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_04_135810) do
     t.datetime "updated_at", null: false
     t.datetime "start_date"
     t.datetime "end_date"
+    t.string "image_url"
     t.index ["user_id"], name: "index_events_on_user_id"
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
@@ -102,6 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_04_135810) do
   create_table "rsvps", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
+    t.boolean "attending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_rsvps_on_event_id"
