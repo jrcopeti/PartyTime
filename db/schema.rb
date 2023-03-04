@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_01_102722) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_04_165318) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_01_102722) do
     t.string "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
   create_table "events", force: :cascade do |t|
@@ -64,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_01_102722) do
     t.datetime "updated_at", null: false
     t.datetime "start_date"
     t.datetime "end_date"
+    t.string "image_url"
     t.index ["user_id"], name: "index_events_on_user_id"
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
@@ -98,6 +100,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_01_102722) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "rsvps", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_rsvps_on_event_id"
+    t.index ["user_id"], name: "index_rsvps_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -113,6 +124,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_01_102722) do
     t.float "latitude"
     t.float "longitude"
     t.string "address"
+    t.text "bio"
+    t.string "nickname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -124,6 +137,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_01_102722) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "image_url"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -136,4 +152,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_01_102722) do
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "events"
   add_foreign_key "reviews", "users"
+  add_foreign_key "rsvps", "events"
+  add_foreign_key "rsvps", "users"
 end

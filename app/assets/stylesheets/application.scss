@@ -10,3 +10,10 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "components/clubitems";
+@import "components/clubdetails";
+
+body {
+  background-color: black;
+  color: azure;
+}

@@ -1,0 +1,9 @@
+<div class="container">
+  <h1><%= @artist.name %></h1>
+  <h1>About: <%= @artist.about %></h1>
+  <h1>Genre: <%= @artist.genre %></h1>
+  <h1>
+    <a href="<%= @artist.link%>" target="_blank"><%=@artist.link%></a>
+  </h1>
+  <h1><%= image_tag(@artist.image_url) %></h1>
+</div>

@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Profile</h1>
+
+  <% if current_user.photo.attached? %>
+      <%= cl_image_tag current_user.photo.key, width: 50, height: 50, radius:"max", crop: "thumb"%>
+  <% else %>
+      <%= image_tag(current_user.avatar_url)%>
+  <%end %>
+
+
+  <h2> <%= @user.nickname %></h2>
+  <h4> <%= @user.full_name %></h4>
+  <p><%= @user.bio %></p>
+
+  <%= link_to "Edit Profile", edit_user_path(current_user) %>
+</div>
