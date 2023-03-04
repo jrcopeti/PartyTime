@@ -1,10 +1,11 @@
 class User < ApplicationRecord
   has_many :events
-  
-  if Rails.env.production?
-    geocoded_by :ip_address, latitude: :lat, longitude: :lon
-    after_validation :geocode
-  end
+  has_one_attached :photo
+
+  # if Rails.env.production?
+  #   geocoded_by :ip_address, latitude: :lat, longitude: :lon
+  #   after_validation :geocode
+  # end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
