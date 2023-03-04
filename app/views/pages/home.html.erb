@@ -1,7 +1,7 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
-<%= link_to "Events", events_path %>
+<%= link_to "Create Events", new_event_path %>
 
 <% if current_user %>
   <h2><%= current_user.email %></h2>
