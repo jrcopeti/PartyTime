@@ -10,7 +10,17 @@
 }
 
 .club-card:hover {
-  //
+    -webkit-transition: background-image 0.2s ease-in-out;
+    transition: background-image 0.2s ease-in-out;
+    // -ms-transform: scale(1.2);
+    // -moz-transform: scale(1.2);
+    // -webkit-transform: scale(1.2);
+    // -o-transform: scale(1.2);
+    // transform: scale(1.2);
+    // -webkit-transition: all .5s;
+    // -moz-transition: all .5s;
+    // -o-transition: all .5s;
+    // transition: all .5s;
 }
 
 .club {
