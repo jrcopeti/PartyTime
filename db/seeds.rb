@@ -118,9 +118,8 @@ Venue.create!(
                 It quickly found another riverside spot, so it’s business as usual for this legendary beach bar and cultural centre.
                 By day, there might be kids playing a laid-back game of volleyball, with a jerk chicken stall on the side.
                 Then, as the light fades, things keep up a leisurely pace with concerts and parties bouncing to an Afro-Caribbean beat.",
-  address: "An d. Schillingbrücke 3, 10243 Berlin",
-  logo: "https://www.facebook.com/photo/?fbid=567121732114303&set=a.567121735447636",
-  image_url: "https://images.unsplash.com/photo-1526309789204-a67df3fd3c4c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1365&q=80"
+  address: "Schillingbrücke 3, 10243 Berlin",
+  logo: "https://www.facebook.com/photo/?fbid=567121732114303&set=a.567121735447636"
 )
 
 Venue.create!(
