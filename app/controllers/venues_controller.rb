@@ -5,6 +5,6 @@ class VenuesController < ApplicationController
 
   def show
     @venue = Venue.find(params[:id])
-    @events = Event.where("venue_id = ?", @venue.id).where("end_date > ?", Time.now).order("start_date ASC")
+    @events = Event.where("venue_id = ? AND end_date > ?", @venue.id, Time.now).order("start_date ASC")
   end
 end

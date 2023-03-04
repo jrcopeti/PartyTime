@@ -1,4 +1,10 @@
 
+puts "deleting all artists"
+Artist.all.delete_all
+
+puts "deleting all rsvsp"
+Rsvp.all.delete_all
+
 puts "deleting all Events from the database"
 Event.all.delete_all
 
@@ -173,5 +179,28 @@ puts "preparing seeding events"
 end
 
 puts "created #{Event.count} events"
+
+
+20.times do
+  Artist.create!(
+    name: Faker::Music.band,
+    about: Faker::Quote.famous_last_words,
+    genre: Faker::Music.genre,
+    link: "https://soundcloud.com/woym",
+    image_url: "https://cdn.prod.www.spiegel.de/images/a71d32b1-de0a-495d-b615-8872ed34faf0_w948_r1.778_fpx50_fpy48.webp"
+  )
+end
+
+puts "created #{Artist.count} artists"
+
+20.times do
+  Lineup.create!(
+    artist_id: Artist.all.sample.id,
+    event_id: Event.all.sample.id
+  )
+end
+
+puts "created #{Lineup.count} lineups"
+
 
 puts "DATABASE SUCCESSFULL SEEDED"

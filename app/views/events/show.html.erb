@@ -12,6 +12,14 @@
   <h4> Club <%= link_to @event.venue.name, venue_path(@venue) %></h4>
   <p> Address: <%= @event.venue.address %></p>
 
+  <h1>lineup</h1>
+
+  <% @event.lineups.each do |lineup| %>
+    <ul>
+      <li><%= link_to lineup.artist.name, artist_path(lineup.artist.id) %></li>
+    </ul>
+  <% end %>
+
   <h4>Attendees: <%= @event.rsvps.count %><h4>
 
       <% unless @rsvp.persisted? %>

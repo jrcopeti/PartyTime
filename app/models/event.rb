@@ -2,6 +2,8 @@ class Event < ApplicationRecord
   belongs_to :venue
   belongs_to :user
   has_many :rsvps, dependent: :destroy
+  has_many :lineups
+  has_many :artists, through: :lineups
 
   # validate :end_date_after_start_date
 

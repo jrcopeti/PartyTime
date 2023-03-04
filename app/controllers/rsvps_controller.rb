@@ -5,6 +5,5 @@ class RsvpsController < ApplicationController
     @rsvp = Rsvp.create(user: current_user, event: @event)
     @rsvp.save!
     redirect_to event_path(@event)
-
   end
 end
