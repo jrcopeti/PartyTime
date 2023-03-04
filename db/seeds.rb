@@ -38,7 +38,7 @@ puts "Seeding venues"
 status = %w[cold, warm, hot, offline]
 
 Venue.create!(
-  name: "Tressor",
+  name: "Tresor",
   definition: "The club was founded in March 1991 in the vaults of the former department store Wertheim at Leipziger Strasse 126-128 in Mitte,
                 the central part of East Berlin, next to the Potsdamer Platz.
                 The history of the club goes back to 1988 when the electronic music label Interfisch opened the Ufo Club in Berlin.
@@ -111,7 +111,7 @@ Venue.create!(
                 It quickly found another riverside spot, so it’s business as usual for this legendary beach bar and cultural centre.
                 By day, there might be kids playing a laid-back game of volleyball, with a jerk chicken stall on the side.
                 Then, as the light fades, things keep up a leisurely pace with concerts and parties bouncing to an Afro-Caribbean beat.",
-  address: "An d. Schillingbrücke 3, 10243 Berlin",
+  address: "Schillingbrücke 3, 10243 Berlin",
   logo: "https://www.facebook.com/photo/?fbid=567121732114303&set=a.567121735447636"
 )
 

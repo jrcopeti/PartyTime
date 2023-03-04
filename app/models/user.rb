@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :events
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
   
   if Rails.env.production?
     geocoded_by :ip_address, latitude: :lat, longitude: :lon
