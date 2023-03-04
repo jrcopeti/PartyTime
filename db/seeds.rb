@@ -38,13 +38,14 @@ puts "Seeding venues"
 status = %w[cold, warm, hot, offline]
 
 Venue.create!(
-  name: "Tressor",
+  name: "Tresor",
   definition: "The club was founded in March 1991 in the vaults of the former department store Wertheim at Leipziger Strasse 126-128 in Mitte,
                 the central part of East Berlin, next to the Potsdamer Platz.
                 The history of the club goes back to 1988 when the electronic music label Interfisch opened the Ufo Club in Berlin.
                 Ufo was the original centre of Berlin house and techno, but due to financial problems that club closed in 1990.",
   address: "Köpenicker Str. 70, 10179 Berlin",
-  logo: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Tresor-Logo.svg"
+  logo: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Tresor-Logo.svg",
+  image_url: "https://images.unsplash.com/photo-1630395822970-acd6a691d97e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
 )
 
 Venue.create!(
@@ -56,7 +57,8 @@ Venue.create!(
                 it has since become one of the world's most famous clubs,
                 and has been called the world capital of techno.",
   address: "Am Wriezener Bahnhof, 10243 Berlin, Germany",
-  logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/Berghain-Logo.svg"
+  logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/Berghain-Logo.svg",
+  image_url: "https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
 )
 
 Venue.create!(
@@ -65,14 +67,16 @@ Venue.create!(
                 It is operated in a former dog biscuit factory and, according to Resident Advisor magazine,
                 is one of the ten most important clubs in Berlin for electronic dance music.",
   address: "Hauptstrasse 15, 10317 Berlin",
-  logo: "https://www.google.com/search?q=sisyphos%20logo&tbm=isch&cs=1&hl=de&sa=X&ved=0CB4QtI8BKABqFwoTCJiN8pT3uP0CFQAAAAAdAAAAABAp&biw=1680&bih=914&dpr=2#imgrc=C1_mGc5T5IzGmM"
+  logo: "https://www.google.com/search?q=sisyphos%20logo&tbm=isch&cs=1&hl=de&sa=X&ved=0CB4QtI8BKABqFwoTCJiN8pT3uP0CFQAAAAAdAAAAABAp&biw=1680&bih=914&dpr=2#imgrc=C1_mGc5T5IzGmM",
+  image_url: "https://images.unsplash.com/photo-1572088509226-03c7c57c1bf5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
 )
 
 Venue.create!(
   name: "About Blank",
   definition: "About Blank is a techno club in the Friedrichshain district of Berlin.",
   address: "Markgrafendamm 24c, 10245 Berlin",
-  logo: "https://unsplash.com/photos/HFqDtoH36Gs"
+  logo: "https://unsplash.com/photos/HFqDtoH36Gs",
+  image_url: "https://images.unsplash.com/photo-1555086156-e6c7353d283f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
 )
 
 Venue.create!(
@@ -82,7 +86,8 @@ Venue.create!(
                 this place has played host to techno DJs from around the world, alongside artists working in sound, light, and installation.
                 Anomalie also hosts film screenings, art exhibitions, and open-air raves.",
   address: "Storkower Str. 123, 10407 Berlin",
-  logo: "https://www.facebook.com/photo/?fbid=204824975240803&set=a.201155812274386"
+  logo: "https://www.facebook.com/photo/?fbid=204824975240803&set=a.201155812274386",
+  image_url: "https://images.unsplash.com/photo-1606565471405-f4e6e7b4f2ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
 )
 
 Venue.create!(
@@ -90,7 +95,8 @@ Venue.create!(
   definition: "Decadent and trashy in equal measures, this ruin-esque former brothel attracts both glitter punks and health goths, who sway
                 to experimental electronic music, down cheap beers and soak up the laid-back vibes.",
   address: "Boddinstraße 60, 12053 Berlin",
-  logo: "https://unsplash.com/photos/uylviI4RJpY"
+  logo: "https://unsplash.com/photos/uylviI4RJpY",
+  image_url: "https://images.unsplash.com/photo-1541057591728-77510a9ea77f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
 )
 
 Venue.create!(
@@ -101,7 +107,8 @@ Venue.create!(
                 and increasingly so as the weekend unravels. If you have the stamina (and courage) to last well into Monday afternoon,
                 expect to encounter some of Berlin’s strangest creatures.",
   address: "Holzmarktstraße 25, 10243 Berlin",
-  logo: "https://www.facebook.com/photo/?fbid=203255388721352&set=a.203255352054689"
+  logo: "https://www.facebook.com/photo/?fbid=203255388721352&set=a.203255352054689",
+  image_url: "https://images.unsplash.com/photo-1544586784-b9ee32edb3ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
 )
 
 Venue.create!(
@@ -112,7 +119,8 @@ Venue.create!(
                 By day, there might be kids playing a laid-back game of volleyball, with a jerk chicken stall on the side.
                 Then, as the light fades, things keep up a leisurely pace with concerts and parties bouncing to an Afro-Caribbean beat.",
   address: "An d. Schillingbrücke 3, 10243 Berlin",
-  logo: "https://www.facebook.com/photo/?fbid=567121732114303&set=a.567121735447636"
+  logo: "https://www.facebook.com/photo/?fbid=567121732114303&set=a.567121735447636",
+  image_url: "https://images.unsplash.com/photo-1526309789204-a67df3fd3c4c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1365&q=80"
 )
 
 Venue.create!(
@@ -123,7 +131,8 @@ Venue.create!(
                 after-hours crowd, happy to chill, drink and dance the day away. Winter parties are now held in the nearby Hoppetosse
                 boat at Arena Berlin.",
   address: "Am Flutgraben 1, 12435 Berlin",
-  logo: "https://www.facebook.com/photo/?fbid=473033608185387&set=a.473033578185390&locale=de_DE"
+  logo: "https://www.facebook.com/photo/?fbid=473033608185387&set=a.473033578185390&locale=de_DE",
+  image_url: "https://images.unsplash.com/photo-1551081831-02459886c4c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
 )
 
 Venue.create!(
@@ -134,7 +143,8 @@ Venue.create!(
                 mags from time to time. It’s the antithesis of Berghain, with crowds of locals and amiable bouncers who are occasionally
                 dressed as knights (Ritter means ‘knight’). Brace yourself for a massive queue if you arrive between 1am and 3:30am.",
   address: "Ritterstraße 24-27, 10969 Berlin",
-  logo: "https://www.pngwing.com/en/free-png-xfhco"
+  logo: "https://www.pngwing.com/en/free-png-xfhco",
+  image_url: "https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
 )
 
 puts "done seeding #{Venue.count} venues"
