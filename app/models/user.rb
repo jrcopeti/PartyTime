@@ -25,4 +25,5 @@ class User < ApplicationRecord
   def rsvp(event)
     rsvps.find_by(event_id: event.id)
   end
+
 end
