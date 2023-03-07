@@ -23,6 +23,14 @@
         <p><%=@venue.definition %></p>
       </div>
 
+      <h1>Upcoming events</h1>
+
+      <ul>
+      <%@venue.events.each do |event| %>
+        <li><%= link_to event.title, venue_event_path(@venue, event.id)  %><li>
+      <%end%>
+      </ul>
+
     </div>
 
 </div>
