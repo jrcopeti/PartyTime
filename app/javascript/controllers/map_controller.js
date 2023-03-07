@@ -13,8 +13,10 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/jonathanamir1/cletzfekq000m01ph88obppxk"
-    })
+      style: "mapbox://styles/jonathanamir1/cletzfekq000m01ph88obppxk",
+      center: [13.443625162341908, 52.50652632365762],
+      zoom: 12,
+    });
     this.#addMarkersToMap()
   }
   #addMarkersToMap() {

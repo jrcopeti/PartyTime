@@ -23,4 +23,42 @@ body {
 
 .home-text {
   margin-bottom: 0;
+  align-items: center;
+}
+
+.event-date {
+  // background: red;
+  position:-webkit-sticky; position:sticky; top:0;
+}
+.event-card-container {
+  // background: greenyellow;
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+}
+
+.event-card {
+  // background: hotpink;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 8px;
+  border-bottom: 0.5px solid #585858;;
+}
+
+.event-item {
+  // background: darkgoldenrod;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+}
+
+.event-item p {
+  // background: blue;
 }
