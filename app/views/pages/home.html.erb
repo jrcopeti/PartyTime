@@ -7,26 +7,29 @@
     <%= submit_tag "Search", class: "btn btn-primary" %>
   <% end %>
 
-  <div>
-    <% prev_date = nil %>
-    <% @events_by_date.each do |date, events| %>
-      <% if prev_date != date.to_date.strftime("%A, %B %e, %Y") %>
-        <% prev_date = date.to_date.strftime("%A, %B %e, %Y") %>
-        <div>
-          <h3> <%= prev_date %> </h3>
-          <div>
-            <br>
-      <% end %>
-      <% events.each do |event| %>
-        <h2><%= link_to event.title, venue_event_path(event.venue_id, event.id) %></h2>
-        <ul>
-          From <%= event.start_date.strftime("%I:%M %p") %> to <%= event.end_date.strftime("%I:%M %p") %></li>
-        </ul>
+      <div class="event-date">
+        <% prev_date = nil %>
+        <% @events_by_date.each do |date, events| %>
+          <% if prev_date != date.to_date.strftime("%A, %B %e, %Y") %>
+            <% prev_date = date.to_date.strftime("%A, %B %e, %Y") %>
+              <h3> <%= prev_date %> </h3>
+        <% end %>
+      </div>
+      <div class="event-card-container">
+        <% events.each do |event| %>
+        <div class="event-card">
+          <h2><%= link_to event.title, venue_event_path(event.venue_id, event.id) %></h2>
+            <div class="event-item">
+              <p>From <%= event.start_date.strftime("%I:%M %p") %> to <%= event.end_date.strftime("%I:%M %p") %></p>
+              <i class="fa-regular fa-heart"></i>
+            </div>
+        </div>
+      </div>
       <% end %>
       <% if @events_by_date.keys.last == date %>
       <% end %>
     <% end %>
-    </div>
+
 
     <%= link_to "Back to home", root_path %>
     </div>
