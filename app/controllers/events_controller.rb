@@ -25,7 +25,9 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @lineup = Lineup.new
     @venues = Venue.all
+    @artists = Artist.all
   end
 
   def create
@@ -61,6 +63,20 @@ class EventsController < ApplicationController
     else
       render :show, status: :unprocessable_entity, notice: "Event could not be deleted."
     end
+  end
+
+  def favorite
+    set_event
+    @user = current_user
+    current_user.favorite(@event)
+    redirect_to root_path
+  end
+
+  def unfavorite
+    set_event
+    @user = current_user
+    current_user.unfavorite(@event)
+    redirect_to root_path
   end
 
   private

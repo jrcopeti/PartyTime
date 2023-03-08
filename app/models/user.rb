@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :rsvps, dependent: :destroy
   has_one_attached :photo
+  acts_as_favoritor
+  acts_as_favoritable
   after_validation :geocode, if: :will_save_change_to_address?
   geocoded_by :address
 
