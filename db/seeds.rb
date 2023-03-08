@@ -183,15 +183,48 @@ end
 puts "created #{Event.count} events"
 
 
-20.times do
-  Artist.create!(
-    name: Faker::Music.band,
-    about: Faker::Quote.famous_last_words,
-    genre: Faker::Music.genre,
-    link: "https://soundcloud.com/woym",
-    image_url: "https://cdn.prod.www.spiegel.de/images/a71d32b1-de0a-495d-b615-8872ed34faf0_w948_r1.778_fpx50_fpy48.webp"
-  )
-end
+# 20.times do
+#   Artist.create!(
+#     name: Faker::Music.band,
+#     about: Faker::Quote.famous_last_words,
+#     genre: Faker::Music.genre,
+#     link: "https://soundcloud.com/woym",
+#     image_url: "https://cdn.prod.www.spiegel.de/images/a71d32b1-de0a-495d-b615-8872ed34faf0_w948_r1.778_fpx50_fpy48.webp"
+#   )
+# end
+artist1 = Artist.create!(
+  name: "Lady Gaga",
+  about: "Stefani Joanne Angelina Germanotta
+  (born March 28, 1986), known professionally as Lady Gaga,
+  is an American singer, songwriter, and actress. She is known for her image reinventions and musical versatility.",
+  genre: "Pop",
+  link: "https://www.youtube.com/channel/UCNL1ZadSjHpjm4q9j2sVtOA",
+  image_url: "https://cdn.prod.www.spiegel.de/images/a71d32b1-de0a-495d-b615-8872ed34faf0_w948_r1.778_fpx50_fpy48.webp"
+)
+
+artist2 = Artist.create!(
+  name: "Tame Impala",
+  about: "Tame Impala is the psychedelic music project of Australian multi-instrumentalist Kevin Parker.[6] In the recording studio, Parker writes, records, performs, and produces all of the project's music.",
+  genre: "Psychedelic Rock",
+  link: "https://www.youtube.com/user/tameimpalamusic",
+  image_url: "https://www.laut.de/Tame-Impala/tame-impala-207454.jpg"
+)
+
+artist3 = Artist.create!(
+  name: "RÜFÜS DU SOL",
+  about: "RÜFÜS DU SOL and formerly known as simply Rüfüs from 2010 to 2018 is an Australian alternative dance group from Sydney, that consists of Tyrone Lindqvist, Jon George and James Hunt.",
+  genre: "Alternative Dance",
+  link: "https://www.youtube.com/user/monekeleon",
+  image_url: "https://www.billboard.com/wp-content/uploads/2022/10/rufus-du-sol-portrait-grammys-billboard-1548.jpg?w=942&h=623&crop=1"
+)
+
+artist4 = Artist.create!(
+  name: "Peggy Gou",
+  about: "Peggy Gou is a South Korean DJ and record producer based in Germany. She has released seven EPs on record labels including Ninja Tune and Phonica.",
+  genre: "Deep House",
+  link: "https://www.youtube.com/channel/UCWd5yMFDEuSCWzTM4xuA1fg",
+  image_url: "https://weraveyou.com/wp-content/uploads/2022/06/Peggy-Gou-Press.jpg"
+)
 
 puts "created #{Artist.count} artists"
 

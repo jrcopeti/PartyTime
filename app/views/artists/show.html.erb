@@ -1,8 +1,8 @@
 <div class="container">
   <h1><%= @artist.name %></h1>
-  <h1>About: <%= @artist.about %></h1>
-  <h1>Genre: <%= @artist.genre %></h1>
-  
+  <h4>About: <%= @artist.about %></h4>
+  <h4>Genre: <%= @artist.genre %></h4>
+
  <% if current_user.favorited?(@artist)%>
         <div class="icon-box">
           <a href="<%=unfavorite_artist_path(@artist)%>">
@@ -17,8 +17,16 @@
        </div>
   <% end %>
 
-  <h1>
+ <h2>Upcoming events of this artist</h2>
+ <% @artist.lineups.upcoming.each do |lineup| %>
+    <ul>
+      <li><%= link_to lineup.event.title, venue_event_path(lineup.event.venue_id, lineup.event.id) %>
+          <%= lineup.event.start_date.strftime("%A, %B %e, %Y") %> </li>
+    </ul>
+  <% end %>
+
+  <p>
     <a href="<%= @artist.link%>" target="_blank"><%=@artist.link%></a>
-  </h1>
+  <p>
   <img <%= image_tag(@artist.image_url) %>>
 </div>
