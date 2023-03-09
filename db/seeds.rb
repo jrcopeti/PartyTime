@@ -226,6 +226,31 @@ artist4 = Artist.create!(
   image_url: "https://weraveyou.com/wp-content/uploads/2022/06/Peggy-Gou-Press.jpg"
 )
 
+artist5 = Artist.create!(
+  name: "Rossi.",
+  about: "Rossi. is an exiting young producer, who is making a name for himself with his new fresh cut sounds.
+  ‘Rossi.’s sets are inspired by the ever-growing ‘minimal groove scene’, in Europe. He plays music with the aim of lifting a crowd, his sets will feature lots of cuts, hats and percussion which is stripped down on-top of jazzy and soulful basslines.",
+  genre: "Minimal Groove",
+  link: "https://soundcloud.com/modula-records/mr001-b2-rkinn-clip",
+  image_url: "https://scontent-ber1-1.xx.fbcdn.net/v/t39.30808-6/293336527_451780400290680_3314608451497244126_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=-ErZF2FhyDMAX9LqP8x&_nc_ht=scontent-ber1-1.xx&oh=00_AfAI-cKINA_ruqgPFP_RM1tujCpU_SoTpZwXRZto1y7APg&oe=640F360B"
+)
+
+artist6 = Artist.create!(
+  name: "Purple Disco Machine",
+  about: "The sound of Purple Disco Machine describe some as 'Deep Funk'. In 2009 the project Purple Disco Machine was founded. In recent years, PDM composed many songs, including, 'My House', which was published by Off Recordings.",
+  genre: "Deep Funk",
+  link: "https://www.youtube.com/channel/UCdkMBTZmOXDh8nTSX1RdRkA",
+  image_url:"https://yt3.googleusercontent.com/CJ0UQGEIXyr3uz8sqeLM1O00ty0l6iRyhM3jEjmF5zN-Mmk53y3oMm6eQv3kz_Tr62uKagIJw8E=s176-c-k-c0x00ffffff-no-rj"
+)
+
+artist7 = Artist.create!(
+  name: "Mirco Caruso",
+  about: "Haste makes waste. You may describe Mirco Caruso’s previous career with these three words and it will fit perfectly. This club-musician with Italian roots doesn’t work with a prybar, he doesn’t care for exclusive hypes and he sure is no bandwagoner. Mirco Caruso’s career is embossed by a constant buildup that finally brought him to the musical genre he belongs to.",
+  genre: "Dance/Eletronica",
+  link: "https://www.youtube.com/channel/UCAWgieZ7upNJRpFPdrsvdrA",
+  image_url: "https://geo-media.beatport.com/image_size/590x404/3ca2dd94-0307-475c-a97b-8f192c4b3a48.jpg"
+)
+
 puts "created #{Artist.count} artists"
 
 20.times do

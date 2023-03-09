@@ -26,6 +26,8 @@
         <%= simple_form_for [@event, @rsvp] do |f|  %>
           <%= f.submit "I am going"  %>
         <% end  %>
+        <% else %>
+        <%= link_to "I am NOT going", event_rsvp_path(@event, @rsvp), data: {turbo_method: :delete} %>
       <% end %>
 
       <% if @event.user == current_user %>

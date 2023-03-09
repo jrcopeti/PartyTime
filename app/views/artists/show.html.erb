@@ -3,6 +3,8 @@
   <h4>About: <%= @artist.about %></h4>
   <h4>Genre: <%= @artist.genre %></h4>
 
+  <h4> Followers: <%= @artist.favoritors.count %></h4>
+
  <% if current_user.favorited?(@artist)%>
         <div class="icon-box">
           <a href="<%=unfavorite_artist_path(@artist)%>">
@@ -17,7 +19,7 @@
        </div>
   <% end %>
 
- <h2>Upcoming events of this artist</h2>
+ <h4>Upcoming events of this artist</h4>
  <% @artist.lineups.upcoming.each do |lineup| %>
     <ul>
       <li><%= link_to lineup.event.title, venue_event_path(lineup.event.venue_id, lineup.event.id) %>
