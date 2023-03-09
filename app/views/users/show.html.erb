@@ -1,6 +1,11 @@
+  <div class="event-title">
+    <h1>Profil</h1>
+    <div class="event-icon">
+      <i class="fa-solid fa-bell fa-lg"></i>
+      <i class="fa-solid fa-comments fa-lg"></i>
+    </div>
+  </div>
 <div class="container">
-  <h1>Profile</h1>
-
   <% if current_user.photo.attached? %>
       <%= cl_image_tag current_user.photo.key, width: 50, height: 50, radius:"max", crop: "thumb"%>
   <% else %>

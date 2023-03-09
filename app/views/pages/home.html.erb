@@ -1,5 +1,20 @@
 <div>
-  <h1>Events</h1>
+  <div class="event-title">
+    <h1>Events</h1>
+    <div class="event-icon">
+      <i class="fa-solid fa-bell fa-lg"></i>
+      <i class="fa-solid fa-comments fa-lg"></i>
+    </div>
+  </div>
+
+  <div class="event-search">
+    <%= form_with url: events_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query, params[:query], class: "form-control-event", placeholder: "Search for Events..."
+      %>
+      <%# <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
 
   <%= form_with url: root_path, method: :get, class: "d-flex" do %>
     <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find a Event"%>
@@ -9,8 +24,8 @@
       <div class="event-date">
         <% prev_date = nil %>
         <% @events_by_date.each do |date, events| %>
-          <% if prev_date != date.strftime("%A, %B %e, %Y") %>
-            <% prev_date = date.strftime("%A, %B %e, %Y") %>
+          <% if prev_date != date.strftime("%d.%m. - %a") %>
+            <% prev_date = date.strftime("%d.%m. - %a") %>
               <h3> <%= prev_date %> </h3>
         <% end %>
       </div>
@@ -40,6 +55,9 @@
       <% end %>
     <% end %>
 
+
+
+    <% end %>
 
     <%= link_to "Back to home", root_path %>
     <%= link_to "Create an event", new_event_path  %>
