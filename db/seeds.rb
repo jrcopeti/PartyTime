@@ -250,6 +250,13 @@ artist7 = Artist.create!(
   link: "https://www.youtube.com/channel/UCAWgieZ7upNJRpFPdrsvdrA",
   image_url: "https://geo-media.beatport.com/image_size/590x404/3ca2dd94-0307-475c-a97b-8f192c4b3a48.jpg"
 )
+artist8 = Artist.create!(
+  name: "Metodi Hristov",
+  about: "With his truly unique style, ranging from the darker side of tech house to the raw house beats, Bulgarian-based Metodi Hristov was able to win the fans of electronic music for a short period of time.",
+  genre: "Tech House",
+  link: "https://soundcloud.com/metodihristov",
+  image_url: "https://scontent-fra3-1.xx.fbcdn.net/v/t39.30808-6/283669849_576527857168658_8623932100992968467_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=0FK9TQTiGQcAX9gQ1aZ&_nc_ht=scontent-fra3-1.xx&oh=00_AfBR02Ne3PLhGKy-v4f4LfG8ChbGjYWaEvLCr0jqOcm6PQ&oe=640F20C3"
+)
 
 puts "created #{Artist.count} artists"
 

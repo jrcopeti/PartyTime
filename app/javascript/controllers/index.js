@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import StickyTitleController from "./sticky_title_controller"
+application.register("sticky-title", StickyTitleController)

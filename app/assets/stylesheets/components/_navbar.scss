@@ -12,6 +12,12 @@
 }
 
 .navbar-bottom {
-  padding-bottom: 10
-
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: #060606;
+  justify-content: space-between;
+  padding: 24px 32px;
 }
