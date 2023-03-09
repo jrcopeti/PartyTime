@@ -76,3 +76,30 @@ a:link {
 .club-title {
   max-width: 80%;
 }
+
+.events-upcoming {
+  // background: hotpink;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+}
+.events-upcoming h3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 32px;
+  gap: 10px;
+
+}
+
+// .events-details {
+//   // background: green;
+// }
+
+.events-details img {
+  border-radius: 14px;
+  object-fit: cover;
+  width: 105px;
+  height: 140px;
+}

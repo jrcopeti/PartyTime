@@ -1,35 +1,46 @@
 <div>
-  <h1>Events</h1>
+  <div class="event-title">
+    <h1>Events</h1>
+    <div class="event-icon">
+      <i class="fa-solid fa-bell fa-lg"></i>
+      <i class="fa-solid fa-comments fa-lg"></i>
+    </div>
+  </div>
 
-  <%= form_with url: events_path, method: :get, class: "d-flex" do %>
-    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find a Event"
-    %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <div class="event-search">
+    <%= form_with url: events_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query, params[:query], class: "form-control-event", placeholder: "Search for Events..."
+      %>
+      <%# <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+    <% prev_date = nil %>
+    <% @events_by_date.each do |date, events| %>
+      <% if prev_date != date.to_date.strftime("%d.%m. - %a") %>
+        <% prev_date = date.to_date.strftime("%d.%m. - %a") %>
+  <div class="event-date">
+    <h3> <%= prev_date %> </h3>
+  </div>
   <% end %>
 
-      <div class="event-date">
-        <% prev_date = nil %>
-        <% @events_by_date.each do |date, events| %>
-          <% if prev_date != date.to_date.strftime("%A, %B %e, %Y") %>
-            <% prev_date = date.to_date.strftime("%A, %B %e, %Y") %>
-              <h3> <%= prev_date %> </h3>
-        <% end %>
-      </div>
-      <div class="event-card-container">
-        <% events.each do |event| %>
-        <div class="event-card">
-          <h2><%= link_to event.title, venue_event_path(event.venue_id, event.id) %></h2>
-            <div class="event-item">
-              <p>From <%= event.start_date.strftime("%I:%M %p") %> to <%= event.end_date.strftime("%I:%M %p") %></p>
-              <i class="fa-regular fa-heart"></i>
-            </div>
-        </div>
-      </div>
-      <% end %>
-      <% if @events_by_date.keys.last == date %>
-      <% end %>
-    <% end %>
 
+
+  <div class="event-card-container">
+    <% events.each do |event| %>
+      <div class="event-card">
+          <h2><%= link_to event.title, venue_event_path(event.venue_id, event.id) %></h2>
+          <div class="event-item">
+              <p>From <%= event.start_date.strftime("%I:%M %p") %> to <%= event.end_date.strftime("%I:%M %p") %></p>
+            <i class="fa-regular fa-heart"></i>
+          </div>
+      </div>
+      <% end %>
+  </div>
+
+
+
+    <% end %>
 
     <%= link_to "Back to home", root_path %>
     <%= link_to "Create an event", new_event_path  %>

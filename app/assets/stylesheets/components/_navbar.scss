@@ -1,12 +1,25 @@
-.navbar-lewagon {
+// .navbar-lewagon {
+//   justify-content: space-between;
+//   background: white;
+// }
+
+// .navbar-lewagon .navbar-collapse {
+//   flex-grow: 0;
+// }
+
+// .navbar-lewagon .navbar-brand img {
+//   width: 40px;
+// }
+//le Wagon stuff
+
+.navbar-bottom {
+  backdrop-filter: blur(9px);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 100%, #000000 0% );
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  background: white;
-}
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+  padding: 24px 32px;
 }

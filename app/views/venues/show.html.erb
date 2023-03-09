@@ -22,15 +22,18 @@
       <div class="club-details">
         <p><%=@venue.definition %></p>
       </div>
+      <div class="events-upcoming">
+        <h3>Upcoming events</h3>
+        <div class="events-details">
+            <%@venue.events.each do |event| %>
+            <p><%= link_to event.title, venue_event_path(@venue, event.id)  %></p>
+            <%end%>
 
-      <h1>Upcoming events</h1>
-
-      <ul>
-      <%@venue.events.each do |event| %>
-        <li><%= link_to event.title, venue_event_path(@venue, event.id)  %><li>
-      <%end%>
-      </ul>
-
+        </div>
+      </div>
     </div>
-
+<br>
+<br>
+<br>
+<br>
 </div>
