@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/events/:id/unfavorite' => 'events#unfavorite', as: :unfavorite_event
 
   resources :events, only: %i[index new create update destroy] do
-    resources :rsvps, only: :create
+    resources :rsvps, only: %i[create destroy]
     resources :lineups, only: %i[show new create edit update]
   end
   resources :users, only: %i[show edit update]
