@@ -25,7 +25,9 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @lineup = Lineup.new
     @venues = Venue.all
+    @artists = Artist.all
   end
 
   def create
@@ -63,11 +65,25 @@ class EventsController < ApplicationController
     end
   end
 
+  def favorite
+    set_event
+    @user = current_user
+    current_user.favorite(@event)
+    redirect_to root_path
+  end
+
+  def unfavorite
+    set_event
+    @user = current_user
+    current_user.unfavorite(@event)
+    redirect_to root_path
+  end
+
   private
 
   def event_params
     params.require(:event).permit(:title, :description, :status, :category, :capacity, :dresscode, :start_date,
-                                  :end_date, :venue_id)
+                                  :end_date, :venue_id, artist_ids: [])
   end
 
   def set_venue

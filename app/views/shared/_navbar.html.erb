@@ -1,4 +1,4 @@
-<div class="navbar-bottom">
+<div class="navbar-bottom pt-10">
   <%= link_to "/" do %>
     <div class="home">
       <svg xmlns="http://www.w3.org/2000/svg" class="home" width="24" height="24" viewBox="0 0 256 256"><path fill="currentColor" d="M208 228H48a20.1 20.1 0 0 1-20-20v-92.5a20 20 0 0 1 6.6-14.8L114.5 28a20 20 0 0 1 27 0l80 72.7a20.3 20.3 0 0 1 6.5 14.8V208a20.1 20.1 0 0 1-20 20ZM52 204h152v-86.7l-76-69.1l-76 69.1Z"/></svg>
@@ -22,7 +22,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" class="home" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7a2 2 0 0 1 2-2"/></svg>      <p class="home-text">Tickets</p>
     </div>
   <% end %>
-  
+
   <% if user_signed_in?  %>
     <%= link_to user_path(current_user) do %>
       <div class="home">

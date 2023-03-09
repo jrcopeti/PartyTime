@@ -11,17 +11,57 @@
   <% else %>
       <%= image_tag(current_user.avatar_url)%>
   <%end %>
-
+  
+  <%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
 
   <h2> <%= @user.nickname %></h2>
-  <h4> <%= @user.full_name %></h4>
+  <h3> <%= @user.full_name %></h3>
   <p><%= @user.bio %></p>
 
-  <h2>Upcoming Events</h2>
-    <ul>
-    <% @user.rsvps.future.each do |rsvp| %>
-    <li><%= rsvp.event.title %></li>
-  <% end %>
+  <div>
+    <h3>My favorites events</h3>
+      <% current_user.favorited_by_type("Event").each do |favorite| %>
+        <ul>
+          <li><%=link_to favorite.title, venue_event_path(favorite.venue_id, favorite.id)  %></li>
+        </ul>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>My favorites venues</h3>
+      <%current_user.favorited_by_type("Venue").each do |favorite|%>
+        <ul>
+          <li><%=link_to favorite.name, venue_path(favorite.id)%></li>
+        </ul>
+     <% end %>
+  </div>
+
+  <div>
+    <h3>My favorites artists</h3>
+      <%current_user.favorited_by_type("Artist").each do |favorite|%>
+        <ul>
+         <li><%=link_to favorite.name, artist_path(favorite.id)%></li>
+        </ul>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>My upcoming Events</h3>
+      <% @user.rsvps.future.each do |rsvp| %>
+      <ul>
+        <li><%= link_to rsvp.event.title, venue_event_path(rsvp.event.venue_id, rsvp.event.id) %></li>
+      </ul>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>My past Events</h3>
+      <% @user.rsvps.past.each do |rsvp| %>
+      <ul>
+        <li><%= link_to rsvp.event.title, venue_event_path(rsvp.event.venue_id, rsvp.event.id) %></li>
+      </ul>
+    <% end %>
+  </div>
 
 
   <%= link_to "Edit Profile", edit_user_path(current_user) %>
