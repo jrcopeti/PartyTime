@@ -1,7 +1,7 @@
 
   <h2>It's Party Time! Create your event </h2>
   <%= simple_form_for [@event] do |f| %>
-    <%=f.association :lineups, as: :check_boxes, collection: @artists, label_method: :name, value_method: :id, include_blank: 'Select an artist' %>
+   <%= f.input :artist_ids, as: :check_boxes, collection: @artists  %>
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :status %>
@@ -10,7 +10,6 @@
     <%= f.input :dresscode %>
     <%= f.input :start_date, as: :datetime, order: [:day, :month, :year], html5: true, include_blank: false %>
     <%= f.input :end_date, as: :datetime, order: [:day, :month, :year], html5: true, include_blank: false %>
-    <%= f.input :venue_id, collection: @venues, label_method: :name, value_method: :id, include_blank: 'Select a venue' %>
+    <%= f.input :venue_id, collection: @venues, include_blank: 'Select a venue' %>
     <%= f.submit %>
   <% end %>
-

@@ -83,7 +83,7 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:title, :description, :status, :category, :capacity, :dresscode, :start_date,
-                                  :end_date, :venue_id)
+                                  :end_date, :venue_id, artist_ids: [])
   end
 
   def set_venue

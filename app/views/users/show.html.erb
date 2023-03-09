@@ -6,7 +6,8 @@
   <% else %>
       <%= image_tag(current_user.avatar_url)%>
   <%end %>
-
+  
+  <%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
 
   <h2> <%= @user.nickname %></h2>
   <h3> <%= @user.full_name %></h3>
