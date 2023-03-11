@@ -7,11 +7,13 @@
     </div>
   </div>
 
+  <div class="event-search">
+    <%= form_with url: events_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query, params[:query], class: "form-control-event", placeholder: "Search for Events..." %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 
-  <%= form_with url: root_path, method: :get, class: "d-flex" do %>
-    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find a Event"%>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
-  <% end %>
 
       <div class="event-date">
         <% prev_date = nil %>
@@ -49,7 +51,7 @@
 
 
 
-   
+
 
     <%= link_to "Back to home", root_path %>
     <%= link_to "Create an event", new_event_path  %>
