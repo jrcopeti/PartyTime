@@ -63,9 +63,7 @@ body {
   font-weight: bold;
 }
 
-.event-box {
-  background: hotpink;
-}
+
 .event-date {
   backdrop-filter: blur(9px);
   background: rgba(0, 0, 0, 0.5) 100%;
@@ -74,34 +72,46 @@ body {
   position:sticky;
   top: 97px;
   overflow: visible;
-  background: red
+  // background: red
   // position:-webkit-sticky; position:sticky; top:0;
 }
 
 .event-date h3 {
 font-size: 32px;
+color: #00E1F0;
 }
 
 .event-card-container {
-  background: greenyellow;
-  display: flex;
+  // background: greenyellow;
   gap: 16px;
   padding: 16px;
 }
 
 .event-card {
-  background: hotpink;
+  // background: hotpink;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   padding: 16px;
   gap: 8px;
   border-bottom: 0.5px solid #585858;;
 }
+.event-card img {
+  width: 15vh;
+  height: 15vh;
+  object-fit: cover;
+}
+.event-box {
+  // background: blue;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 .event-item {
-  background: darkgoldenrod;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -113,6 +123,6 @@ font-size: 32px;
 
 
 
-.event-future {
-  background: purple;
+.event-item a {
+color: #00E1F0;
 }
