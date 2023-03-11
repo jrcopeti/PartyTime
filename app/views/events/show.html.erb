@@ -20,6 +20,26 @@
     </ul>
   <% end %>
 
+
+  <% if @rsvp.persisted? && @event.happening? %>
+    <%= button_to "Current Here", event_rsvp_path(@event, @rsvp), method: :patch  %>
+  <% end %>
+
+   <% if @percentage_attending >= 0  && @percentage_attending <= 30 %>
+      <p>Not busy</p>
+    <%elsif @percentage_attending >= 31  && @percentage_attending <= 60 %>
+     <p> intermediate busy</p>
+    <%elsif @percentage_attending >= 61  && @percentage_attending <= 99%>
+      <p>very busy</p>
+    <%elsif @percentage_attending == 100 %>
+      <p>Fully attending</p>
+    <%end%>
+
+    <%= @all_current_attending  %>
+
+
+
+
   <h4>Attending: <%= @event.rsvps.count %><h4>
 
       <% unless @rsvp.persisted? %>
@@ -27,7 +47,7 @@
           <%= f.submit "I am going"  %>
         <% end  %>
         <% else %>
-        <%= link_to "I am NOT going", event_rsvp_path(@event, @rsvp), data: {turbo_method: :delete} %>
+        <%= button_to "I am NOT going", event_rsvp_path(@event, @rsvp), method: :delete %>
       <% end %>
 
       <% if @event.user == current_user %>

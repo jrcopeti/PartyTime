@@ -1,0 +1,4 @@
+ <div class="map-font">
+  <h5><%= link_to venue.name, venue_path(venue.id) %></h5>
+  <p><strong>Happening now: <%=link_to event.title, venue_event_path(venue.id, event.id)%></p></strong>
+</div>

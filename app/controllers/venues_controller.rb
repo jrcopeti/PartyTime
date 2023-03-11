@@ -7,7 +7,7 @@ class VenuesController < ApplicationController
 
   def show
     @venue = Venue.find(params[:id])
-    @events = Event.where("venue_id = ? AND end_date > ?", @venue.id, Time.now).order("start_date ASC")
+    @events = Event.where("venue_id = ? AND end_date >= ?", @venue, Time.now).order(:start_date)
   end
 
   def favorite

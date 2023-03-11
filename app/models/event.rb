@@ -2,10 +2,10 @@ class Event < ApplicationRecord
   belongs_to :venue
   belongs_to :user
   has_many :rsvps, dependent: :destroy
-  has_many :lineups
-  has_many :artists, through: :lineups
+  has_many :lineups, dependent: :destroy
+  has_many :artists, through: :lineups, dependent: :destroy
   acts_as_favoritable
-  # accepts_nested_attributes_for :lineups
+
 
   # validate :end_date_after_start_date
 
@@ -25,6 +25,10 @@ class Event < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  def happening?
+    Time.now >= start_date && Time.now <= end_date
+  end
 
 
 end

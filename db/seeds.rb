@@ -28,7 +28,7 @@ User.create!(
   address: "Hauptstrasse 15, 10317 Berlin"
 )
 
-10.times do
+20.times do
   user = User.new(
     full_name: Faker::Name.name,
     email: Faker::Internet.email,
@@ -162,16 +162,17 @@ puts "preparing seeding events"
 
 
 50.times do
+  start = Time.now + rand(10).day + rand(10).hours
   event = Event.new(
 
     title: Faker::Fantasy::Tolkien.poem,
     description: Faker::Quote.famous_last_words,
     status: status.sample,
     category: "party",
-    capacity: rand(100..1200),
+    capacity: 10,
     dresscode: "naked",
-    start_date: DateTime.now + rand(10).day + rand(10).hours,
-    end_date: DateTime.now + rand(20..30).day + rand(20).hours,
+    start_date: start,
+    end_date: start + rand(2..8).hours,
     user_id: User.all.sample.id,
     venue_id: Venue.all.sample.id,
     image_url: "https://source.unsplash.com/random?party"
@@ -264,6 +265,14 @@ puts "created #{Artist.count} artists"
   Lineup.create!(
     artist_id: Artist.all.sample.id,
     event_id: Event.all.sample.id
+  )
+end
+
+50.times do
+  Rsvp.create!(
+    user_id: User.all.sample.id,
+    event_id: Event.all.sample.id,
+    current_attending: true
   )
 end
 
