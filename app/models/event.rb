@@ -30,5 +30,9 @@ class Event < ApplicationRecord
     Time.now >= start_date && Time.now <= end_date
   end
 
+  def self.happening_now
+    Event.where("start_date <= ? AND end_date >= ?", Time.now, Time.now)
+  end
+
 
 end

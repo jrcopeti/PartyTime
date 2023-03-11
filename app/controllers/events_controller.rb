@@ -3,17 +3,19 @@ class EventsController < ApplicationController
 
   def index
     # @events = Event.where('start_date <= ? AND end_date >= ?', DateTime.current, DateTime.current)
-    # How do we get all venues  that  have events??
-
-    @venues = Venue.joins(:events).where.not(events: {venue_id: nil}).geocoded
+    # How do we get all venues  that  have events now??
+    @venues = Venue.venues_with_event_happening_now
+        # @venues = Venue.joins(:events).where.not(events: {venue_id: nil}).geocoded
     # The `geocoded` scope filters only events with coordinates
-    @markers = @venues.map do |venue|
-      @event = venue.events.where('end_date >= ?', Time.now).order(:start_date).first
+    @markers = @venues.geocoded.map do |venue|
+      # @event = venue.events.where("start_date <= ? AND end_date >= ?", Time.now, Time.now)
+      # @event = venue.events.where('end_date >= ?', Time.now).order(:start_date).first
+      @events = venue.events.happening_now
       {
         lat: venue.latitude,
         lng: venue.longitude,
-        info_window_html: render_to_string(partial: "shared/info_window", locals: { venue: venue, event: @event }),
-        marker_html: render_to_string(partial: "shared/marker", locals: { venue: venue, event: @event })
+        info_window_html: render_to_string(partial: "shared/info_window_events_index", locals: { venue: venue, events: @event }),
+        marker_html: render_to_string(partial: "shared/marker", locals: { venue: venue, events: @events })
       }
     end
   end
@@ -27,6 +29,15 @@ class EventsController < ApplicationController
     @current_attending = @rsvp.current_attending
     @all_current_attending = Rsvp.where(event: @event.id, current_attending: true).count
     @percentage_attending = @all_current_attending / @event.capacity.to_f * 100
+    # @venues = Venue.joins(:events).where.not(events: {venue_id: nil}).geocoded
+    # The `geocoded` scope filters only events with coordinates
+    @markers = @venue
+    {
+      lat: @venue.latitude,
+      lng: @venue.longitude,
+      info_window_html: render_to_string(partial: "shared/info_window_events_show", locals: { venue: @venue}),
+      marker_html: render_to_string(partial: "shared/marker_show", locals: { venue: @venue })
+    }
   end
 
   def new
