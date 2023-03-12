@@ -39,11 +39,11 @@
             <p><%= link_to event.title, venue_event_path(@venue, event.id)  %></p>
             <p><%=event.start_date.strftime("%a, %d.%m.")%> - <%=event.end_date.strftime("%a, %d.%m.")%>
             <%end%>
-
-
         </div>
       </div>
-
+      <div>
+        <%= render "mapbox_venue" %>
+      </div>
     </div>
 <br>
 <br>

@@ -1,7 +1,7 @@
- <div class="map-font">
+<div class="map-font">
   <h5><%= link_to venue.name, venue_path(venue.id) %></h5>
   <p>happening now:
   <%@events.each do |event|%>
     <%= link_to event.title, venue_event_path(event.venue.id, event.id) %>
   <%end%></p>
-  </div>
+</div>
