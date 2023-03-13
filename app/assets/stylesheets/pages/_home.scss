@@ -1,7 +1,39 @@
 // Specific CSS for your home-page
 body {
   background-color: #060606;
-  padding-bottom: 120px;
+}
+
+.navbar-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: #060606;
+  justify-content: space-between;
+  padding: 24px 32px;
+}
+
+.navbar-top {
+  flex-direction: row;
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #060606;
+  padding: 24px 32px;
+  justify-content: space-between;
+}
+
+.navbar-top-in-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  padding: 8px 0px;
+  gap: 24px;
+
+  position: center;
 }
 
 .home {
@@ -125,4 +157,14 @@ color: #00E1F0;
 
 .event-item a {
 color: #00E1F0;
+}
+
+.top-page {
+  padding-top: 104px;
+}
+
+#Berlin {
+  color: #A097CC;
+  font-weight: bold;
+  font-size: 24px;
 }
