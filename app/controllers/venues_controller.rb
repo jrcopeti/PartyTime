@@ -7,7 +7,15 @@ class VenuesController < ApplicationController
 
   def show
     @venue = Venue.find(params[:id])
-    @events = Event.where("venue_id = ? AND end_date > ?", @venue.id, Time.now).order("start_date ASC")
+    @events = Event.where("venue_id = ? AND end_date >= ?", @venue, Time.now).order(:start_date)
+    @markers = @venue
+      # @event = venue.events.where('end_date >= ?', Time.now).order(:start_date).first
+    {
+      lat: @venue.latitude,
+      lng: @venue.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: { venue: @venue })
+      # marker_html: render_to_string(partial: "markers", locals: { venue: venue, events: @events })
+    }
   end
 
   def favorite
