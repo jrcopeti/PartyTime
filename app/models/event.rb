@@ -4,6 +4,8 @@ class Event < ApplicationRecord
   has_many :rsvps, dependent: :destroy
   has_many :lineups
   has_many :artists, through: :lineups
+  acts_as_favoritable
+  # accepts_nested_attributes_for :lineups
 
   # validate :end_date_after_start_date
 
@@ -23,4 +25,6 @@ class Event < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+
 end

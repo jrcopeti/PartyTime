@@ -1,3 +1,5 @@
+puts "deleting all lineups"
+Lineup.all.delete_all
 
 puts "deleting all artists"
 Artist.all.delete_all
@@ -181,15 +183,80 @@ end
 puts "created #{Event.count} events"
 
 
-20.times do
-  Artist.create!(
-    name: Faker::Music.band,
-    about: Faker::Quote.famous_last_words,
-    genre: Faker::Music.genre,
-    link: "https://soundcloud.com/woym",
-    image_url: "https://cdn.prod.www.spiegel.de/images/a71d32b1-de0a-495d-b615-8872ed34faf0_w948_r1.778_fpx50_fpy48.webp"
-  )
-end
+# 20.times do
+#   Artist.create!(
+#     name: Faker::Music.band,
+#     about: Faker::Quote.famous_last_words,
+#     genre: Faker::Music.genre,
+#     link: "https://soundcloud.com/woym",
+#     image_url: "https://cdn.prod.www.spiegel.de/images/a71d32b1-de0a-495d-b615-8872ed34faf0_w948_r1.778_fpx50_fpy48.webp"
+#   )
+# end
+artist1 = Artist.create!(
+  name: "Lady Gaga",
+  about: "Stefani Joanne Angelina Germanotta
+  (born March 28, 1986), known professionally as Lady Gaga,
+  is an American singer, songwriter, and actress. She is known for her image reinventions and musical versatility.",
+  genre: "Pop",
+  link: "https://www.youtube.com/channel/UCNL1ZadSjHpjm4q9j2sVtOA",
+  image_url: "https://cdn.prod.www.spiegel.de/images/a71d32b1-de0a-495d-b615-8872ed34faf0_w948_r1.778_fpx50_fpy48.webp"
+)
+
+artist2 = Artist.create!(
+  name: "Tame Impala",
+  about: "Tame Impala is the psychedelic music project of Australian multi-instrumentalist Kevin Parker.[6] In the recording studio, Parker writes, records, performs, and produces all of the project's music.",
+  genre: "Psychedelic Rock",
+  link: "https://www.youtube.com/user/tameimpalamusic",
+  image_url: "https://www.laut.de/Tame-Impala/tame-impala-207454.jpg"
+)
+
+artist3 = Artist.create!(
+  name: "RÜFÜS DU SOL",
+  about: "RÜFÜS DU SOL and formerly known as simply Rüfüs from 2010 to 2018 is an Australian alternative dance group from Sydney, that consists of Tyrone Lindqvist, Jon George and James Hunt.",
+  genre: "Alternative Dance",
+  link: "https://www.youtube.com/user/monekeleon",
+  image_url: "https://www.billboard.com/wp-content/uploads/2022/10/rufus-du-sol-portrait-grammys-billboard-1548.jpg?w=942&h=623&crop=1"
+)
+
+artist4 = Artist.create!(
+  name: "Peggy Gou",
+  about: "Peggy Gou is a South Korean DJ and record producer based in Germany. She has released seven EPs on record labels including Ninja Tune and Phonica.",
+  genre: "Deep House",
+  link: "https://www.youtube.com/channel/UCWd5yMFDEuSCWzTM4xuA1fg",
+  image_url: "https://weraveyou.com/wp-content/uploads/2022/06/Peggy-Gou-Press.jpg"
+)
+
+artist5 = Artist.create!(
+  name: "Rossi.",
+  about: "Rossi. is an exiting young producer, who is making a name for himself with his new fresh cut sounds.
+  ‘Rossi.’s sets are inspired by the ever-growing ‘minimal groove scene’, in Europe. He plays music with the aim of lifting a crowd, his sets will feature lots of cuts, hats and percussion which is stripped down on-top of jazzy and soulful basslines.",
+  genre: "Minimal Groove",
+  link: "https://soundcloud.com/modula-records/mr001-b2-rkinn-clip",
+  image_url: "https://scontent-ber1-1.xx.fbcdn.net/v/t39.30808-6/293336527_451780400290680_3314608451497244126_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=-ErZF2FhyDMAX9LqP8x&_nc_ht=scontent-ber1-1.xx&oh=00_AfAI-cKINA_ruqgPFP_RM1tujCpU_SoTpZwXRZto1y7APg&oe=640F360B"
+)
+
+artist6 = Artist.create!(
+  name: "Purple Disco Machine",
+  about: "The sound of Purple Disco Machine describe some as 'Deep Funk'. In 2009 the project Purple Disco Machine was founded. In recent years, PDM composed many songs, including, 'My House', which was published by Off Recordings.",
+  genre: "Deep Funk",
+  link: "https://www.youtube.com/channel/UCdkMBTZmOXDh8nTSX1RdRkA",
+  image_url:"https://yt3.googleusercontent.com/CJ0UQGEIXyr3uz8sqeLM1O00ty0l6iRyhM3jEjmF5zN-Mmk53y3oMm6eQv3kz_Tr62uKagIJw8E=s176-c-k-c0x00ffffff-no-rj"
+)
+
+artist7 = Artist.create!(
+  name: "Mirco Caruso",
+  about: "Haste makes waste. You may describe Mirco Caruso’s previous career with these three words and it will fit perfectly. This club-musician with Italian roots doesn’t work with a prybar, he doesn’t care for exclusive hypes and he sure is no bandwagoner. Mirco Caruso’s career is embossed by a constant buildup that finally brought him to the musical genre he belongs to.",
+  genre: "Dance/Eletronica",
+  link: "https://www.youtube.com/channel/UCAWgieZ7upNJRpFPdrsvdrA",
+  image_url: "https://geo-media.beatport.com/image_size/590x404/3ca2dd94-0307-475c-a97b-8f192c4b3a48.jpg"
+)
+artist8 = Artist.create!(
+  name: "Metodi Hristov",
+  about: "With his truly unique style, ranging from the darker side of tech house to the raw house beats, Bulgarian-based Metodi Hristov was able to win the fans of electronic music for a short period of time.",
+  genre: "Tech House",
+  link: "https://soundcloud.com/metodihristov",
+  image_url: "https://scontent-fra3-1.xx.fbcdn.net/v/t39.30808-6/283669849_576527857168658_8623932100992968467_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=0FK9TQTiGQcAX9gQ1aZ&_nc_ht=scontent-fra3-1.xx&oh=00_AfBR02Ne3PLhGKy-v4f4LfG8ChbGjYWaEvLCr0jqOcm6PQ&oe=640F20C3"
+)
 
 puts "created #{Artist.count} artists"
 

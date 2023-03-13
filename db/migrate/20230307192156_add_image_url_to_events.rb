@@ -1,4 +1,4 @@
-class AddImageToEvents < ActiveRecord::Migration[7.0]
+class AddImageUrlToEvents < ActiveRecord::Migration[7.0]
   def change
     add_column :events, :image_url, :string
   end

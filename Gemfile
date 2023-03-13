@@ -58,6 +58,8 @@ gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 gem 'geocoder'
 gem "pg_search"
+gem 'acts_as_favoritor', github: 'jonhue/acts_as_favoritor'
+
 
 
 group :development, :test do
