@@ -33,9 +33,10 @@ User.create!(
     full_name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 123456,
-    avatar_url: "https://unsplash.com/s/photos/face",
     address: "Köpenicker Str. 70, 10179 Berlin"
   )
+  # file = URI.open("https://source.unsplash.com/random?face")
+  # user.avatar_url.attach(io: file, filename: user.full_name, content_type: "image/jpg")
   user.save!
 end
 
