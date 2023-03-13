@@ -80,6 +80,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 16px 24px;
+  background-color: #060606;
 
 }
 
@@ -97,26 +98,27 @@ body {
 
 
 .event-date {
-  backdrop-filter: blur(9px);
-  background: rgba(0, 0, 0, 0.5) 100%;
+  //backdrop-filter: blur(9px);
+  //background: rgba(0, 0, 0, 0.5) 100%;
   padding: 16px;
   position:-webkit-sticky;
   position:sticky;
   top: 97px;
   overflow: visible;
-  // background: red
+   background: #060606;
   // position:-webkit-sticky; position:sticky; top:0;
 }
 
 .event-date h3 {
-font-size: 32px;
-color: #00E1F0;
+  font-size: 32px;
+  color: white;
 }
 
 .event-card-container {
   // background: greenyellow;
   gap: 16px;
   padding: 16px;
+  display: grid;
 }
 
 .event-card {
@@ -133,6 +135,7 @@ color: #00E1F0;
   width: 15vh;
   height: 15vh;
   object-fit: cover;
+
 }
 .event-box {
   // background: blue;
@@ -167,4 +170,22 @@ color: #00E1F0;
   color: #A097CC;
   font-weight: bold;
   font-size: 24px;
+}
+
+.event-search {
+  position: fixed;
+  top: 80px;
+  z-index: 1;
+}
+
+.events-all {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  text-align: center;
+  display: inline-block; /* to center horizontally */
+  background-color: #060606;
 }
