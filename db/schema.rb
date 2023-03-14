@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_11_135315) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_181528) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_11_135315) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -98,12 +104,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_11_135315) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text "content"
-    t.bigint "event_id", null: false
+    t.string "content"
+    t.bigint "chatroom_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_messages_on_event_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -167,7 +173,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_11_135315) do
   add_foreign_key "events", "venues"
   add_foreign_key "lineups", "artists"
   add_foreign_key "lineups", "events"
-  add_foreign_key "messages", "events"
+  add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "events"
   add_foreign_key "reviews", "users"

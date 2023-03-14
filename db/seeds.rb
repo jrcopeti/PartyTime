@@ -1,3 +1,9 @@
+puts "deleting all messages"
+Message.all.delete_all
+
+puts "deleting all chatrooms"
+Chatroom.all.delete_all
+
 puts "deleting all lineups"
 Lineup.all.delete_all
 
@@ -278,6 +284,14 @@ end
 end
 
 puts "created #{Lineup.count} lineups"
+
+1.times do
+  Chatroom.create!(
+    name: "general"
+  )
+end
+
+puts "created #{Chatroom.count} chatrooms"
 
 
 puts "DATABASE SUCCESSFULL SEEDED"

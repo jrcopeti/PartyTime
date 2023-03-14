@@ -28,4 +28,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[show edit update]
   resources :artists, only: %i[index show]
   resources :lineups, only: %i[destroy]
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 end
