@@ -186,6 +186,10 @@ puts "preparing seeding events"
 
   )
   event.save!
+  Chatroom.create!(
+    name: event.title,
+    event_id: event.id
+  )
 end
 
 puts "created #{Event.count} events"
@@ -285,11 +289,6 @@ end
 
 puts "created #{Lineup.count} lineups"
 
-1.times do
-  Chatroom.create!(
-    name: "general"
-  )
-end
 
 puts "created #{Chatroom.count} chatrooms"
 
