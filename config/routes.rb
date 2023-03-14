@@ -21,11 +21,17 @@ Rails.application.routes.draw do
   get '/events/:id/favorite' => 'events#favorite', as: :favorite_event
   get '/events/:id/unfavorite' => 'events#unfavorite', as: :unfavorite_event
 
+
+
   resources :events, only: %i[index new create update destroy] do
     resources :rsvps, only: %i[create destroy update]
     resources :lineups, only: %i[show new create edit update]
   end
-  resources :users, only: %i[show edit update]
+  resources :users, only: %i[index show]
+  resources :pages, only: %i[edit update]
+
+  get 'users/:id/dashboard' => 'users#dashboard', as: :user_dashboard
+
   resources :artists, only: %i[index show]
   resources :lineups, only: %i[destroy]
 end

@@ -1,10 +1,21 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @users = User.all
+  end
+
   def show
+    set_user
+    @rsvps = @user.rsvps
+  end
+
+  def dashboard
+    # current_user Profile page
     @user = current_user
     @rsvps = @user.rsvps
   end
+
 
   def edit
     @user = current_user
@@ -19,7 +30,12 @@ class UsersController < ApplicationController
     end
   end
 
+
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:full_name, :nickname, :bio, :avatar_url, :photo)
