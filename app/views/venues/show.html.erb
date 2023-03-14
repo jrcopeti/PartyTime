@@ -35,14 +35,15 @@
       <div class="events-upcoming">
         <h3>Upcoming events</h3>
         <div class="events-details">
-            <%@venue.events.each do |event| %>
+            <%@events.each do |event| %>
             <p><%= link_to event.title, venue_event_path(@venue, event.id)  %></p>
+            <p><%=event.start_date.strftime("%a, %d.%m.")%> - <%=event.end_date.strftime("%a, %d.%m.")%>
             <%end%>
-
-
         </div>
       </div>
-
+      <div>
+        <%= render "mapbox_venue" %>
+      </div>
     </div>
 <br>
 <br>

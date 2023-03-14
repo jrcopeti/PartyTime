@@ -2,10 +2,10 @@ class Event < ApplicationRecord
   belongs_to :venue
   belongs_to :user
   has_many :rsvps, dependent: :destroy
-  has_many :lineups
-  has_many :artists, through: :lineups
+  has_many :lineups, dependent: :destroy
+  has_many :artists, through: :lineups, dependent: :destroy
   acts_as_favoritable
-  # accepts_nested_attributes_for :lineups
+
 
   # validate :end_date_after_start_date
 
@@ -26,6 +26,16 @@ class Event < ApplicationRecord
       tsearch: { prefix: true }
     }
 
+
+  def happening?
+    Time.now >= start_date && Time.now <= end_date
+  end
+
+  def self.happening_now
+    Event.where("start_date <= ? AND end_date >= ?", Time.now, Time.now)
+  end
+
+
     private
 
   def add_default_cover
@@ -33,5 +43,6 @@ class Event < ApplicationRecord
       self.photo.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.jpg")), filename: 'default.jpg' , content_type: "image/jpg")
     end
   end
+
 
 end
