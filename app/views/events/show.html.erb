@@ -21,12 +21,17 @@
   <% end %>
 
 
-  <% if @rsvp.persisted? && @event.happening? %>
-    <%= button_to "Current Here", event_rsvp_path(@event, @rsvp), method: :patch  %>
+  <% if @rsvp.persisted? && @event.happening? && @rsvp.current_attending == false  %>
+    <%= button_to "Checkin event", event_rsvp_path(@event, @rsvp), method: :patch  %>
   <% end %>
 
-    <%= @percentage_attending %>
 
+  <% if @event.happening? %>
+    <%= @busy_queue %>
+  <% end  %>
+
+  <%= @current_attending %>
+  <%= @all_current_attending %>
 
 
 
@@ -34,10 +39,10 @@
 
       <% unless @rsvp.persisted? %>
         <%= simple_form_for [@event, @rsvp] do |f|  %>
-          <%= f.submit "I am going"  %>
+          <%= f.submit "Interested"  %>
         <% end  %>
         <% else %>
-        <%= button_to "I am NOT going", event_rsvp_path(@event, @rsvp), method: :delete %>
+        <%= button_to "Hmm, not going", event_rsvp_path(@event, @rsvp), method: :delete %>
       <% end %>
 
       <% if @event.user == current_user %>

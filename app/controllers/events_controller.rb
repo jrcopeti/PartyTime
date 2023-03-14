@@ -28,14 +28,15 @@ class EventsController < ApplicationController
     @current_attending = @rsvp.current_attending
     @all_current_attending = Rsvp.where(event: @event.id, current_attending: true).count
     @percentage_attending = @all_current_attending / @event.capacity.to_f * 100
+    @busy_queue = nil
     if @percentage_attending >= 0 && @percentage_attending <= 30
-      "Not busy"
+      @busy_queue = "Not busy"
     elsif @percentage_attending >= 31 && @percentage_attending <= 60
-      "intermediate busy"
+      @busy_queue = "intermediate busy"
     elsif @percentage_attending >= 61 && @percentage_attending <= 99
-       "very busy"
+      @busy_queue = "very busy"
     elsif @percentage_attending == 100
-      "Fully attending"
+      @busy_queue = "Fully attending"
     end
   end
 
