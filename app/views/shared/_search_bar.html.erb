@@ -1,0 +1,17 @@
+<div class="event-search">
+    <%#= form_with url: root_path, method: :get do |f| %>
+      <%#= f.label :search, "Search for stuff" %>
+      <%#= f.text_field :query, id: "search", placeholder: "Search...", autofocus: true, required: true %>
+      <%#= f.button "Go", type: "submit" %>
+    <%# end %>
+
+
+
+  <form action="/" class="search-bar">
+    <input id="search" type="search" name="query"  pattern=".*\S.*" required>
+    <button class="search-btn" type="submit">
+      <span>Search</span>
+    </button>
+  </form>
+
+</div>

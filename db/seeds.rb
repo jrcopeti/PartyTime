@@ -25,7 +25,7 @@ User.create!(
   password: 123456,
   full_name: "user user",
   avatar_url: "https://unsplash.com/s/photos/face",
-  address: "Hauptstrasse 15, 10317 Berlin"
+  address: "Rudi-Dutschke-Straße 26, 10969 Berlin"
 )
 
 20.times do

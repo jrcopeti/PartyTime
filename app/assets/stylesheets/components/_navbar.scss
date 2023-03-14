@@ -1,29 +1,3 @@
-// .navbar-lewagon {
-//   justify-content: space-between;
-//   background: white;
-// }
-
-// .navbar-lewagon .navbar-collapse {
-//   flex-grow: 0;
-// }
-
-// .navbar-lewagon .navbar-brand img {
-//   width: 40px;
-// }
-//le Wagon stuff
-
-.navbar-bottom {
-  backdrop-filter: blur(9px);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 100%, #000000 0% );
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 24px 32px;
-}
-
 .navbar-bottom {
   position: fixed;
   bottom: 0;
@@ -33,4 +7,42 @@
   background-color: #060606;
   justify-content: space-between;
   padding: 24px 32px;
+}
+
+.navbar-top {
+  flex-direction: row;
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #060606;
+  padding: 24px 32px;
+  justify-content: space-between;
+}
+
+.navbar-top-in-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  padding: 8px 0px;
+  gap: 24px;
+
+  position: center;
+}
+
+.home {
+  width: 100%;
+  color: #DFDEDE;
+}
+
+.home-text {
+  margin-bottom: 0;
+  align-items: center;
+}
+
+#Berlin {
+  color: #A097CC;
+  font-weight: bold;
+  font-size: 24px;
 }
