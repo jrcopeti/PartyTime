@@ -13,12 +13,32 @@
       <%= image_tag(current_user.avatar_url)%>
   <%end %>
 
-  <%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
 
   <h2> <%= @user.nickname %></h2>
   <h3> <%= @user.full_name %></h3>
   <p><%= @user.bio %></p>
 
+  <hr/>
+
+  <% current_user.follow_requests.each do |request| %>
+    <%= request.followerable.nickname %> wants to follow you
+    <%= button_to "Accept", accept_path(request.followerable) %>
+    <% button_to "Decline", decline_path(request.followerable) %>
+  <% end  %>
+  <hr/>
+  <% current_user.followers.each do |follower| %>
+    <ul> Followers
+    <li><%= link_to follower.nickname, user_path(follower.id) %></li>
+    </ul>
+  <% end %>
+
+  <% current_user.following.each do |following| %>
+    <ul> Following
+    <li><%= link_to following.nickname, user_path(following.id) %></li>
+    </ul>
+  <% end  %>
+
+<hr/>
 
   <div>
     <h3>My favorites events</h3>
@@ -39,7 +59,7 @@
   </div>
 
   <div>
-    <h3>My favorites artists</h3>
+    <h3>My Top Artists</h3>
       <%current_user.favorited_by_type("Artist").each do |favorite|%>
         <ul>
          <li><%=link_to favorite.name, artist_path(favorite.id)%></li>
@@ -68,7 +88,7 @@
 
 
 
-  <%= link_to "Edit Profile", edit_page_path(current_user) %>
+  <%= link_to "Edit Profile", edit_user_path(current_user) %>
   <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>
 
 

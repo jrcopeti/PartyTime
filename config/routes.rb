@@ -5,10 +5,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
   resources :venues, only: %i[index show] do
     resources :events, only: %i[show edit]
   end
@@ -21,17 +18,27 @@ Rails.application.routes.draw do
   get '/events/:id/favorite' => 'events#favorite', as: :favorite_event
   get '/events/:id/unfavorite' => 'events#unfavorite', as: :unfavorite_event
 
-
-
   resources :events, only: %i[index new create update destroy] do
     resources :rsvps, only: %i[create destroy update]
     resources :lineups, only: %i[show new create edit update]
   end
-  resources :users, only: %i[index show]
-  resources :pages, only: %i[edit update]
 
+  resources :users, only: %i[index show edit update]
   get 'users/:id/dashboard' => 'users#dashboard', as: :user_dashboard
+
+  post 'users/:id/follow' => 'users#follow', as: :follow
+  post 'users/:id/unfollow' => 'users#unfollow', as: :unfollow
+  post 'users/:id/accept' => 'users#accept', as: :accept
+  post 'users/:id/decline' => 'users#decline', as: :decline
+  post 'users/:id/cancel' => 'users#cancel', as: :cancel
+
+
 
   resources :artists, only: %i[index show]
   resources :lineups, only: %i[destroy]
+
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Defines the root path route ("/")
+  # root "articles#index"
 end

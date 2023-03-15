@@ -19,6 +19,18 @@
   <h3><% @user.email %></h3>
   <p><%= @user.bio %></p>
 
+  <hr/>
+
+  <% if current_user.following?(@user) %>
+    <%= button_to "Unfollow", unfollow_path(@user)  %>
+  <% elsif current_user.sent_follow_request_to?(@user) %>
+    <%= button_to "Cancel Follow Resquest", cancel_path(@user) %>
+  <% else  %>
+    <%= button_to "Follow", follow_path(@user) %>
+  <% end %>
+
+  <hr/>
+
   <div>
     <h3>My favorites events</h3>
       <% @user.favorited_by_type("Event").each do |favorite| %>

@@ -9,4 +9,4 @@ class PagesController < ApplicationController
       @events_by_date = Event.where("end_date >= ?", Time.now).order("start_date ASC").group_by(&:start_date)
     end
   end
-end 
+end

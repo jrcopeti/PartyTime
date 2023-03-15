@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: [:show, :follow, :unfollow, :accept, :decline, :cancel]
 
   def index
     @users = User.all
   end
 
   def show
-    set_user
     @rsvps = @user.rsvps
   end
 
@@ -16,6 +16,30 @@ class UsersController < ApplicationController
     @rsvps = @user.rsvps
   end
 
+  def follow
+    current_user.send_follow_request_to(@user)
+    redirect_to user_path(@user)
+  end
+
+  def unfollow
+    current_user.unfollow(@user)
+    redirect_to user_path(@user)
+  end
+
+  def accept
+    current_user.accept_follow_request_of(@user)
+    redirect_to user_dashboard_path(current_user)
+  end
+
+  def decline
+    current_user.decline_follow_request_of(@user)
+    redirect_to user_dashboard_path(current_user)
+  end
+
+  def cancel
+    current_user.remove_follow_request_for(@user)
+    redirect_to user_path(@user)
+  end
 
   def edit
     @user = current_user
@@ -24,12 +48,11 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to user_path(current_user), notice: "Your profile has been updated."
+      redirect_to user_dashboard_path(current_user), notice: "Your profile has been updated."
     else
       render :edit, status: :unprocessable_entity
     end
   end
-
 
   private
 
