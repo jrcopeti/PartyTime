@@ -1,4 +1,4 @@
-<%#THIS IS OTHER USERS PROFILE PAGE%>
+ <%# THIS IS THE USER (CURRENT_USER) PROFILE PAGE%>
   <div class="event-title">
     <h1>Profile</h1>
     <div class="event-icon">
@@ -7,33 +7,42 @@
     </div>
   </div>
 <div class="container">
-  <% if @user.photo.attached? %>
+  <% if current_user.photo.attached? %>
       <%= cl_image_tag current_user.photo.key, width: 50, height: 50, radius:"max", crop: "thumb"%>
   <% else %>
-      <%= image_tag(@user.avatar_url)%>
+      <%= image_tag(current_user.avatar_url)%>
   <%end %>
 
 
   <h2> <%= @user.nickname %></h2>
   <h3> <%= @user.full_name %></h3>
-  <h3><% @user.email %></h3>
   <p><%= @user.bio %></p>
 
   <hr/>
 
-  <% if current_user.following?(@user) %>
-    <%= button_to "Unfollow", unfollow_path(@user)  %>
-  <% elsif current_user.sent_follow_request_to?(@user) %>
-    <%= button_to "Cancel Follow Resquest", cancel_path(@user) %>
-  <% else  %>
-    <%= button_to "Follow", follow_path(@user) %>
+  <% current_user.follow_requests.each do |request| %>
+    <%= request.followerable.nickname %> wants to follow you
+    <%= button_to "Accept", accept_path(request.followerable) %>
+    <% button_to "Decline", decline_path(request.followerable) %>
+  <% end  %>
+  <hr/>
+  <% current_user.followers.each do |follower| %>
+    <ul> Followers
+    <li><%= link_to follower.nickname, user_path(follower.id) %></li>
+    </ul>
   <% end %>
 
-  <hr/>
+  <% current_user.following.each do |following| %>
+    <ul> Following
+    <li><%= link_to following.nickname, user_path(following.id) %></li>
+    </ul>
+  <% end  %>
+
+<hr/>
 
   <div>
     <h3>My favorites events</h3>
-      <% @user.favorited_by_type("Event").each do |favorite| %>
+      <% current_user.favorited_by_type("Event").each do |favorite| %>
         <ul>
           <li><%=link_to favorite.title, venue_event_path(favorite.venue_id, favorite.id)  %></li>
         </ul>
@@ -42,7 +51,7 @@
 
   <div>
     <h3>My favorites venues</h3>
-      <%@user.favorited_by_type("Venue").each do |favorite|%>
+      <%current_user.favorited_by_type("Venue").each do |favorite|%>
         <ul>
           <li><%=link_to favorite.name, venue_path(favorite.id)%></li>
         </ul>
@@ -50,8 +59,8 @@
   </div>
 
   <div>
-    <h3>My favorites artists</h3>
-      <%@user.favorited_by_type("Artist").each do |favorite|%>
+    <h3>My Top Artists</h3>
+      <%current_user.favorited_by_type("Artist").each do |favorite|%>
         <ul>
          <li><%=link_to favorite.name, artist_path(favorite.id)%></li>
         </ul>
@@ -77,6 +86,10 @@
   </div>
 
 
+
+
+  <%= link_to "Edit Profile", edit_user_path(current_user) %>
+  <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>
 
 
 

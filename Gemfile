@@ -59,6 +59,7 @@ gem "omniauth-rails_csrf_protection"
 gem 'geocoder'
 gem "pg_search"
 gem 'acts_as_favoritor', github: 'jonhue/acts_as_favoritor'
+gem 'followability', github: 'nejdetkadir/followability', branch: 'main'
 
 
 

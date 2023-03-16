@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_11_135315) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_15_095910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +88,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_11_135315) do
     t.index ["scope"], name: "index_favorites_on_scope"
   end
 
+  create_table "followability_relationships", force: :cascade do |t|
+    t.string "followerable_type", null: false
+    t.bigint "followerable_id", null: false
+    t.string "followable_type", null: false
+    t.bigint "followable_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followable_type", "followable_id"], name: "index_followability_relationships_on_followable"
+    t.index ["followerable_type", "followerable_id"], name: "index_followability_relationships_on_followerable"
+  end
+
   create_table "lineups", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "artist_id", null: false
@@ -156,9 +168,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_11_135315) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo"
+    t.string "image_url"
     t.float "latitude"
     t.float "longitude"
-    t.string "image_url"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

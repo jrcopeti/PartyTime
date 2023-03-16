@@ -26,7 +26,6 @@ class Event < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-
   def happening?
     Time.now >= start_date && Time.now <= end_date
   end
@@ -35,7 +34,6 @@ class Event < ApplicationRecord
     Event.where("start_date <= ? AND end_date >= ?", Time.now, Time.now)
   end
 
-
     private
 
   def add_default_cover
@@ -43,6 +41,5 @@ class Event < ApplicationRecord
       self.photo.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.jpg")), filename: 'default.jpg' , content_type: "image/jpg")
     end
   end
-
 
 end
