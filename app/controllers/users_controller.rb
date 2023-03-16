@@ -7,11 +7,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    # other users profiles
     @rsvps = @user.rsvps
   end
 
-  def dashboard
-    # current_user Profile page
+  def profile
+    # current_user profile page
     @user = current_user
     @rsvps = @user.rsvps
   end
@@ -28,12 +29,12 @@ class UsersController < ApplicationController
 
   def accept
     current_user.accept_follow_request_of(@user)
-    redirect_to user_dashboard_path(current_user)
+    redirect_to profile_path(current_user)
   end
 
   def decline
     current_user.decline_follow_request_of(@user)
-    redirect_to user_dashboard_path(current_user)
+    redirect_to profile_path(current_user)
   end
 
   def cancel
@@ -48,7 +49,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to user_dashboard_path(current_user), notice: "Your profile has been updated."
+      redirect_to profile_path(current_user), notice: "Your profile has been updated."
     else
       render :edit, status: :unprocessable_entity
     end
