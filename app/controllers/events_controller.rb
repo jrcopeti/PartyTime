@@ -18,6 +18,7 @@ class EventsController < ApplicationController
   def show
     set_venue
     set_event
+    @chatroom = Chatroom.where(name: @event.title).last
     @rsvp = current_user.rsvp(@event) || Rsvp.new
     @artist = Event.find(params[:id])
     @current_attending = @rsvp.current_attending
@@ -46,6 +47,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save!
+      Chatroom.create!(name: @event.title)
       redirect_to venue_event_path(@event.venue_id, @event), notice: "Event is ready to rock!"
     else
       render :new, status: :unprocessable_entity, notice: "Event could not be created."
@@ -105,4 +107,5 @@ class EventsController < ApplicationController
   def set_event
     @event = Event.find(params[:id])
   end
+
 end
