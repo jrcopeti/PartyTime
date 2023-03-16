@@ -11,19 +11,24 @@
     <% @events_by_date.each do |date, events| %>
       <% if prev_date != date.to_date.strftime("%d.%m. - %a") %>
         <% prev_date = date.to_date.strftime("%d.%m. - %a") %>
-        <div class="event-date">
-          <h3> <%= prev_date %> </h3>
-        </div>
-      <% end %>
-    <div class="event-card-container">
-          <% events.each do |event| %>
-            <div class="event-card">
-              <img src="<%= event.image_url %>" alt="">
-              <div class="event-box">
-                <div class="event-item">
-                  <p><%= event.start_date.strftime("%H:%M") %> at <%= link_to event.venue.name, venue_path(event.venue_id)%></p>
-                  <% if current_user.favorited?(event)%>
-                    <a id="anchor" href='<%=unfavorite_event_path(event.id)%>'>
+
+
+  <div class="event-date">
+    <h3> <%= prev_date %> </h3>
+  </div>
+  <% end %>
+
+  <div class="event-card-container">
+    <% events.each do |event| %>
+      <div class="event-card">
+          <img src="<%= event.image_url %>" alt="">
+        <div class="event-box">
+            <div class="event-item">
+              <p><%= event.start_date.strftime("%H:%M") %> at <%= link_to event.venue.name, venue_path(event.venue_id)%></p>
+                <% if current_user.favorited?(event)%>
+
+                    <a href='<%=unfavorite_event_path(event.id)%>'>
+
                       <i class="fa-solid fa-heart"></i>
                     </a>
                   <% else %>
