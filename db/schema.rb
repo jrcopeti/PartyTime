@@ -69,6 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_095910) do
     t.string "description"
     t.string "status"
     t.string "category"
+    t.date "date"
+    t.time "time"
     t.integer "capacity"
     t.string "dresscode"
     t.bigint "venue_id", null: false
