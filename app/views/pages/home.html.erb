@@ -1,6 +1,6 @@
 
   <div class="event-search">
-    <%= form_with url: events_path, method: :get, class: "d-flex" do %>
+    <%= form_with url: root_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query, params[:query], class: "form-control-event", placeholder: "Search for Events..." %>
       <%#= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
@@ -23,11 +23,11 @@
                 <div class="event-item">
                   <p><%= event.start_date.strftime("%H:%M") %> at <%= link_to event.venue.name, venue_path(event.venue_id)%></p>
                   <% if current_user.favorited?(event)%>
-                    <a href='<%=unfavorite_event_path(event.id)%>'>
+                    <a id="anchor" href='<%=unfavorite_event_path(event.id)%>'>
                       <i class="fa-solid fa-heart"></i>
                     </a>
                   <% else %>
-                    <a href='<%=favorite_event_path(event.id)%>'>
+                    <a id="anchor" href='<%=favorite_event_path(event.id)%>'>
                       <i class="fa-regular fa-heart"></i>
                     </a>
                   <% end %>

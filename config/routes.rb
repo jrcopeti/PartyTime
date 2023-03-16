@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :venues, only: %i[index show] do
     resources :events, only: %i[show edit]
   end
+
   get '/venues/:id/favorite' => 'venues#favorite', as: :favorite_venue
   get '/venues/:id/unfavorite' => 'venues#unfavorite', as: :unfavorite_venue
 
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[index show edit update]
-  get 'users/:id/dashboard' => 'users#dashboard', as: :user_dashboard
+  get 'users/:id/profile' => 'users#profile', as: :profile
 
   post 'users/:id/follow' => 'users#follow', as: :follow
   post 'users/:id/unfollow' => 'users#unfollow', as: :unfollow

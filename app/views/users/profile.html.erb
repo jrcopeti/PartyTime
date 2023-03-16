@@ -1,4 +1,4 @@
- <%# THIS IS THE USER (CURRENT_USER) PROFILE PAGE%>
+ <%# CURRENT_USER PROFILE PAGE%>
   <div class="event-title">
     <h1>Profile</h1>
     <div class="event-icon">
@@ -21,17 +21,16 @@
   <hr/>
 
   <% current_user.follow_requests.each do |request| %>
-    <%= request.followerable.nickname %> wants to follow you
-    <%= button_to "Accept", accept_path(request.followerable) %>
-    <% button_to "Decline", decline_path(request.followerable) %>
+    <h5><%= request.followerable.nickname %> wants to follow you</h5>
+    <%= button_to "Accept", accept_path(request.followerable) %> <%= button_to "Decline", decline_path(request.followerable) %>
   <% end  %>
-  <hr/>
+
   <% current_user.followers.each do |follower| %>
     <ul> Followers
     <li><%= link_to follower.nickname, user_path(follower.id) %></li>
     </ul>
   <% end %>
-
+  <br/>
   <% current_user.following.each do |following| %>
     <ul> Following
     <li><%= link_to following.nickname, user_path(following.id) %></li>

@@ -3,12 +3,8 @@ class EventsController < ApplicationController
 
   def index
     # Controller of map page
-    # How do we get all venues  that  have events now??
     @venues = Venue.venues_with_event_happening_now
-    # @venues = Venue.joins(:events).where.not(events: {venue_id: nil}).geocoded
-    # The `geocoded` scope filters only events with coordinates
     @markers = @venues.geocoded.map do |venue|
-      # @event = venue.events.where('end_date >= ?', Time.now).order(:start_date).first
       @events = venue.events.happening_now
       {
         lat: venue.latitude,
@@ -86,14 +82,14 @@ class EventsController < ApplicationController
     set_event
     @user = current_user
     current_user.favorite(@event)
-    redirect_to root_path
+    redirect_to root_path(anchor: "anchor")
   end
 
   def unfavorite
     set_event
     @user = current_user
     current_user.unfavorite(@event)
-    redirect_to root_path
+    redirect_to root_path(anchor: "anchor")
   end
 
   private
