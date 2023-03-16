@@ -75,33 +75,36 @@
             </div>
         </div>
 
-      </div>
-    </div>
-<br>
-<br>
-<br>
-<br>
 
-  <% if @rsvp.persisted? && @event.happening? %>
-    <%= button_to "Current Here", event_rsvp_path(@event, @rsvp), method: :patch  %>
+   <% unless @rsvp.persisted? %>
+        <%= simple_form_for [@event, @rsvp] do |f|  %>
+          <%= f.submit "Interested"  %>
+        <% end  %>
+        <% else %>
+        <%= button_to "NOT Interested Anymore", event_rsvp_path(@event, @rsvp), method: :delete %>
+      <% end %>
+
+
+  <h4>Attending: <%= @event.rsvps.count %><h4>
+    <% @event.rsvps.each do |rsvp| %>
+    <ul>
+    <li><%= link_to rsvp.user.full_name, user_path(rsvp.user.id) %></li>
+    </ul>
   <% end %>
 
 
 
-    <%= @all_current_attending  %>
+  <% if @event.happening? %>
+    <%= @busy_queue %>
+  <% end  %>
 
 
 
-
-  <h4>Attending: <%= @event.rsvps.count %><h4>
-
-      <% unless @rsvp.persisted? %>
-        <%= simple_form_for [@event, @rsvp] do |f|  %>
-          <%= f.submit "I am going"  %>
-        <% end  %>
-        <% else %>
-        <%= button_to "I am NOT going", event_rsvp_path(@event, @rsvp), method: :delete %>
-      <% end %>
+  <h5> <% if @rsvp.persisted? && @event.happening? && @rsvp.current_attending == false  %>
+          <%= button_to "Checkin event", event_rsvp_path(@event, @rsvp), method: :patch  %>
+          <%= @all_current_attending %>
+        <% end %>
+  </h5>
 
       <% if @event.user == current_user %>
         <%= link_to "Edit your event", edit_venue_event_path(@venue, @event)%>
@@ -110,4 +113,5 @@
 
 
      <%= link_to "Back to all events", root_path %>
+    <%= link_to "Chatroom", chatroom_path(@chatroom) %>
 </div>

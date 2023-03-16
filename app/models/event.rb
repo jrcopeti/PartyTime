@@ -6,7 +6,8 @@ class Event < ApplicationRecord
   has_many :artists, through: :lineups, dependent: :destroy
   acts_as_favoritable
 
-
+  scope :happening_now, -> { where("start_date <= ? AND end_date >= ?", Time.now, Time.now) }
+  scope :events_by_date, -> { where("end_date >= ?", Time.now).order("start_date ASC").group_by(&:start_date)}
   # validate :end_date_after_start_date
 
   # def end_date_after_start_date
@@ -26,23 +27,16 @@ class Event < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-
   def happening?
     Time.now >= start_date && Time.now <= end_date
   end
 
-  def self.happening_now
-    Event.where("start_date <= ? AND end_date >= ?", Time.now, Time.now)
-  end
-
-
-    private
+  private
 
   def add_default_cover
     unless photo.attached?
       self.photo.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.jpg")), filename: 'default.jpg' , content_type: "image/jpg")
     end
   end
-
 
 end

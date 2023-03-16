@@ -3,12 +3,8 @@ class EventsController < ApplicationController
 
   def index
     # Controller of map page
-    # How do we get all venues  that  have events now??
     @venues = Venue.venues_with_event_happening_now
-    # @venues = Venue.joins(:events).where.not(events: {venue_id: nil}).geocoded
-    # The `geocoded` scope filters only events with coordinates
     @markers = @venues.geocoded.map do |venue|
-      # @event = venue.events.where('end_date >= ?', Time.now).order(:start_date).first
       @events = venue.events.happening_now
       {
         lat: venue.latitude,
@@ -22,12 +18,22 @@ class EventsController < ApplicationController
   def show
     set_venue
     set_event
-    @user = current_user
+    @chatroom = Chatroom.where(name: @event.title).last
     @rsvp = current_user.rsvp(@event) || Rsvp.new
     @artist = Event.find(params[:id])
     @current_attending = @rsvp.current_attending
     @all_current_attending = Rsvp.where(event: @event.id, current_attending: true).count
     @percentage_attending = @all_current_attending / @event.capacity.to_f * 100
+    @busy_queue = nil
+    if @percentage_attending >= 0 && @percentage_attending <= 30
+      @busy_queue = "Not busy"
+    elsif @percentage_attending >= 31 && @percentage_attending <= 60
+      @busy_queue = "intermediate busy"
+    elsif @percentage_attending >= 61 && @percentage_attending <= 99
+      @busy_queue = "very busy"
+    elsif @percentage_attending == 100
+      @busy_queue = "Fully attending"
+    end
   end
 
   def new
@@ -41,6 +47,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save!
+      Chatroom.create!(name: @event.title)
       redirect_to venue_event_path(@event.venue_id, @event), notice: "Event is ready to rock!"
     else
       render :new, status: :unprocessable_entity, notice: "Event could not be created."
@@ -76,14 +83,14 @@ class EventsController < ApplicationController
     set_event
     @user = current_user
     current_user.favorite(@event)
-    redirect_to root_path
+    redirect_to root_path(anchor: "anchor")
   end
 
   def unfavorite
     set_event
     @user = current_user
     current_user.unfavorite(@event)
-    redirect_to root_path
+    redirect_to root_path(anchor: "anchor")
   end
 
   private
@@ -100,4 +107,5 @@ class EventsController < ApplicationController
   def set_event
     @event = Event.find(params[:id])
   end
+
 end
