@@ -44,7 +44,7 @@ puts "created #{User.count} users"
 
 puts "Seeding venues"
 
-status = %w[cold, warm, hot, offline]
+status = %w[cold warm hot offline]
 
 Venue.create!(
   name: "Tresor",

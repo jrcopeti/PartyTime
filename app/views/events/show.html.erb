@@ -1,39 +1,92 @@
-<div class="container">
-  <h3><%= @event.title %></h3>
-    <ul>
-      <li><%= @event.description %></li>
-      <li><%= @event.status %></li>
-      <li><%= @event.category%></li>
-      <li><%= @event.capacity %></li>
-      <li><%= @event.dresscode %></li>
-      <li><%=@event.start_date.strftime("%a, %d %b %Y")%>
-      <li><%= @event.start_date.strftime("%H:%M") %> - <%= @event.end_date.strftime("%H:%M") %>
-    </ul>
-  <h4> Venue: <%= link_to @event.venue.name, venue_path(@venue) %></h4>
-  <p> Address: <%= @event.venue.address %></p>
+<div class="club-detail" style="background-image: url('<%= @event.image_url %>'); height: 65vh; width: 100%;">
 
-  <h1>lineup</h1>
-
-  <% @event.lineups.each do |lineup| %>
-    <ul>
-      <li><%= link_to lineup.artist.name, artist_path(lineup.artist.id) %></li>
-    </ul>
+    <div class="club-nav">
+      <a href="<%= venues_path %>">
+        <div class="icon-box">
+          <i class="fa-regular fa-angle-left"></i>
+        </div>
+      </a>
+  <% if current_user.favorited?(@event)%>
+        <div class="icon-box">
+          <a href="<%=unfavorite_venue_path(@event)%>">
+            <i class="fa-sharp fa-solid fa-heart fa-lg red-heart"></i>
+          </a>
+        </div>
+  <% else %>
+        <div class="icon-box">
+          <a href="<%=favorite_venue_path(@event)%>">
+           <i class="fa-regular fa-heart"></i>
+          </a>
+       </div>
   <% end %>
+    </div>
+   <div class="club-box">
+      <div class="club-text">
+        <div class="event-head">
+          <div class="event-title">
 
+            <h1><%= @event.title %></h1>
+          </div>
+          <p><%= link_to @event.venue.name, venue_path(@venue) %></p>
+            <% if @percentage_attending >= 0  && @percentage_attending <= 30 %>
+                <i class="fa-regular fa-user"></i>
+                <i class="fa-regular fa-user"></i>
+                <i class="fa-regular fa-user"></i>
+              <%elsif @percentage_attending >= 31  && @percentage_attending <= 60 %>
+                <i class="fa-solid fa-user"></i>
+                <i class="fa-regular fa-user"></i>
+                <i class="fa-regular fa-user"></i>
+              <%elsif @percentage_attending >= 61  && @percentage_attending <= 99%>
+                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-user"></i>
+                <i class="fa-regular fa-user"></i>
+              <%elsif @percentage_attending == 100 %>
+                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-user"></i>
+              <%end%>
+        </div>
+      </div>
+      <div class="club-details">
+      <div class="event-main-facts">
+        <h5>Description:</h5>
+        <p><%= @event.description %></p>
+        <h5>Venue:</h5>
+        <p><%= link_to @event.venue.name, venue_path(@venue) %><br><%= @venue.address %></p>
+        <h5>Date:</h5>
+        <p><%=@event.start_date.strftime("%a, %d %b %Y")%> <br><%= @event.start_date.strftime("%H:%M") %> - <%= @event.end_date.strftime("%H:%M") %></p>
+        <h5>LineUp:</h5>
+        <% @event.lineups.each do |lineup| %>
+          <%= link_to lineup.artist.name, artist_path(lineup.artist.id) %>
+        <% end %>
+      </div>
+        <div class="event-facts">
+            <div class="event-keyfact">
+              <p>Status: <%= @event.status %></p>
+            </div>
+            <div class="event-keyfact">
+              <p>Category: <%= @event.category %></p>
+            </div>
+            <div class="event-keyfact">
+              <p>Capacity: <%= @event.capacity %></p>
+            </div>
+            <div class="event-keyfact">
+              <p>Dresscode: <%= @event.dresscode %></p>
+            </div>
+        </div>
+
+      </div>
+    </div>
+<br>
+<br>
+<br>
+<br>
 
   <% if @rsvp.persisted? && @event.happening? %>
     <%= button_to "Current Here", event_rsvp_path(@event, @rsvp), method: :patch  %>
   <% end %>
 
-   <% if @percentage_attending >= 0  && @percentage_attending <= 30 %>
-      <p>Not busy</p>
-    <%elsif @percentage_attending >= 31  && @percentage_attending <= 60 %>
-     <p> intermediate busy</p>
-    <%elsif @percentage_attending >= 61  && @percentage_attending <= 99%>
-      <p>very busy</p>
-    <%elsif @percentage_attending == 100 %>
-      <p>Fully attending</p>
-    <%end%>
+
 
     <%= @all_current_attending  %>
 
