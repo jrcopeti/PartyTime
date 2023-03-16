@@ -1,3 +1,9 @@
+puts "deleting all messages"
+Message.all.delete_all
+
+puts "deleting all chatrooms"
+Chatroom.all.delete_all
+
 puts "deleting all lineups"
 Lineup.all.delete_all
 
@@ -180,6 +186,10 @@ puts "preparing seeding events"
 
   )
   event.save!
+  Chatroom.create!(
+    name: event.title,
+    event_id: event.id
+  )
 end
 
 puts "created #{Event.count} events"
@@ -278,6 +288,9 @@ end
 end
 
 puts "created #{Lineup.count} lineups"
+
+
+puts "created #{Chatroom.count} chatrooms"
 
 
 puts "DATABASE SUCCESSFULL SEEDED"
