@@ -19,7 +19,6 @@ class EventsController < ApplicationController
     set_venue
     set_event
     @chatroom = Chatroom.where(name: @event.title).last
-    @user = current_user
     @rsvp = current_user.rsvp(@event) || Rsvp.new
     @artist = Event.find(params[:id])
     @current_attending = @rsvp.current_attending

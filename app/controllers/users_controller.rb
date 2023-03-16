@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :follow, :unfollow, :accept, :decline, :cancel]
+  before_action :set_user, only: %i[show profile follow unfollow accept decline cancel]
 
   def index
     @users = User.all
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def profile
     # current_user profile page
-    @user = current_user
+
     @rsvps = @user.rsvps
   end
 
@@ -62,6 +62,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:full_name, :nickname, :bio, :avatar_url, :photo)
+    params.require(:user).permit(:full_name, :nickname, :bio, :avatar_url, :address, :latitude, :longitude, :photo)
   end
 end

@@ -4,4 +4,5 @@ class Rsvp < ApplicationRecord
 
   scope :past, -> { joins(:event).where('events.start_date < ?', Date.today)}
   scope :future, -> { joins(:event).where('events.start_date >= ?', Date.today) }
+  
 end
