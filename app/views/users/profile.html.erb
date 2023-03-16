@@ -8,40 +8,52 @@
   </div>
 <div class="container">
   <% if current_user.photo.attached? %>
-      <%= cl_image_tag current_user.photo.key, width: 50, height: 50, radius:"max", crop: "thumb"%>
+      <%= cl_image_tag current_user.photo.key, height: 250, width: 250, crop: "fill", radius: "max"%>
   <% else %>
-      <%= image_tag(current_user.avatar_url)%>
+      <%= image_tag(current_user.avatar_url, width: "250", height: "250") unless current_user.avatar_url.nil?%>
   <%end %>
 
 
-  <h2> <%= @user.nickname %></h2>
-  <h3> <%= @user.full_name %></h3>
-  <p><%= @user.bio %></p>
+  <h2> <%= current_user.nickname %></h2>
+  <h3> <%= current_user.full_name %></h3>
+  <h3><%=current_user.email %></h3>
+  <p><%= current_user.bio %></p>
 
   <hr/>
 
   <% current_user.follow_requests.each do |request| %>
-    <h5><%= request.followerable.nickname %> wants to follow you</h5>
-    <%= button_to "Accept", accept_path(request.followerable) %> <%= button_to "Decline", decline_path(request.followerable) %>
+    <h5><%= link_to request.followerable.nickname, user_path(request.followerable.id) %> wants to follow you</h5>
+    <%= button_to "Accept", accept_path(request.followerable) %>
+    <%= button_to "Decline", decline_path(request.followerable) %>
   <% end  %>
 
-  <% current_user.followers.each do |follower| %>
-    <ul> Followers
-    <li><%= link_to follower.nickname, user_path(follower.id) %></li>
-    </ul>
+  <h4>Followers (<%=current_user.followers.count%>)</h4><% current_user.followers.sample(3).each do |follower| %>
+    <% if follower.photo.attached? %>
+        <%= cl_image_tag follower.photo.key, height: 100, width: 100, crop: "thumb", radius: "max"%>
+    <% else %>
+        <%= image_tag(follower.avatar_url, height: "100", width: "100", crop: "fill") unless follower.avatar_url.nil?%>
+    <%end %>
+  <ul>
+  <li><%= link_to follower.nickname, user_path(follower.id) %></li>
+  </ul>
   <% end %>
   <br/>
-  <% current_user.following.each do |following| %>
-    <ul> Following
-    <li><%= link_to following.nickname, user_path(following.id) %></li>
-    </ul>
+  <h4>Following (<%=current_user.following.count%>)</h4><% current_user.following.sample(3).each do |following| %>
+      <% if following.photo.attached? %>
+        <%= cl_image_tag following.photo.key, height: 100, width: 100, crop: "thumb", radius: "max"%>
+    <% else %>
+        <%= image_tag(following.avatar_url, height: "100", width: "100", crop: "fill") unless following.avatar_url.nil?%>
+    <%end %>
+  <ul>
+  <li><%= link_to following.nickname, user_path(following.id) %></li>
+  </ul>
   <% end  %>
 
 <hr/>
 
   <div>
     <h3>My favorites events</h3>
-      <% current_user.favorited_by_type("Event").each do |favorite| %>
+      <% current_user.favorited_by_type("Event").last(5).each do |favorite| %>
         <ul>
           <li><%=link_to favorite.title, venue_event_path(favorite.venue_id, favorite.id)  %></li>
         </ul>

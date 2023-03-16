@@ -1,6 +1,6 @@
 <%#THIS IS OTHER USERS PROFILE PAGE%>
   <div class="event-title">
-    <h1>Profile</h1>
+    <h1>User Page</h1>
     <div class="event-icon">
       <i class="fa-solid fa-bell fa-lg"></i>
       <i class="fa-solid fa-comments fa-lg"></i>
@@ -8,15 +8,14 @@
   </div>
 <div class="container">
   <% if @user.photo.attached? %>
-      <%= cl_image_tag current_user.photo.key, width: 50, height: 50, radius:"max", crop: "thumb"%>
+      <%= cl_image_tag @user.photo.key, width: 250, height: 250, radius:"max", crop: "fill"%>
   <% else %>
-      <%= image_tag(@user.avatar_url)%>
+      <%= image_tag(@user.avatar_url, width: "250", height: "250") unless @user.avatar_url.nil?%>
   <%end %>
 
 
   <h2> <%= @user.nickname %></h2>
   <h3> <%= @user.full_name %></h3>
-  <h3><% @user.email %></h3>
   <p><%= @user.bio %></p>
 
   <hr/>
@@ -26,10 +25,32 @@
   <% elsif current_user.sent_follow_request_to?(@user) %>
     <%= button_to "Cancel Follow Resquest", cancel_path(@user) %>
   <% else  %>
-    <%= button_to "Follow", follow_path(@user) %>
+    <%= button_to "Follow", follow_path(@user) unless current_user == @user %>
   <% end %>
 
   <hr/>
+
+    <h4>Followers (<%=@user.followers.count%>)</h4><% @user.followers.sample(3).each do |follower| %>
+    <% if follower.photo.attached? %>
+        <%= cl_image_tag follower.photo.key, height: 100, width: 100, crop: "thumb", radius: "max"%>
+    <% else %>
+        <%= image_tag(follower.avatar_url, height: "100", width: "100", crop: "fill") unless follower.avatar_url.nil?%>
+    <%end %>
+  <ul>
+  <li><%= link_to follower.nickname, user_path(follower.id) %></li>
+  </ul>
+  <% end %>
+  <br/>
+  <h4>Following (<%=@user.following.count%>)</h4><% @user.following.sample(3).each do |following| %>
+      <% if following.photo.attached? %>
+        <%= cl_image_tag following.photo.key, height: 100, width: 100, crop: "thumb", radius: "max"%>
+    <% else %>
+        <%= image_tag(following.avatar_url, height: "100", width: "100", crop: "thumb", radius: "max")  unless following.avatar_url.nil?%>
+    <%end %>
+  <ul>
+  <li><%= link_to following.nickname, user_path(following.id) %></li>
+  </ul>
+  <% end  %>
 
   <div>
     <h3>My favorites events</h3>
