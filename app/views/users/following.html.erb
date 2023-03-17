@@ -1,0 +1,7 @@
+<h1><%= @user.nickname %> Following</h1>
+
+<h3><%@following.each do |f| %></h3>
+  <ul>
+  <li><p><%=link_to f.nickname, user_path(f.id) %></p></li>
+  </ul>
+<% end %>

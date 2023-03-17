@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     # Events Index
+    @popular_events = Event.popular_events
     if params[:query].present?
       @events_by_date = Event.where("end_date >= ?", Time.now).order("start_date ASC").global_search(params[:query]).group_by(&:start_date)
     else
