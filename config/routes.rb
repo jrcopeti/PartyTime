@@ -8,47 +8,46 @@ Rails.application.routes.draw do
 
   resources :venues, only: %i[index show] do
     resources :events, only: %i[show edit]
+    member do
+      get :favorite
+      get :unfavorite
+    end
   end
 
-  get '/venues/:id/favorite' => 'venues#favorite', as: :favorite_venue
-  get '/venues/:id/unfavorite' => 'venues#unfavorite', as: :unfavorite_venue
-
-  get '/artists/:id/favorite' => 'artists#favorite', as: :favorite_artist
-  get '/artists/:id/unfavorite' => 'artists#unfavorite', as: :unfavorite_artist
-
-  get '/events/:id/favorite' => 'events#favorite', as: :favorite_event
-  get '/events/:id/unfavorite' => 'events#unfavorite', as: :unfavorite_event
 
   resources :events, only: %i[index new create update destroy] do
     resources :rsvps, only: %i[create destroy update]
     resources :lineups, only: %i[show new create edit update]
+    member do
+      get :favorite
+      get :unfavorite
+      get :checkin
+    end
   end
 
-  resources :users, only: %i[index show edit update]
+  resources :artists, only: %i[index show] do
+    member do
+      get :favorite
+      get :unfavorite
+    end
+  end
 
-  get 'users/:id/profile' => 'users#profile', as: :profile
-  
-  get 'users/:id/profile/followers' => 'users#current_user_followers', as: :current_user_followers
-  get 'users/:id/profile/following' => 'users#current_user_following', as: :current_user_following
-
-  get 'users/:id/followers' => 'users#followers', as: :followers
-  get 'users/:id/following' => 'users#following', as: :following
-
-  post 'users/:id/follow' => 'users#follow', as: :follow
-  post 'users/:id/unfollow' => 'users#unfollow', as: :unfollow
-  post 'users/:id/accept' => 'users#accept', as: :accept
-  post 'users/:id/decline' => 'users#decline', as: :decline
-  post 'users/:id/cancel' => 'users#cancel', as: :cancel
-
-  resources :artists, only: %i[index show]
   resources :lineups, only: %i[destroy]
 
   resources :chatrooms, only: %i[index show] do
     resources :messages, only: :create
   end
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :users, only: %i[index show edit update] do
+    member do
+      get :profile
+      get :followers
+      get :following
+      post :follow
+      post :unfollow
+      post :accept
+      post :decline
+      post :cancel
+    end
+  end
 end
