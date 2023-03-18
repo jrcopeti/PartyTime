@@ -1,3 +1,6 @@
+<!-- app/views/offers/show.html.erb -->
+<% content_for :meta_title, "#{@event.title} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @event.description %>
 <div class="club-detail" style="background-image: url('<%= @event.image_url %>'); width: 100%; background-repeat: repeat-y;">
 
     <div class="club-nav">
@@ -102,7 +105,7 @@
 
 
 
-  <h4>Who is coming?! <%= @event.rsvps.count %><h4>
+  <h4>Who is coming?! <%= @event.rsvps.count %></h4>
     <% @event.rsvps.each do |rsvp| %>
     <ul>
     <li><%= link_to rsvp.user.full_name, user_path(rsvp.user.id) %></li>
@@ -121,7 +124,11 @@
       <%end%>
 
     <%= link_to "Chatroom", chatroom_path(@chatroom) %>
-
+    </div>
+  </div>
+  <div class="chatroom bg-black">
+    <%=render "shared/chatroom" %>
+  </div>
 </div>
 
 <br>
