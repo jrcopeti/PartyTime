@@ -36,7 +36,7 @@ class Event < ApplicationRecord
   def total_rsvps
     rsvps.count
   end
-
+  
   private
 
   def add_default_cover

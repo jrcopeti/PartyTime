@@ -58,7 +58,7 @@ class UsersController < ApplicationController
 
   def decline
     current_user.decline_follow_request_of(@user)
-    redirect_to profile_path(current_user)
+    redirect_to profile_user_path(current_user)
   end
 
   def cancel

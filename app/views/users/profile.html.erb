@@ -31,7 +31,7 @@
     <%#= link_to "chatroom", chatroom_path(@chatroom) %>
   <%# end %>
 
-  <h4><%=link_to "Followers", current_user_followers_path(current_user)%> </h4><% current_user.followers.sample(3).each do |follower| %>
+  <h4><%=link_to "Followers", followers_user_path(current_user)%> </h4><% current_user.followers.sample(3).each do |follower| %>
 
     <% if follower.photo.attached? %>
         <%= cl_image_tag follower.photo.key, height: 100, width: 100, crop: "thumb", radius: "max"%>
@@ -43,7 +43,7 @@
   </ul>
   <% end %>
   <br/>
-  <h4><%=link_to "Following", current_user_following_path(current_user)%> (<%=current_user.following.count%>)</h4><% current_user.following.sample(3).each do |following| %>
+  <h4><%=link_to "Following", following_user_path(current_user)%> (<%=current_user.following.count%>)</h4><% current_user.following.sample(3).each do |following| %>
       <% if following.photo.attached? %>
         <%= cl_image_tag following.photo.key, height: 100, width: 100, crop: "thumb", radius: "max"%>
     <% else %>

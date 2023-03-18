@@ -36,6 +36,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def checkin
+    set_venue
+    set_event
+    render partial: 'checkin', locals: { venue: @venue, event: @event }
+  end
+
   def new
     @event = Event.new
     @lineup = Lineup.new
@@ -83,14 +89,12 @@ class EventsController < ApplicationController
     set_event
     @user = current_user
     current_user.favorite(@event)
-    redirect_to root_path
   end
 
   def unfavorite
     set_event
     @user = current_user
     current_user.unfavorite(@event)
-    redirect_to root_path
   end
 
   private
