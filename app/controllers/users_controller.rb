@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[show profile follow unfollow accept decline cancel]
+  before_action :set_user, only: %i[show profile follow unfollow accept decline cancel followers following]
 
   def index
     @users = User.all
@@ -12,11 +12,8 @@ class UsersController < ApplicationController
   end
 
   def profile
-
     # current_user profile page
-
-    @rsvps = @user.rsvps
-    # @chatroom = Chatroom.find(params[:chatroom_id])
+    @rsvps = current_user.rsvps
   end
 
   def follow
@@ -67,6 +64,22 @@ class UsersController < ApplicationController
   def cancel
     current_user.remove_follow_request_for(@user)
     redirect_to user_path(@user)
+  end
+
+  def current_user_followers
+    @current_user_followers = current_user.followers
+  end
+
+  def current_user_following
+    @current_user_following = current_user.following
+  end
+
+  def followers
+    @followers = @user.followers
+  end
+
+  def following
+    @following = @user.following
   end
 
   def edit
