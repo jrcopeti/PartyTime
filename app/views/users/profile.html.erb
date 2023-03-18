@@ -27,6 +27,10 @@
     <%= button_to "Decline", decline_path(request.followerable) %>
   <% end  %>
 
+  <%# if current_user.mutual_following_with?(@user)%>
+    <%#= link_to "chatroom", chatroom_path(@chatroom) %>
+  <%# end %>
+
   <h4>Followers (<%=current_user.followers.count%>)</h4><% current_user.followers.sample(3).each do |follower| %>
     <% if follower.photo.attached? %>
         <%= cl_image_tag follower.photo.key, height: 100, width: 100, crop: "thumb", radius: "max"%>

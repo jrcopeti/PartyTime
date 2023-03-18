@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   resources :artists, only: %i[index show]
   resources :lineups, only: %i[destroy]
 
-  resources :chatrooms, only: :show do
+  resources :chatrooms, only: %i[index show] do
     resources :messages, only: :create
   end
 
