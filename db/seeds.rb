@@ -1,3 +1,6 @@
+require "open-uri"
+
+
 puts "deleting all messages"
 Message.all.delete_all
 
@@ -26,24 +29,29 @@ puts "Seeding Database"
 
 puts "Seeding Users"
 
-User.create!(
+mainuser = User.create!(
   email: "user@user.com",
   password: 123456,
-  full_name: "user user",
-  avatar_url: "https://unsplash.com/s/photos/face",
+  nickname: Faker::Name.first_name,
+  full_name: "Max Mustermann",
   address: "Hauptstrasse 15, 10317 Berlin"
 )
+file = URI.open("https://source.unsplash.com/random?face")
+mainuser.photo.attach(io: file, filename: mainuser.full_name, content_type: "image/jpg")
+mainuser.save!
 
 20.times do
   user = User.new(
     full_name: Faker::Name.name,
     email: Faker::Internet.email,
+    nickname: Faker::Name.first_name,
     password: 123456,
+    # avatar_url: Faker::Avatar.image,
     address: "Köpenicker Str. 70, 10179 Berlin"
   )
-  # file = URI.open("https://source.unsplash.com/random?face")
-  # user.avatar_url.attach(io: file, filename: user.full_name, content_type: "image/jpg")
+  file = URI.open("https://source.unsplash.com/random?face")
   user.save!
+  user.photo.attach(io: file, filename: user.full_name, content_type: "image/jpg")
 end
 
 puts "created #{User.count} users"
@@ -182,11 +190,12 @@ puts "preparing seeding events"
     start_date: start,
     end_date: start + rand(2..8).hours,
     user_id: User.all.sample.id,
-    venue_id: Venue.all.sample.id,
-    image_url: "https://source.unsplash.com/random?party"
-
+    venue_id: Venue.all.sample.id
   )
+  file = URI.open("https://source.unsplash.com/random?party")
+  event.photo.attach(io: file, filename: event.title, content_type: "image/jpg")
   event.save!
+
   Chatroom.create!(
     name: event.title,
     event_id: event.id
@@ -295,3 +304,4 @@ puts "created #{Chatroom.count} chatrooms"
 
 
 puts "DATABASE SUCCESSFULL SEEDED"
+puts "Since now Jose is also Happy!!!"

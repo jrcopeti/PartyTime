@@ -16,12 +16,15 @@ class User < ApplicationRecord
          # for Google OmniAuth
          :omniauthable, omniauth_providers: [:google_oauth2]
 
+  require "open-uri"
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.full_name = auth.info.name
-      user.avatar_url = auth.info.image
+      file = URI.open(auth.info.image)
+      user.photo.attach(io: file, filename: user.full_name, content_type: "image/jpg")
     end
   end
 

@@ -50,7 +50,7 @@
   <div class="event-card-container">
     <% events.each do |event| %>
       <div class="event-card">
-          <img src="<%= event.image_url %>" alt="">
+          <%= cl_image_tag event.photo.key, height: 100, width: 100, crop: :fill %>
         <div class="event-box">
             <div class="event-item">
               <p><%= event.start_date.strftime("%H:%M") %> at <%= link_to event.venue.name, venue_path(event.venue_id)%></p>
