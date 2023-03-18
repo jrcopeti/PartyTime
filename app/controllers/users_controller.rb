@@ -28,7 +28,32 @@ class UsersController < ApplicationController
 
   def accept
     current_user.accept_follow_request_of(@user)
-    redirect_to profile_path(current_user)
+    @chatroom = Chatroom.new
+    @chatroom.users = [current_user.id, @user.id]
+    @chatroom.name = "#{current_user.nickname} and #{@user.nickname}'s chat"
+    @chatroom.save!
+    # ChatroomChannel.broadcast_to(
+    #   {
+    #     user: @user,
+    #     type: 'chat_created',
+    #     chatroom_id: @chatroom.id,
+    #     chatroom_path: chatroom_path(@chatroom)
+    #   },
+    #   "chat created"
+    # )
+    #
+    # ChatroomChannel.broadcast_to(
+    #   {
+    #     user: current_user,
+    #     type: 'chat_created',
+    #     chatroom_id: @chatroom.id,
+    #     chatroom_path: chatroom_path(@chatroom)
+    #   },
+    #   "chat created"
+    # )
+    # redirect_to profile_path(current_user)
+    redirect_to chatroom_path(@chatroom)
+
   end
 
   def decline
