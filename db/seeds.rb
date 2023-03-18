@@ -169,7 +169,8 @@ puts "preparing seeding events"
 
 
 50.times do
-  start = Time.now + rand(10).day + rand(10).hours
+  start = Time.now
+  # + rand(10).day + rand(10).hours
   event = Event.new(
 
     title: Faker::Fantasy::Tolkien.poem,
