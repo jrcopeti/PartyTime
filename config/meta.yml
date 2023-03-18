@@ -1,0 +1,5 @@
+meta_product_name: "PartyTime"
+meta_title: "PartyTime"
+meta_description: "The Only App You Need To Party"
+meta_image: "/app/assets/images/favicon.png" # should exist in `app/assets/images/`
+twitter_account: "#"   # required for Twitter Cards

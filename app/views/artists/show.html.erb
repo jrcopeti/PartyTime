@@ -1,3 +1,8 @@
+<!-- app/views/offers/show.html.erb -->
+<% content_for :meta_title, "#{@artist.name} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @artist.about %>
+<% content_for :meta_image, cl_image_path(@artist.image_url) %>
+
 <div class="container">
   <h1><%= @artist.name %></h1>
   <h4>About: <%= @artist.about %></h4>
