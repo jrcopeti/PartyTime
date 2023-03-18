@@ -7,7 +7,9 @@ class Event < ApplicationRecord
   acts_as_favoritable
 
   scope :happening_now, -> { where("start_date <= ? AND end_date >= ?", Time.now, Time.now) }
-  scope :events_by_date, -> { where("end_date >= ?", Time.now).order("start_date ASC").group_by(&:start_date)}
+  scope :events_by_date, -> { where("end_date >= ?", Time.now).order("start_date ASC").group_by(&:start_date) }
+  scope :popular_events, -> { where("end_date >= ?", Time.now).sort_by { |event| -event.total_rsvps }.first(6) }
+
   # validate :end_date_after_start_date
 
   # def end_date_after_start_date
@@ -29,6 +31,10 @@ class Event < ApplicationRecord
 
   def happening?
     Time.now >= start_date && Time.now <= end_date
+  end
+
+  def total_rsvps
+    rsvps.count
   end
 
   private

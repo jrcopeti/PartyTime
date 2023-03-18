@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_15_095910) do
+
+
+ActiveRecord::Schema[7.0].define(version: 2023_03_16_200237) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,7 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_095910) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "event_id", null: false
+    t.bigint "event_id"
+    t.string "users", default: [], array: true
     t.index ["event_id"], name: "index_chatrooms_on_event_id"
   end
 
@@ -65,8 +69,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_095910) do
     t.string "description"
     t.string "status"
     t.string "category"
-    t.date "date"
-    t.time "time"
     t.integer "capacity"
     t.string "dresscode"
     t.bigint "venue_id", null: false
@@ -178,9 +180,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_095910) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo"
-    t.string "image_url"
     t.float "latitude"
     t.float "longitude"
+    t.string "image_url"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -25,7 +25,14 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[index show edit update]
+
   get 'users/:id/profile' => 'users#profile', as: :profile
+  
+  get 'users/:id/profile/followers' => 'users#current_user_followers', as: :current_user_followers
+  get 'users/:id/profile/following' => 'users#current_user_following', as: :current_user_following
+
+  get 'users/:id/followers' => 'users#followers', as: :followers
+  get 'users/:id/following' => 'users#following', as: :following
 
   post 'users/:id/follow' => 'users#follow', as: :follow
   post 'users/:id/unfollow' => 'users#unfollow', as: :unfollow
@@ -33,15 +40,12 @@ Rails.application.routes.draw do
   post 'users/:id/decline' => 'users#decline', as: :decline
   post 'users/:id/cancel' => 'users#cancel', as: :cancel
 
-
-
   resources :artists, only: %i[index show]
   resources :lineups, only: %i[destroy]
 
-  resources :chatrooms, only: :show do
+  resources :chatrooms, only: %i[index show] do
     resources :messages, only: :create
   end
-
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

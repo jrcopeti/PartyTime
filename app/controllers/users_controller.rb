@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[show profile follow unfollow accept decline cancel]
+  before_action :set_user, only: %i[show profile follow unfollow accept decline cancel followers following]
 
   def index
     @users = User.all
@@ -13,8 +13,7 @@ class UsersController < ApplicationController
 
   def profile
     # current_user profile page
-
-    @rsvps = @user.rsvps
+    @rsvps = current_user.rsvps
   end
 
   def follow
@@ -29,7 +28,32 @@ class UsersController < ApplicationController
 
   def accept
     current_user.accept_follow_request_of(@user)
-    redirect_to profile_path(current_user)
+    @chatroom = Chatroom.new
+    @chatroom.users = [current_user.id, @user.id]
+    @chatroom.name = "#{current_user.nickname} and #{@user.nickname}'s chat"
+    @chatroom.save!
+    # ChatroomChannel.broadcast_to(
+    #   {
+    #     user: @user,
+    #     type: 'chat_created',
+    #     chatroom_id: @chatroom.id,
+    #     chatroom_path: chatroom_path(@chatroom)
+    #   },
+    #   "chat created"
+    # )
+    #
+    # ChatroomChannel.broadcast_to(
+    #   {
+    #     user: current_user,
+    #     type: 'chat_created',
+    #     chatroom_id: @chatroom.id,
+    #     chatroom_path: chatroom_path(@chatroom)
+    #   },
+    #   "chat created"
+    # )
+    # redirect_to profile_path(current_user)
+    redirect_to chatroom_path(@chatroom)
+
   end
 
   def decline
@@ -40,6 +64,22 @@ class UsersController < ApplicationController
   def cancel
     current_user.remove_follow_request_for(@user)
     redirect_to user_path(@user)
+  end
+
+  def current_user_followers
+    @current_user_followers = current_user.followers
+  end
+
+  def current_user_following
+    @current_user_following = current_user.following
+  end
+
+  def followers
+    @followers = @user.followers
+  end
+
+  def following
+    @following = @user.following
   end
 
   def edit

@@ -101,6 +101,7 @@
 
 
 
+
   <h4>Who is coming?! <%= @event.rsvps.count %><h4>
     <% @event.rsvps.each do |rsvp| %>
     <ul>
@@ -120,6 +121,7 @@
       <%end%>
 
     <%= link_to "Chatroom", chatroom_path(@chatroom) %>
+
 </div>
 
 <br>
