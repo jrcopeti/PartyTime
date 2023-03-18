@@ -1,53 +1,57 @@
-<div class="club-detail" style="background-image: url('<%= @event.image_url %>'); width: 100%; background-repeat: repeat-y;">
+<div class="event-detail" style="background-image: url('<%= cl_image_path @event.photo.key %>'); width: 100%;">
 
     <div class="club-nav">
-      <a href="<%= root_path %>">
-        <div class="icon-box">
-          <i class="fa-regular fa-angle-left"></i>
-        </div>
-      </a>
-  <% if current_user.favorited?(@event)%>
+        <a href="<%= root_path %>">
+          <div class="icon-box">
+            <i class="fa-regular fa-angle-left"></i>
+          </div>
+        </a>
+      <% if current_user.favorited?(@event)%>
         <div class="icon-box">
           <a href="<%=unfavorite_venue_path(@event)%>">
             <i class="fa-sharp fa-solid fa-heart fa-lg red-heart"></i>
           </a>
         </div>
-  <% else %>
+      <% else %>
         <div class="icon-box">
           <a href="<%=favorite_venue_path(@event)%>">
-           <i class="fa-regular fa-heart"></i>
+          <i class="fa-regular fa-heart"></i>
           </a>
-       </div>
-  <% end %>
+        </div>
+      <% end %>
     </div>
-   <div class="event-show-box">
-         <div class="club-details">
 
-          <div class="event-title-box">
+<%= cl_image_tag @event.photo.key, style: 'height:35vh; width:100%; object-fit: cover;' %>
 
-            <h1><%= @event.title %></h1>
-          </div>
-        <div class="event-subtitle">
-               <% if !@rsvp.persisted? %>
-                  <%= simple_form_for [@event, @rsvp] do |f|  %>
-                    <%= button_tag class: "event-interested" do %>
-                      Interested <i class="fa-solid fa-user-plus"></i>
-                    <% end %>
-                  <% end  %>
-                  <% elsif @rsvp.persisted? && @event.happening? && @rsvp.current_attending == false  %>
-                  <%= button_to event_rsvp_path(@event, @rsvp), class: "event-interested", method: :patch do %>
-                  Checkin event <i class="fa-solid fa-user-check"></i>
-                  <% end %>
-                  <% elsif @rsvp.persisted? && @event.happening? && @rsvp.current_attending == true %>
-                  <div class="event-interested-active">You're in! <i class="fa-solid fa-champagne-glasses"></i> </div>
-                  <% else %>
-                  <%= button_to event_rsvp_path(@event, @rsvp), class: "event-interested-active", method: :delete do %>
-                  Not interested <i class="fa-solid fa-user-minus"></i>
-                  <% end %>
-                <% end %>
-            <div>
-            <i class="fa-solid fa-users"></i><p><%= @event.rsvps.count %>+</p>
-            </div>
+  <div class="event-show-box">
+    <div class="club-details">
+
+      <div class="event-title-box">
+        <h1><%= @event.title %></h1>
+      </div>
+
+    <div class="event-subtitle">
+      <% if !@rsvp.persisted? %>
+        <%= simple_form_for [@event, @rsvp] do |f|  %>
+          <%= button_tag class: "event-interested" do %>
+            Interested <i class="fa-solid fa-user-plus"></i>
+          <% end %>
+        <% end  %>
+      <% elsif @rsvp.persisted? && @event.happening? && @rsvp.current_attending == false  %>
+        <%= button_to event_rsvp_path(@event, @rsvp), class: "event-interested", method: :patch do %>
+          Checkin event <i class="fa-solid fa-user-check"></i>
+        <% end %>
+      <% elsif @rsvp.persisted? && @event.happening? && @rsvp.current_attending == true %>
+        <div class="event-interested-active">You're in! <i class="fa-solid fa-champagne-glasses"></i></div>
+      <% else %>
+        <%= button_to event_rsvp_path(@event, @rsvp), class: "event-interested-active", method: :delete do %>
+          Not interested <i class="fa-solid fa-user-minus"></i>
+        <% end %>
+      <% end %>
+
+      <div>
+        <i class="fa-solid fa-users"></i><p><%= @event.rsvps.count %>+</p>
+      </div>
             <% if @event.happening? %>
             <div>
               <% if @percentage_attending >= 0  && @percentage_attending <= 30 %>
@@ -68,7 +72,7 @@
                   <i class="fa-solid fa-user"></i>
                 <%end%>
             </div>
-                <% end %>
+            <% end %>
         </div>
 
 
@@ -102,12 +106,18 @@
 
 
 
-  <h4>Who is coming?! <%= @event.rsvps.count %><h4>
+  <h4>Who is coming?! <%= @event.rsvps.count %></h4>
+    <ul class="attendings">
     <% @event.rsvps.each do |rsvp| %>
-    <ul>
-    <li><%= link_to rsvp.user.full_name, user_path(rsvp.user.id) %></li>
-    </ul>
+    <li><%= link_to  user_path(rsvp.user.id) do %>
+      <%= cl_image_tag(rsvp.user.photo.key, height: 75, width: 75, crop: :fill) unless rsvp.user.photo.nil?%>
+    <% end %>
+    </li>
   <% end %>
+    </ul>
+
+
+<%= cl_image_tag current_user.photo.key, height: 75, width: 75, crop: :fill, class: "avatar" unless current_user.photo.nil?%>
 
 
   <% if @event.happening? %>
