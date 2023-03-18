@@ -83,14 +83,14 @@ class EventsController < ApplicationController
     set_event
     @user = current_user
     current_user.favorite(@event)
-    redirect_to root_path(anchor: "anchor")
+    redirect_to root_path
   end
 
   def unfavorite
     set_event
     @user = current_user
     current_user.unfavorite(@event)
-    redirect_to root_path(anchor: "anchor")
+    redirect_to root_path
   end
 
   private
@@ -107,5 +107,4 @@ class EventsController < ApplicationController
   def set_event
     @event = Event.find(params[:id])
   end
-
 end

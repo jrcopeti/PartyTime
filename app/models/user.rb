@@ -33,4 +33,6 @@ class User < ApplicationRecord
     followerable_relationships.where(followable_id: user.id).destroy_all
   end
 
+  
+
 end

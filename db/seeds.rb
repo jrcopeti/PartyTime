@@ -176,7 +176,7 @@ puts "preparing seeding events"
     description: Faker::Quote.famous_last_words,
     status: status.sample,
     category: "party",
-    capacity: 10,
+    capacity: rand(10..100),
     dresscode: "naked",
     start_date: start,
     end_date: start + rand(2..8).hours,
@@ -272,14 +272,14 @@ artist8 = Artist.create!(
 
 puts "created #{Artist.count} artists"
 
-20.times do
+100.times do
   Lineup.create!(
     artist_id: Artist.all.sample.id,
     event_id: Event.all.sample.id
   )
 end
 
-50.times do
+300.times do
   Rsvp.create!(
     user_id: User.all.sample.id,
     event_id: Event.all.sample.id,
