@@ -14,14 +14,16 @@
         </a>
       <% if current_user.favorited?(@event)%>
         <div class="icon-box">
-          <a href="<%=unfavorite_venue_path(@event)%>">
+          <a href="<%=unfavorite_event_path(@event)%>">
             <i class="fa-sharp fa-solid fa-heart fa-lg red-heart"></i>
           </a>
         </div>
       <% else %>
         <div class="icon-box">
-          <a href="<%=favorite_venue_path(@event)%>">
-          <i class="fa-regular fa-heart"></i>
+
+          <a href="<%=favorite_event_path(@event)%>">
+           <i class="fa-regular fa-heart"></i>
+
           </a>
         </div>
       <% end %>
@@ -59,26 +61,31 @@
         <i class="fa-solid fa-users"></i><p><%= @event.rsvps.count %>+</p>
       </div>
             <% if @event.happening? %>
-            <div>
-              <% if @percentage_attending >= 0  && @percentage_attending <= 30 %>
-                  <i class="fa-regular fa-user"></i>
-                  <i class="fa-regular fa-user"></i>
-                  <i class="fa-regular fa-user"></i>
-                <%elsif @percentage_attending >= 31  && @percentage_attending <= 60 %>
-                  <i class="fa-solid fa-user"></i>
-                  <i class="fa-regular fa-user"></i>
-                  <i class="fa-regular fa-user"></i>
-                <%elsif @percentage_attending >= 61  && @percentage_attending <= 99%>
-                  <i class="fa-solid fa-user"></i>
-                  <i class="fa-solid fa-user"></i>
-                  <i class="fa-regular fa-user"></i>
-                <%elsif @percentage_attending == 100 %>
-                  <i class="fa-solid fa-user"></i>
-                  <i class="fa-solid fa-user"></i>
-                  <i class="fa-solid fa-user"></i>
-                <%end%>
+            <div data-controller="popover" data-popover-url-value="<%= checkin_event_path %>">
+            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+              <div data-action="click->popover#toggle" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                <% if @percentage_attending >= 0  && @percentage_attending <= 30 %>
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-regular fa-user"></i>
+                  <%elsif @percentage_attending >= 31  && @percentage_attending <= 60 %>
+                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-regular fa-user"></i>
+                  <%elsif @percentage_attending >= 61  && @percentage_attending <= 99%>
+                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-regular fa-user"></i>
+                  <%elsif @percentage_attending == 100 %>
+                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-solid fa-user"></i>
+                  <%end%>
+                </div>
             </div>
-            <% end %>
+
+          <% end %>
+
         </div>
 
 

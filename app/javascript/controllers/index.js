@@ -7,11 +7,17 @@ import { application } from "./application"
 import ChatroomSubscriptionController from "./chatroom_subscription_controller"
 application.register("chatroom-subscription", ChatroomSubscriptionController)
 
+import FavoriteController from "./favorite_controller"
+application.register("favorite", FavoriteController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import PopoverController from "./popover_controller"
+application.register("popover", PopoverController)
 
 import StickyTitleController from "./sticky_title_controller"
 application.register("sticky-title", StickyTitleController)

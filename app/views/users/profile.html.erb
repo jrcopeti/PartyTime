@@ -60,7 +60,9 @@
   </ul>
   <% end %>
   <br/>
-  <h4><%=link_to "Following", followers_user_path(current_user)%> (<%=current_user.following.count%>)</h4><% current_user.following.sample(3).each do |following| %>
+
+  <h4><%=link_to "Following", following_user_path(current_user)%> (<%=current_user.following.count%>)</h4><% current_user.following.sample(3).each do |following| %>
+
       <% if following.photo.attached? %>
         <%= cl_image_tag following.photo.key, height: 100, width: 100, crop: "thumb", radius: "max"%>
     <% else %>
