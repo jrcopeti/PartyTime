@@ -19,6 +19,7 @@ class EventsController < ApplicationController
     set_venue
     set_event
     @chatroom = Chatroom.where(name: @event.title).last
+    @message = Message.new
     @rsvp = current_user.rsvp(@event) || Rsvp.new
     @artist = Event.find(params[:id])
     @current_attending = @rsvp.current_attending
@@ -100,8 +101,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :status, :category, :capacity, :dresscode, :start_date,
-                                  :end_date, :venue_id, artist_ids: [])
+    params.require(:event).permit(:title, :description, :status, :category, :capacity, :dresscode, :start_date, :end_date, :venue_id, :photo, artist_ids: [])
   end
 
   def set_venue

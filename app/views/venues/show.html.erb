@@ -1,3 +1,7 @@
+<!-- app/views/offers/show.html.erb -->
+<% content_for :meta_title, "#{@venue.name} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @venue.definition %>
+<% content_for :meta_image, cl_image_path(@venue.image_url) %>
 <div class="club-detail" style="background-image: url('<%= @venue.image_url %>'); height: 45vh; width: 100%;">
     <div class="club-nav">
       <a href="<%= venues_path %>">

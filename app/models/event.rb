@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   has_many :rsvps, dependent: :destroy
   has_many :lineups, dependent: :destroy
   has_many :artists, through: :lineups, dependent: :destroy
+  has_one_attached :photo
   acts_as_favoritable
 
   scope :happening_now, -> { where("start_date <= ? AND end_date >= ?", Time.now, Time.now) }
