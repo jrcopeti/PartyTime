@@ -1,0 +1,30 @@
+<h1>My favorite events</h1>
+
+ <div>
+    <h3>Events that I liked</h3>
+      <%@favorite_events.each do |event|%>
+        <ul>
+          <li><%=link_to event.title, venue_event_path(event.venue_id, event.id)%></li>
+          <%= link_to event.venue.name, venue_path(event.venue_id) %> <br/>
+          <p>from <%= event.start_date.strftime("%H:%M") %> to <%= event.end_date.strftime("%H:%M") %></p>
+        </ul>
+        <% end %>
+  </div>
+
+  <div>
+    <h3>My upcoming Events</h3>
+    <% current_user.rsvps.future.each do |rsvp| %>
+    <ul>
+    <li><%= link_to rsvp.event.title, venue_event_path(rsvp.event.venue_id, rsvp.event.id) %></li>
+    </ul>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>My past Events</h3>
+      <% current_user.rsvps.past.each do |rsvp| %>
+      <ul>
+        <li><%= link_to rsvp.event.title, venue_event_path(rsvp.event.venue_id, rsvp.event.id) %></li>
+      </ul>
+    <% end %>
+  </div>

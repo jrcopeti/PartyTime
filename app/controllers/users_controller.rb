@@ -16,6 +16,11 @@ class UsersController < ApplicationController
     @rsvps = current_user.rsvps
   end
 
+  def dashboard
+    @favorite_events = current_user.favorited_by_type("Event")
+    @rsvps = current_user.rsvps
+  end
+
   def follow
     current_user.send_follow_request_to(@user)
     redirect_to user_path(@user)
@@ -53,7 +58,6 @@ class UsersController < ApplicationController
     # )
     # redirect_to profile_path(current_user)
     redirect_to chatroom_path(@chatroom)
-
   end
 
   def decline
@@ -64,14 +68,6 @@ class UsersController < ApplicationController
   def cancel
     current_user.remove_follow_request_for(@user)
     redirect_to user_path(@user)
-  end
-
-  def current_user_followers
-    @current_user_followers = current_user.followers
-  end
-
-  def current_user_following
-    @current_user_following = current_user.following
   end
 
   def followers

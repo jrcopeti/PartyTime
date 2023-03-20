@@ -37,7 +37,7 @@ class Event < ApplicationRecord
   def total_rsvps
     rsvps.count
   end
-  
+
   private
 
   def add_default_cover
@@ -45,5 +45,4 @@ class Event < ApplicationRecord
       self.photo.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.jpg")), filename: 'default.jpg' , content_type: "image/jpg")
     end
   end
-
 end

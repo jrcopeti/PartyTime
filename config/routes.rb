@@ -19,8 +19,7 @@ Rails.application.routes.draw do
     resources :rsvps, only: %i[create destroy update]
     resources :lineups, only: %i[show new create edit update]
     member do
-      get :favorite
-      get :unfavorite
+      get :favoriter
     end
   end
 
@@ -40,6 +39,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[index show edit update] do
     member do
       get :profile
+      get :dashboard
       get :followers
       get :following
       post :follow

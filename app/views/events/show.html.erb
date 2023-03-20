@@ -12,21 +12,16 @@
             <i class="fa-regular fa-angle-left"></i>
           </div>
         </a>
-      <% if current_user.favorited?(@event)%>
+        <div class="" data-controller="favorite">
         <div class="icon-box">
-          <a href="<%=unfavorite_event_path(@event)%>">
-            <i class="fa-sharp fa-solid fa-heart fa-lg red-heart"></i>
-          </a>
+          <div class="<%=current_user.favorited?(@event) ? "un" : "" %>favorite">
+            <%= link_to favoriter_event_path(@event), data: { favorite_target: "link" } do %>
+            <i class="<%=current_user.favorited?(@event) ? "fas" : "far" %> fa-heart" data-action="click->favorite#toggled"></i>
+              <% end %>
+          </div>
         </div>
-      <% else %>
-        <div class="icon-box">
+      </div>
 
-          <a href="<%=favorite_event_path(@event)%>">
-           <i class="fa-regular fa-heart"></i>
-
-          </a>
-        </div>
-      <% end %>
     </div>
 
 <%= cl_image_tag @event.photo.key, style: 'height:35vh; width:100%; object-fit: cover;' unless @event.photo.key.nil?%>
