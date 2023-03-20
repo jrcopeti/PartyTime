@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     member do
       get :favorite
       get :unfavorite
-      get :checkin
     end
   end
 

@@ -37,12 +37,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def checkin
-    set_venue
-    set_event
-    render partial: 'checkin', locals: { venue: @venue, event: @event }
-  end
-
   def new
     @event = Event.new
     @lineup = Lineup.new
