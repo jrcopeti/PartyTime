@@ -1,24 +1,23 @@
-<div id="message-<%= message.id %>">
-  <div class="message">
-    <div class="message-right">
-      <small>
-    <% if message.user == current_user  %>
-        <%= cl_image_tag message.user.photo.key, height: 30, width: 30, crop: :fill, class: "avatar" unless message.user.photo.nil?%>
-        <a href="<%= user_path(message.user) %>"><strong><%= message.user.nickname %></strong></a>
-        <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-      </small>
-        <p><%= message.content %></p>
-    </div>
 
-    <div class="message-left">
-      <small>
-      <% else %>
-        <%= cl_image_tag message.user.photo.key, height: 30, width: 30, crop: :fill, class: "avatar" unless message.user.photo.nil?%>
-        <a href="<%= user_path(message.user) %>"><strong><%= message.user.nickname %></strong></a>
-        <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-      </small>
-        <p><%= message.content %></p>
-      <% end %>
-    </div>
-  </div>
+<div class="message" id="message-<%= message.id %>">
+    <small>
+   <% if message.user == current_user  %>
+      <div class="message-right">
+          <%= cl_image_tag message.user.photo.key, height: 30, width: 30, crop: :fill, class: "avatar" unless message.user.photo.nil?%>
+          <a href="<%= user_path(message.user) %>"><strong><%= message.user.nickname %></strong></a>
+          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+        </small>
+          <p><%= message.content %></p>
+      </div>
+
+    <small>
+    <% else %>
+      <div class="message-left">
+          <%= cl_image_tag message.user.photo.key, height: 30, width: 30, crop: :fill, class: "avatar" unless message.user.photo.nil?%>
+          <a href="<%= user_path(message.user) %>"><strong><%= message.user.nickname %></strong></a>
+          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+        </small>
+          <p><%= message.content %></p>
+        <% end %>
+      </div>
 </div>

@@ -143,12 +143,12 @@ body {
   gap: 8px;
   border-bottom: 0.5px solid #585858;;
 }
-.event-card img {
-  // width: 15vh;
-  // height: 15vh;
-  // object-fit: cover;
+// .event-card img {
+//   // width: 15vh;
+//   // height: 15vh;
+//   // object-fit: cover;
 
-}
+// }
 .event-box {
   // background: blue;
   height: 100%;
@@ -168,7 +168,9 @@ body {
   gap: 16px;
 }
 
-
+.link-club {
+  color:#A097CC !important;
+}
 
 .event-item a {
 color: #00E1F0;
@@ -182,8 +184,4 @@ color: #00E1F0;
   color: #A097CC;
   font-weight: bold;
   font-size: 24px;
-}
-
-.event-search {
-
 }
