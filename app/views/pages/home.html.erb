@@ -4,16 +4,15 @@
 </div>
   <div class="event-search" data-controller="refresh-list">
     <%= form_with url: root_path, method: :get, html: { class: "d-flex", data: { refresh_list_target: 'form' } } do %>
-      <%= text_field_tag :query, params[:query], class: "form-control-event", placeholder: "Search for Events...", data: {refresh_list_target: 'searchInput' }, action: "keyup->refresh-list#update" %>
+      <%= text_field_tag :query, params[:query], class: "form-control-event", placeholder: "Search for Events...", data: {refresh_list_target: 'searchInput', action: "keyup->refresh-list#update"} %>
       <%#= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
-    <div data-refresh-list-target="list">
-    </div>
   </div>
 
 
   <div class="events-all">
     <h3>Popular Events</h3>
+
   <%@popular_events.each do |pop| %>
   <div class="event-card-container">
       <div class="event-card">
