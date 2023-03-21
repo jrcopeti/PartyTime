@@ -3,7 +3,14 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show profile follow unfollow accept decline cancel followers following]
 
   def index
-    @users = User.all
+    @users = User.all.order(:full_name)
+    if params[:query].present?
+      @users = User.all.global_search(params[:query])
+    end
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: 'list', locals: { users: @users } }
+    end
   end
 
   def show

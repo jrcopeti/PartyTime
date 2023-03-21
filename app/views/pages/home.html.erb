@@ -1,9 +1,14 @@
 
-  <div class="event-search">
-    <%= form_with url: root_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query, params[:query], class: "form-control-event", placeholder: "Search for Events..." %>
+
+  </div>
+</div>
+  <div class="event-search" data-controller="refresh-list">
+    <%= form_with url: root_path, method: :get, html: { class: "d-flex", data: { refresh_list_target: 'form' } } do %>
+      <%= text_field_tag :query, params[:query], class: "form-control-event", placeholder: "Search for Events...", data: {refresh_list_target: 'searchInput' }, action: "keyup->refresh-list#update" %>
       <%#= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
+    <div data-refresh-list-target="list">
+    </div>
   </div>
 
 

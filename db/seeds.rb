@@ -1,5 +1,9 @@
 require "open-uri"
+Event.all.each do |event|
+  event.photo.purge
+end
 
+puts "deleting photos of events in cloudnary"
 
 puts "deleting all messages"
 Message.all.delete_all
@@ -18,6 +22,12 @@ Rsvp.all.delete_all
 
 puts "deleting all Events from the database"
 Event.all.delete_all
+
+User.all.each do |user|
+  user.photo.purge
+end
+
+puts "deleting all photos of users in cloudnary"
 
 puts "deleting all users from the database"
 User.all.delete_all
@@ -185,10 +195,10 @@ puts "preparing seeding events"
     description: Faker::Quote.famous_last_words,
     status: status.sample,
     category: "party",
-    capacity: rand(10..100),
+    capacity: rand(10..30),
     dresscode: "naked",
-    start_date: start,
-    end_date: start + rand(2..8).hours,
+    start_date: start + rand(0..2),
+    end_date: start + rand(3..8).hours,
     user_id: User.all.sample.id,
     venue_id: Venue.all.sample.id
   )

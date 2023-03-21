@@ -1,0 +1,25 @@
+.message-right {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  align-self: flex-end;
+  background-color: #4CAF50;
+
+}
+
+.message-left {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  align-self: flex-start;
+  color: black;
+
+}

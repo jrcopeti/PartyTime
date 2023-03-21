@@ -61,18 +61,22 @@
                   <i class="fa-regular fa-user"></i>
                   <i class="fa-regular fa-user"></i>
                   <i class="fa-regular fa-user"></i>
+                  <p>Not busy</p>
                 <%elsif @percentage_attending >= 31  && @percentage_attending <= 60 %>
                   <i class="fa-solid fa-user"></i>
                   <i class="fa-regular fa-user"></i>
                   <i class="fa-regular fa-user"></i>
+                  <p>Getting busy</p>
                 <%elsif @percentage_attending >= 61  && @percentage_attending <= 99%>
                   <i class="fa-solid fa-user"></i>
                   <i class="fa-solid fa-user"></i>
                   <i class="fa-regular fa-user"></i>
-                <%elsif @percentage_attending == 100 %>
+                  <p>Very busy</p>
+                <%elsif @percentage_attending >= 100 %>
                   <i class="fa-solid fa-user"></i>
                   <i class="fa-solid fa-user"></i>
                   <i class="fa-solid fa-user"></i>
+                  <p>Fully attended</p>
                 <%end%>
             </div>
 

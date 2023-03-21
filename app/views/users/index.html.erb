@@ -1,6 +1,18 @@
 <h1>Users</h1>
+
+  <div class="event-search" data-controller="refresh-list">
+    <%= form_with url: users_path, method: :get, html: { class: "d-flex", data: { refresh_list_target: 'form' } } do %>
+      <%= text_field_tag :query, params[:query], class: "form-control-event", placeholder: "Search for users...", data: {refresh_list_target: 'searchInput' }, action: "keyup->refresh-list#update" %>
+      <%#= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+    <div data-refresh-list-target="list">
+    </div>
+  </div>
+
 <% @users.each do |user| %>
 <ul>
-<li><%=user.email %></li>
+  <li><h5><%=link_to user.nickname, user_path(user.id)%><h5></li>
+  <li><p><%=user.full_name  %></p></li>
+  <li><%=user.email %></li>
 </ul>
 <% end  %>
