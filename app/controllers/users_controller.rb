@@ -3,14 +3,15 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show profile follow unfollow accept decline cancel followers following]
 
   def index
-    @users = User.all.order(:full_name)
     if params[:query].present?
       @users = User.all.global_search(params[:query])
+    else
+      @users = User.all.order(:full_name)
     end
-    respond_to do |format|
-      format.html # Follow regular flow of Rails
-      format.text { render partial: 'list', locals: { users: @users } }
-    end
+    # respond_to do |format|
+    #   format.html # Follow regular flow of Rails
+    #   format.text { render partial: 'list', locals: { users: @users } }
+    # end
   end
 
   def show
@@ -40,10 +41,11 @@ class UsersController < ApplicationController
 
   def accept
     current_user.accept_follow_request_of(@user)
-    @chatroom = Chatroom.new
-    @chatroom.users = [current_user.id, @user.id]
-    @chatroom.name = "#{current_user.nickname} and #{@user.nickname}'s chat"
-    @chatroom.save!
+    if current_user.mutual_following_with?(@user) || @user.mutual_following_with?(current_user)
+      @chatroom = Chatroom.new
+      @chatroom.users = [current_user.id, @user.id]
+      @chatroom.name = "#{current_user.nickname} and #{@user.nickname}'s chat"
+      @chatroom.save!
     # ChatroomChannel.broadcast_to(
     #   {
     #     user: @user,
@@ -64,7 +66,8 @@ class UsersController < ApplicationController
     #   "chat created"
     # )
     # redirect_to profile_path(current_user)
-    redirect_to chatroom_path(@chatroom)
+      redirect_to chatroom_path(@chatroom)
+    end
   end
 
   def decline
