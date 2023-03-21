@@ -37,12 +37,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def checkin
-    set_venue
-    set_event
-    render partial: 'checkin', locals: { venue: @venue, event: @event }
-  end
-
   def new
     @event = Event.new
     @lineup = Lineup.new
@@ -86,16 +80,13 @@ class EventsController < ApplicationController
     end
   end
 
-  def favorite
+  def favoriter
     set_event
-    @user = current_user
-    current_user.favorite(@event)
-  end
-
-  def unfavorite
-    set_event
-    @user = current_user
-    current_user.unfavorite(@event)
+    if current_user.favorited?(@event)
+      current_user.unfavorite(@event)
+    else
+      current_user.favorite(@event)
+    end
   end
 
   private

@@ -3,7 +3,7 @@
 <% content_for :meta_title, "#{@event.title} is on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, @event.description %>
 <div class="club-detail" style="background-image: url('<%= @event.image_url %>'); width: 100%; background-repeat: repeat-y;">
-<div class="event-detail" style="background-image: url('<%= cl_image_path @event.photo.key %>'); width: 100%;">
+<div class="event-detail" style="background-image: url('<%= cl_image_path @event.photo.key unless @event.photo.key.nil?%>'); width: 100%;">
 
 
     <div class="club-nav">
@@ -12,24 +12,19 @@
             <i class="fa-regular fa-angle-left"></i>
           </div>
         </a>
-      <% if current_user.favorited?(@event)%>
+        <div class="" data-controller="favorite">
         <div class="icon-box">
-          <a href="<%=unfavorite_event_path(@event)%>">
-            <i class="fa-sharp fa-solid fa-heart fa-lg red-heart"></i>
-          </a>
+          <div class="<%=current_user.favorited?(@event) ? "un" : "" %>favorite">
+            <%= link_to favoriter_event_path(@event), data: { favorite_target: "link" } do %>
+            <i class="<%=current_user.favorited?(@event) ? "fas" : "far" %> fa-heart" data-action="click->favorite#toggled"></i>
+              <% end %>
+          </div>
         </div>
-      <% else %>
-        <div class="icon-box">
+      </div>
 
-          <a href="<%=favorite_event_path(@event)%>">
-           <i class="fa-regular fa-heart"></i>
-
-          </a>
-        </div>
-      <% end %>
     </div>
 
-<%= cl_image_tag @event.photo.key, style: 'height:35vh; width:100%; object-fit: cover;' %>
+<%= cl_image_tag @event.photo.key, style: 'height:35vh; width:100%; object-fit: cover;' unless @event.photo.key.nil?%>
 
   <div class="event-show-box">
     <div class="club-details">
@@ -57,35 +52,31 @@
         <% end %>
       <% end %>
 
-      <div>
+        <div>
         <i class="fa-solid fa-users"></i><p><%= @event.rsvps.count %>+</p>
       </div>
             <% if @event.happening? %>
-            <div data-controller="popover" data-popover-url-value="<%= checkin_event_path %>">
-            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
-              <div data-action="click->popover#toggle" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-                <% if @percentage_attending >= 0  && @percentage_attending <= 30 %>
-                    <i class="fa-regular fa-user"></i>
-                    <i class="fa-regular fa-user"></i>
-                    <i class="fa-regular fa-user"></i>
-                  <%elsif @percentage_attending >= 31  && @percentage_attending <= 60 %>
-                    <i class="fa-solid fa-user"></i>
-                    <i class="fa-regular fa-user"></i>
-                    <i class="fa-regular fa-user"></i>
-                  <%elsif @percentage_attending >= 61  && @percentage_attending <= 99%>
-                    <i class="fa-solid fa-user"></i>
-                    <i class="fa-solid fa-user"></i>
-                    <i class="fa-regular fa-user"></i>
-                  <%elsif @percentage_attending == 100 %>
-                    <i class="fa-solid fa-user"></i>
-                    <i class="fa-solid fa-user"></i>
-                    <i class="fa-solid fa-user"></i>
-                  <%end%>
-                </div>
+            <div>
+              <% if @percentage_attending >= 0  && @percentage_attending <= 30 %>
+                  <i class="fa-regular fa-user"></i>
+                  <i class="fa-regular fa-user"></i>
+                  <i class="fa-regular fa-user"></i>
+                <%elsif @percentage_attending >= 31  && @percentage_attending <= 60 %>
+                  <i class="fa-solid fa-user"></i>
+                  <i class="fa-regular fa-user"></i>
+                  <i class="fa-regular fa-user"></i>
+                <%elsif @percentage_attending >= 61  && @percentage_attending <= 99%>
+                  <i class="fa-solid fa-user"></i>
+                  <i class="fa-solid fa-user"></i>
+                  <i class="fa-regular fa-user"></i>
+                <%elsif @percentage_attending == 100 %>
+                  <i class="fa-solid fa-user"></i>
+                  <i class="fa-solid fa-user"></i>
+                  <i class="fa-solid fa-user"></i>
+                <%end%>
             </div>
 
-          <% end %>
-
+            <% end %>
         </div>
 
 
@@ -136,9 +127,7 @@
 <%= cl_image_tag current_user.photo.key, height: 75, width: 75, crop: :fill, class: "avatar" unless current_user.photo.nil?%>
 
 
-  <% if @event.happening? %>
-    <%= @busy_queue %>
-  <% end  %>
+
 
 
       <% if @event.user == current_user %>
@@ -146,7 +135,7 @@
         <%=link_to "Do you want to delete this event?", event_path(@event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
       <%end%>
 
-    <%= link_to "Chatroom", chatroom_path(@chatroom) %>
+
     </div>
   </div>
   <div class="chatroom bg-black">
