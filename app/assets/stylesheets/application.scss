@@ -17,9 +17,10 @@
 @import "components/message";
 
 body {
+  padding-top: 100px;
   background-color: black;
   color: azure;
-  padding-bottom: 120px;
+  padding-bottom: 150px;
 }
 
 p {
@@ -28,4 +29,16 @@ p {
 
 h1 {
   margin: 0;
+}
+
+a:link, a:visited, a:hover, a:focus, a:active {
+  color: #00E1F0;
+}
+
+input, select, textarea{
+    color: #00E1F0;
+}
+
+textarea:focus, input:focus {
+    color: #00E1F0;
 }

@@ -56,7 +56,7 @@
       <%= cl_image_tag event.photo.key, height: 100, width: 100, crop: :fill unless event.photo.key.nil? %>
         <div class="event-box">
             <div class="event-item">
-              <p><%= event.start_date.strftime("%H:%M") %> at <%= link_to event.venue.name, venue_path(event.venue_id)%></p>
+              <p><%= event.start_date.strftime("%H:%M") %> at <%= link_to event.venue.name, venue_path(event.venue_id), class: "link-club"%></p>
                 <div class="" data-controller="favorite">
                   <div class="<%=current_user.favorited?(event) ? "un" : "" %>favorite">
                     <%= link_to favoriter_event_path(event), data: { favorite_target: "link" } do %>
