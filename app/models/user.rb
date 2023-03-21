@@ -16,6 +16,14 @@ class User < ApplicationRecord
          # for Google OmniAuth
          :omniauthable, omniauth_providers: [:google_oauth2]
 
+  include PgSearch::Model
+
+  pg_search_scope :global_search,
+                  against: %i[full_name nickname address email],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+
   require "open-uri"
 
   def self.from_omniauth(auth)
