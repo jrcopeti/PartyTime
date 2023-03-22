@@ -41,11 +41,14 @@ class UsersController < ApplicationController
 
   def accept
     current_user.accept_follow_request_of(@user)
-    if current_user.mutual_following_with?(@user) || @user.mutual_following_with?(current_user)
-      @chatroom = Chatroom.new
-      @chatroom.users = [current_user.id, @user.id]
-      @chatroom.name = "#{current_user.nickname} and #{@user.nickname}'s chat"
-      @chatroom.save!
+    return unless current_user.mutual_following_with?(@user)
+
+    @chatroom = Chatroom.new
+    @chatroom.users = [current_user.id, @user.id]
+    @chatroom.name = "#{current_user.nickname} and #{@user.nickname}'s chat"
+    @chatroom.save!
+    redirect_to chatroom_path(@chatroom)
+
     # ChatroomChannel.broadcast_to(
     #   {
     #     user: @user,
@@ -66,8 +69,6 @@ class UsersController < ApplicationController
     #   "chat created"
     # )
     # redirect_to profile_path(current_user)
-      redirect_to chatroom_path(@chatroom)
-    end
   end
 
   def decline
