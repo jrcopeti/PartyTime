@@ -66,8 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_200237) do
     t.string "description"
     t.string "status"
     t.string "category"
-    t.date "date"
-    t.time "time"
     t.integer "capacity"
     t.string "dresscode"
     t.bigint "venue_id", null: false
@@ -179,9 +177,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_200237) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo"
-    t.string "image_url"
     t.float "latitude"
     t.float "longitude"
+    t.string "image_url"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
