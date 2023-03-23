@@ -1,0 +1,57 @@
+body {
+  background-image: url(app/assets/images/Background-Image.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+.login-page-svg {
+  //position: absolute;
+  //left: 10px;
+  //top: 45px;
+}
+
+.logo {
+  width: 235px;
+  height: 58px;
+
+  font-family: 'Noka Trial';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 58px;
+  /* identical to box height */
+
+  text-align: center;
+  letter-spacing: -0.02em;
+
+  /* H1 Text Color */
+
+  color: #FFFFFF;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.frame {
+  /* Frame 128 */
+
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0px;
+  gap: 10px;
+
+  position: absolute;
+  width: 390px;
+  height: 138px;
+  left: 0px;
+  top: 0px;
+}
