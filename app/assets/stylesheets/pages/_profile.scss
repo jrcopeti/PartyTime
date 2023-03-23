@@ -16,3 +16,56 @@
     align-items: center;
   }
 }
+
+.btn-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-section a {
+  border: 1px solid #cdcdcd;
+  border-radius: 16px;
+  padding: 0 10px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0);
+  color: white !important;
+
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  transition: 0.5s;
+}
+
+.btn-section i {
+  margin-left: 10px;
+}
+
+.btn-section a:hover {
+  background: white;
+  border: 1px solid  white;
+  color: black !important;
+  transition: 0.5s;
+}
+
+.btn-confirmation {
+  display: flex;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+
+.request-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.request-container img {
+  margin-right: 10px;
+}
+
+.request-field {
+
+}
