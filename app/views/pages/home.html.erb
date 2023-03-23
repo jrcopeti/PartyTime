@@ -1,7 +1,7 @@
 
 <% content_for :meta_title, "Events on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, "Discover the hottest events in town and plan your perfect night out with PartyTime. Browse through a variety of options, including concerts, festivals, parties, and more. Get event details, ticket information, and directions all in one place. Join PartyTime now and never miss out on the party!" %>
-<% content_for :meta_image, asset_url('/assets/logo.png') %>
+<% content_for :meta_image, asset_url('/assets/logo.jpg') %>
 
   <div class="event-search" data-controller="refresh-list">
     <%= form_with url: root_path, method: :get, html: { class: "d-flex", data: { refresh_list_target: 'form' } } do %>
