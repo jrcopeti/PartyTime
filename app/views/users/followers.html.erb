@@ -1,3 +1,7 @@
+<% content_for :meta_title, "Followers of #{@user.full_name} on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, "Experience the ultimate party scene at PartyTime's clubs. Come join the party at PartyTime!" %>
+<% content_for :meta_image, asset_url('/assets/logo.jpg') %>
+
 <h1><%= @user.nickname %> Followers</h1>
 
 <h3><%@followers.each do |f| %></h3>

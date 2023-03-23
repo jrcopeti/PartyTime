@@ -44,7 +44,7 @@ mainuser = User.create!(
   password: 123456,
   nickname: Faker::Name.first_name,
   full_name: "Max Mustermann",
-  address: "Hauptstrasse 15, 10317 Berlin"
+  address: "Rudi-Dutschke-Strasse 26, 10969 Berlin"
 )
 file = URI.open("https://source.unsplash.com/random?face")
 mainuser.photo.attach(io: file, filename: mainuser.full_name, content_type: "image/jpg")
