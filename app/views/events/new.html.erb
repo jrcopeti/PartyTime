@@ -6,16 +6,16 @@
 
   <h2>It's Party Time! Create your event </h2>
   <%= simple_form_for [@event] do |f| %>
-    <%= f.input :artist_ids, as: :check_boxes, collection: @artists  %>
+    <%= f.input :venue_id, collection: @venues, include_blank: 'Select a venue' %>
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :status %>
-    <%= f.input :category %>
+    <%= f.input :category, collection: %w[Party Concert Gathering Techno Jazz Pop House Eletronica Alternative], include_blank: 'Select a category' %>
     <%= f.input :capacity %>
     <%= f.input :dresscode %>
     <%= f.input :start_date, as: :datetime, order: [:day, :month, :year], html5: true, include_blank: false %>
     <%= f.input :end_date, as: :datetime, order: [:day, :month, :year], html5: true, include_blank: false %>
-    <%= f.input :venue_id, collection: @venues, include_blank: 'Select a venue' %>
     <%= f.input :photo, as: :file %>
+    <%= f.input :artists, as: :check_boxes, collection: @artists  %>
     <%= f.submit %>
   <% end %>

@@ -51,7 +51,7 @@ class EventsController < ApplicationController
       Chatroom.create!(name: @event.title)
       redirect_to venue_event_path(@event.venue_id, @event), notice: "Event is ready to rock!"
     else
-      render :new, status: :unprocessable_entity, notice: "Event could not be created."
+      render :new, status: :unprocessable_entity
     end
   end
 

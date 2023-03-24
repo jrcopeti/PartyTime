@@ -68,8 +68,6 @@ puts "created #{User.count} users"
 
 puts "Seeding venues"
 
-status = %w[cold warm hot offline]
-
 Venue.create!(
   name: "Tresor",
   definition: "The club was founded in March 1991 in the vaults of the former department store Wertheim at Leipziger Strasse 126-128 in Mitte,
@@ -80,6 +78,24 @@ Venue.create!(
   logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Tresor-Logo.svg/1200px-Tresor-Logo.png",
   image_url: "https://images.unsplash.com/photo-1630395822970-acd6a691d97e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
 )
+
+event = Event.new(
+
+  title: Faker::Fantasy::Tolkien.poem,
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "party",
+  capacity: rand(10..30),
+  dresscode: "naked",
+  start_date: start + rand(0..2),
+  end_date: start + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.all.sample.id
+)
+file = URI.open("https://source.unsplash.com/random?party")
+event.photo.attach(io: file, filename: event.title, content_type: "image/jpg")
+event.save!
+
 
 Venue.create!(
   name: "Berghain",
@@ -179,10 +195,266 @@ Venue.create!(
   logo: "https://cdn.evntsvc.net/r/l/location_577df018-e75b-4e0c-a013-9002adf4b42c_medium.png",
   image_url: "https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
 )
+Venue.create!(
+  name: "RSO.BERLIN",
+  definition: "Griessmuehle moves southeast.
+                From now, we are to be found with new beer garden
+                and open-air area on the former Bärenquell brewery in Berlin-Niederschöneweide.
+                Neither the closure of Griessmuehle, nor the numerous arduous removals and relocations could get us down.
+                We are back—in the old manner, at a new location.",
+  address: "Schnellerstrasse 137, 12439 Berlin",
+  logo: "https://cdn.evntsvc.net/r/l/location_577df018-e75b-4e0c-a013-9002adf4b42c_medium.png",
+  image_url: "https://images.unsplash.com/photo-1544392667-d6cc76633537?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+)
+
+Venue.create!(
+  name: "Club OST",
+  definition: "Club OST, nestled between Osthafen and Ostkreuz, consciously focuses on musical gems with warm sounds from Berlin and the celestial planes.",
+  address: "Alt-Stralau, 1-2 Friedrichshain 10245",
+  logo: "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2xvZ28ucG5nP2RhdGVVcGRhdGVkPTE2NzY5ODc5MzY1OTM=",
+  image_url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+)
+
+Venue.create!(
+  name: "Zenner",
+  definition: "Located in the middle of Treptower Park, Zenner is a young venue for a creative exchange of local international artists, the finest in electronic music, and outstanding concerts.
+              Risen from the ashes of a former GDR restaurant, disco Eierschale, and Burger King, and in a neoclassical building, Zenner has two floors and a huge outdoor area to hang out.",
+  address: "Alt-Treptow 15, 12435 Berlin",
+  logo: "https://www.zenner.berlin/assets/images/zenner-logo-home.png",
+  image_url: "https://images.unsplash.com/photo-1550218585-5a4e6bc59ebb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+)
+
+Venue.create!(
+  name: "Trauma Bar und Kino",
+  definition: "New cultural space for dance, video art and cinematography.",
+  address: "Heidestrasse 50, 10557 Berlin",
+  logo: "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2RlLXRyYXVtYWJhci5qcGc_ZGF0ZVVwZGF0ZWQ9MTY2NzkyNjcyNzQzMw==",
+  image_url: "https://images.unsplash.com/photo-1596131397999-bb01560efcae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+)
+
+Venue.create!(
+  name:
+  "M-BIA",
+  definition:
+  "Moody, industrial nightclub with exposed-brick walls & neon decor, hosting electronic music nights.",
+  address:
+  "Dircksenstr. 123, 10178 Berlin",
+  logo:
+  "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2RlLW1iaWEuanBnP2RhdGVVcGRhdGVkPTE2NzQxMzE4MjcxMTc=",
+  image_url:
+  "https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2xnL2RlLW0tYmlhYmVybGluLmpwZz9kYXRlVXBkYXRlZD0xNjc0MTMxODI3MTE3"
+)
+
+Venue.create!(
+  name:
+  "Suicide Club",
+  definition:
+  "The Suicide Club (fka Suicide Circus) is one of the most traditional and established techno clubs in Berlin, with a
+  large dance floor in the centre, an open-air floor, cutting-edge electronic music and a cosy outdoor terrace/beer garden.
+  The club has everything you need for a perfect techno night: reduced exterior, dark corners, fog machine, industrial-style dance floor, mystical lighting and a fat sound system.
+  The name of the club 'Suicide' refers to the band 'Suicide', which paved the way for later minimal techno back in the
+  70s with synthesizers and drum computers.",
+  address:
+  "Revaler Strasse, 99 10245 Berlin",
+  logo:
+  "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2xvZ29yZTIuanBnP2RhdGVVcGRhdGVkPTE2NDg1NjA0MzI4NDM=",
+  image_url:
+  "https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2xnL2RlLXN1aWNpZGUtY2lyY3VzLWJlcmxpbi5qcGc_ZGF0ZVVwZGF0ZWQ9MTY0ODU2MDQzMjg0Mw=="
+)
+
+Venue.create!(
+  name:
+  "Renate",
+  definition:
+  "Born from an unrenovated apartment building in Friedrichshain, across the river from Treptower Park.
+  Salon Zur Wilden Renate has three main dance floors: Schwarzer Raum on the ground floor, mainly focussing on techno. Then upstairs there is Grüner Raum where it’s all about house, and Roter Raum for all things slow, weird and trippy disco. The atmosphere is that of a theatrical house party. The booking is a mixture of international and local artists.
+  A large outdoor courtyard is open during the summer, which provides another bar with food and plenty of space to hang out.",
+  address: "Alt Stralau, 70 10245 Berlin",
+  logo:
+  "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzLzI3OTQ3NDk2NF83OTY1MTU2MTIwMTkyNjEzXzEwNTQxMDA5NjE2NTg0OTA5MDdfbi0yLmpwZWc_ZGF0ZVVwZGF0ZWQ9MTY2MzY5Mjc1NzU5MA==",
+  image_url:
+  "https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2xnL3JlbmF0ZS5qcGc_ZGF0ZVVwZGF0ZWQ9MTY2MzY5Mjc1NzU5MA=="
+)
+
+Venue.create!(
+  name:
+  "Hoppetosse",
+  definition:
+  "Hoppetosse is the on-water sister venue to the well-known Club der Visionäre. It's a permanently docked boat (dubbed MS Hoppetosse), located on the Spree not far from Arena Club. There's usually one dance floor—surrounded by crystal-clear Morf speakers from Mo Stern—in action at parties, which usually take place on the weekends. Like its smaller neighbour, Hoppetosse's booking policy focusses on minimalist house and techno, delivered by a combination of local favourites and a rotating cast of the style's key names.",
+  address:
+  "Eichenstrasse, 4 12435 Berlin",
+  logo:
+  "https://hoppetosse.berlin/wp-content/themes/hoppetosse/img/hoppetosse-logo.png",
+  image_url:
+  "https://images.unsplash.com/photo-1549873836-765d3157c324?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+)
+
+Venue.create!(
+  name:
+  "OXI",
+  definition:
+  "Sitting, drinking & music at a distance. No more and no less.",
+  address:
+  "Wiesenweg, 1-4, 10365 Berlin",
+  logo:
+  "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL294aV9oYXVwdGxvZ29fc2Nod2FyemludmVydGVkLmpwZz9kYXRlVXBkYXRlZD0xNjM1NDM1MjYwNjU3",
+  image_url:
+  "https://images.unsplash.com/photo-1568973290903-850cb66e92c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+)
+
+Venue.create!(
+  name:
+  "Gretchen",
+  definition:
+  "Gretchen's programming covers electronica, electro, trap, house, bass, dubstep, drum'n'bass, experimental, avantgarde, funk and hip hop - mostly on two floors. The club is located in Berlin-Kreuzberg. The building features a vaulted ceiling on columns. An outdoor courtyard is open during summer.",
+  address:
+  "Obentrautstr. 19-21 10963 Berlin",
+  logo:
+  "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2RlLWJlcmxpbmdyZXRjaGVuY2x1Yi5qcGc_ZGF0ZVVwZGF0ZWQ9MTQ0NDkyNDQ5MjA5Mw=="
+  image_url:
+  "https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2xnL2RlLWdyZXRjaGVuLmpwZz9kYXRlVXBkYXRlZD0xNDQ0OTI0NDkyMDkz"
+)
+
+Venue.create!(
+  name:
+  "Cassiopeia",
+  definition:
+  "Nightclub with a subculture edge & live music program in a former industrial hall with a courtyard.",
+  address:
+  "Revaler Str 99, 10245 Berlin",
+  logo:
+  "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2RlLWNhc3NvcGVkaWEuanBnP2RhdGVVcGRhdGVkPTE0NDQ4Mzc1NDIxMTM="
+  image_url:
+  "https://images.unsplash.com/photo-1574847052651-02b57f7f5a4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+)
+
+Venue.create!(
+  name:
+  "Watergate",
+  definition:
+  "Watergate is a split-level, two-room club overlooking the River Spree in Berlin's Kreuzberg neighbourhood. Located on the river's edge with floor-to-ceiling glass windows, it offers a panoramic view of the Spree with curtains that can let the daylight in as the club night winds down. Known for its LED lighting panel that spans the entire length of the top floor of the club, Watergate mostly plays host to house and techno parties. In 2008, it started a record label: Watergate Records.",
+  address:
+  "Falckensteinstrasse, 49 10997 Berlin",
+  logo:
+  "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2RlLWJlcmxpbi13YXRlcmdhdGUuanBnP2RhdGVVcGRhdGVkPTE2MTAyMTE4MDM4NjM=",
+   image_url:
+   "https://images.unsplash.com/photo-1618176581124-72177645bd15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+  )
+
+  Venue.create!(
+    name:
+    "Paloma",
+    definition:
+    "Dance floors on 2 levels & music by guest DJs, plus cocktails in a cool club with a gritty vibe.",
+    address:
+    "Skalitzer Str. 135, 10999 Berlin",
+    logo:
+    "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL3BhbG9tYWJhcnJhbG9nby5qcGc_ZGF0ZVVwZGF0ZWQ9MTUzNjI0MDIwOTE5Nw=="
+    image_url:
+    "https://images.unsplash.com/photo-1519111887837-a48ccf9edc00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+  )
+
 
 puts "done seeding #{Venue.count} venues"
 
 puts "preparing seeding events"
+
+status = %w[Ready Online Offline Hot Approved]
+categories = %w[Party Concert Gathering Techno Jazz Pop House Eletronica Alternative]
+dresscode = %w[Naked Fetish Street Chic Pole Casual Sport Funky Funny Black White Summer Short Half-Naked Dressed]
+
+event1 = Event.new(
+
+  title: "XFORM x Ilian Tape with Skee Mask",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("RSO.BERLIN").id
+)
+file1 = URI.open("https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9pbWFnZXMucmEuY28vOTFhNzFlODU1ZWZlOWY0YWFmNDVhYWI1NjQyODIzMjY5MWFiMTAwMC5wbmc=")
+event1.photo.attach(io: file1, filename: event1.title, content_type: "image/jpg")
+event1.save!
+
+Chatroom.create!(
+  name: event1.title,
+  event_id: event1.id
+)
+
+event2 = Event.new(
+
+  title: "Tresor meets Giant Swan",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Tresor").id
+)
+file2 = URI.open(
+"https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9pbWFnZXMucmEuY28vNjdkODU4NmYwNDlhNGE2OTc3ZDU4MjE1MjY1MzUyZGM3OTRmZWZkNS5qcGc=")
+event2.photo.attach(io: file2, filename: event2.title, content_type: "image/jpg")
+event2.save!
+
+Chatroom.create!(
+  name: event2.title,
+  event_id: event2.id
+)
+
+event3 = Event.new(
+
+  title: "SESH",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Tresor").id
+)
+file3 = URI.open(
+"https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9pbWFnZXMucmEuY28vZGFmMzhjN2E0NDVjOTYzYmRmNjZmYzdmZTdmYjJmOTY4YjY3MjRlYy5wbmc=")
+event3.photo.attach(io: file3, filename: event3.title, content_type: "image/jpg")
+event2.save!
+
+Chatroom.create!(
+  name: event3.title,
+  event_id: event3.id
+)
+
+event3 = Event.new(
+
+  title: "SESH",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Tresor").id
+)
+file3 = URI.open(
+"https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9pbWFnZXMucmEuY28vZGFmMzhjN2E0NDVjOTYzYmRmNjZmYzdmZTdmYjJmOTY4YjY3MjRlYy5wbmc=")
+event3.photo.attach(io: file3, filename: event3.title, content_type: "image/jpg")
+event2.save!
+
+Chatroom.create!(
+  name: event3.title,
+  event_id: event3.id
+)
+
+
 
 
 
@@ -206,11 +478,15 @@ puts "preparing seeding events"
   event.photo.attach(io: file, filename: event.title, content_type: "image/jpg")
   event.save!
 
+
+
   Chatroom.create!(
     name: event.title,
     event_id: event.id
   )
 end
+
+
 
 puts "created #{Event.count} events"
 
@@ -224,6 +500,7 @@ puts "created #{Event.count} events"
 #     image_url: "https://cdn.prod.www.spiegel.de/images/a71d32b1-de0a-495d-b615-8872ed34faf0_w948_r1.778_fpx50_fpy48.webp"
 #   )
 # end
+
 artist1 = Artist.create!(
   name: "Lady Gaga",
   about: "Stefani Joanne Angelina Germanotta
@@ -292,14 +569,14 @@ artist8 = Artist.create!(
 
 puts "created #{Artist.count} artists"
 
-100.times do
+500.times do
   Lineup.create!(
     artist_id: Artist.all.sample.id,
     event_id: Event.all.sample.id
   )
 end
 
-300.times do
+1000.times do
   Rsvp.create!(
     user_id: User.all.sample.id,
     event_id: Event.all.sample.id,

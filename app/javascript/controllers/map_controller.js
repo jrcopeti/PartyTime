@@ -37,6 +37,7 @@ export default class extends Controller {
     if (this.centerValue.length > 0) {
       const userMarker = new mapboxgl.Marker({ color: "red" })
           .setLngLat(this.centerValue)
+
           .addTo(this.map)
     }
   }
