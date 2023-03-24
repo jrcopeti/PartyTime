@@ -1,52 +1,4 @@
 // Specific CSS for your home-page (event Index)
-body {
-  background-color: #060606;
-  padding-top: 70px;
-}
-
-.navbar-bottom {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  background-color: #060606;
-  justify-content: space-between;
-  padding: 24px 32px;
-}
-
-.navbar-top {
-  flex-direction: row;
-  display: flex;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #060606;
-  padding: 24px 32px;
-  justify-content: space-between;
-}
-
-.navbar-top-in-between {
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-  align-items: center;
-  padding: 8px 0px;
-  gap: 24px;
-
-  position: center;
-}
-
-.home {
-  width: 100%;
-  color: #DFDEDE;
-}
-
-.home-text {
-  margin-bottom: 0;
-  text-align: center;
-}
-
 
 .event-title {
   background: hotpink;
@@ -82,10 +34,12 @@ body {
   flex-direction: column;
   padding: 16px 24px;
   padding-bottom: 16px;
-  background-color: #060606;
+  backdrop-filter: blur(9px);
+  background: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 70px;
   z-index: 1;
+
 
 }
 
@@ -106,22 +60,23 @@ body {
   //backdrop-filter: blur(9px);
   //background: rgba(0, 0, 0, 0.5) 100%;
   display: flex;
-  padding: 16px;
+
   // position:-webkit-sticky;
   position: sticky;
-  top: 97px;
-  border: 16px;
+  top: 125px;
   overflow: visible;
-   background: #060606;
+  backdrop-filter: blur(9px);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 16px 24px;
 
   // position:-webkit-sticky; position:sticky; top:0;
 }
 
-.event-date h3 {
+.event-date h5 {
   display: flex;
-  font-size: 32px;
+  font-size: 22px;
   color: white;
-  margin-top: 32px;
+  // margin-top: 32px;
 
 }
 
@@ -184,4 +139,32 @@ color: #00E1F0;
   color: #A097CC;
   font-weight: bold;
   font-size: 24px;
+}
+
+.events-all {
+  padding-top: 50px;
+}
+
+.events-all h2 {
+  padding: 0 32px 16px 32px;
+}
+
+.pop-events {
+  display: flex;
+  overflow: overlay;
+  // margin: 20px 0;
+  overflow-y: hidden;
+  padding: 0 32px;
+  list-style: none;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 32px;
+}
+
+.pop-events li {
+  scroll-snap-align: start;
+  padding-right: 32px;
+}
+
+.pop-events img {
+  padding-bottom: 16px;
 }
