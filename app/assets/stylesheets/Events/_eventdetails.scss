@@ -26,7 +26,7 @@
   margin-right: 10px;
   margin-bottom: 10px;
   background: rgba(255, 255, 255, 0);
-  color: white;
+  color: white !important;
 
   height: 35px;
   display: flex;
@@ -39,7 +39,7 @@
 .event-interested:hover {
   background: white;
   border: 1px solid  white;
-  color: black;
+  color: black !important;
   transition: 0.5s;
 }
 
@@ -125,4 +125,8 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+.btn-send {
+  color: white;
 }

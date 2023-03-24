@@ -28,6 +28,14 @@ a:link {
   padding: 10px;
 }
 
+.icon-box i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+}
+
 .club-box {
   margin-top: 35vh;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, #000000 31.9%);
