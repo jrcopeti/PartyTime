@@ -31,6 +31,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.full_name = auth.info.name
+      user.nickname = auth.info.name.downcase.delete(' ')
       file = URI.open(auth.info.image)
       user.photo.attach(io: file, filename: user.full_name, content_type: "image/jpg")
     end

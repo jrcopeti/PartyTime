@@ -1,0 +1,17 @@
+{
+  "background_color": "black",
+  "description": "Experience the ultimate party scene at PartyTime's clubs. Find the hottest nightclubs in town and dance the night away to the best beats. Get exclusive VIP access, bottle service, and more. Come join the party at PartyTime!",
+  "display": "fullscreen",
+  "name": "PartyTime",
+  "icons": [
+    <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
+    <% files.each_with_index do |file, index| %>
+      <% match = file.match(/.+-(?<size>\d{2,3}x\d{2,3}).png/) %>
+      {
+        "src": "<%= image_path "icons/#{file}" %>",
+        "sizes": "<%= match && match[:size] %>",
+        "type": "image/png"
+      }<%= "," unless (files.size - 1) == index %>
+    <% end %>
+  ]
+}

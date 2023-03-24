@@ -23,53 +23,61 @@
     <div class="profil-follower">
       <div class="header-item">
         <p>25</p>
-        <h5>Events</h5>
+        <p>Events</p>
       </div>
       <div class="header-item">
-        <p>25</p>
-        <h5>Followers</h5>
+        <p><%=current_user.followers.count%></p>
+        <p><%=link_to "Followers", followers_user_path(current_user)%></p>
       </div>
       <div class="header-item">
-        <p>25</p>
-        <h5>Following</h5>
+        <p><%=current_user.following.count%></p>
+        <p><%=link_to "Following", following_user_path(current_user)%></p>
       </div>
     </div>
   </div>
 
   <div class="profil-description">
-    <h3> <%= current_user.full_name %></h3>
+    <h5> <%= current_user.full_name %></h5>
     <p><%= current_user.bio %></p>
-    <h3><%=current_user.email %></h3>
+    <p><%=current_user.email %></p>
   </div>
+
+  <div class="btn-section">
+    <%= link_to edit_user_path(current_user) do %>
+      Edit profile <i class="fa-regular fa-pen-to-square"></i>
+    <% end %>
+
+    <%= link_to users_path do %>
+      Search profiles <i class="fa-solid fa-magnifying-glass"></i>
+    <% end %>
+
+    <%= link_to destroy_user_session_path, data: {turbo_method: :delete} do %>
+      Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    <% end %>
+  </div>
+
   <hr/>
 
   <% current_user.follow_requests.each do |request| %>
-    <%= cl_image_tag request.followerable.photo.key, height: 100, width: 100, crop: "thumb", radius: "max" unless request.followerable.photo.key.nil?%>
-    <h5><%= link_to request.followerable.nickname, user_path(request.followerable.id) %> wants to follow you</h5>
-    <%= button_to "Accept", accept_user_path(request.followerable) %>
-    <%= button_to "Decline", decline_user_path(request.followerable) %>
+  <div class="request-container">
+    <%= cl_image_tag request.followerable.photo.key, height: 50, width: 50, crop: :fill, class: "avatar" unless request.followerable.photo.key.nil?%>
+
+      <div class="request-field">
+        <%= link_to request.followerable.full_name, user_path(request.followerable.id)%>
+        wants to follow you
+      </div>
+      <div class="btn-confirmation">
+        <%= button_to "Decline", decline_user_path(request.followerable), class: "event-interested" %>
+        <%= button_to "Accept", accept_user_path(request.followerable), class: "event-interested" %>
+      </div>
+  </div>
+  <hr/>
   <% end  %>
 
   <%# if current_user.mutual_following_with?(@user)%>
     <%#= link_to "chatroom", chatroom_path(@chatroom) %>
   <%# end %>
 
-  <h4><%=link_to "Followers", followers_user_path(current_user)%> (<%=current_user.followers.count%>) </h4><% current_user.followers.sample(3).each do |follower| %>
-    <%= cl_image_tag follower.photo.key, height: 100, width: 100, crop: "thumb", radius: "max" unless follower.photo.key.nil?%>
-    <ul>
-    <li><%= link_to follower.nickname, user_path(follower.id) %></li>
-    </ul>
-    <% end %>
-    <br/>
-
-  <h4><%=link_to "Following", following_user_path(current_user)%> (<%=current_user.following.count%>)</h4><% current_user.following.sample(3).each do |following| %>
-    <%= cl_image_tag following.photo.key, height: 100, width: 100, crop: "thumb", radius: "max" unless following.photo.key.nil?%>
-    <ul>
-    <li><%= link_to following.nickname, user_path(following.id) %></li>
-    </ul>
-  <% end %>
-
-<hr/>
 
   <div>
     <h3>My upcoming Events</h3>
