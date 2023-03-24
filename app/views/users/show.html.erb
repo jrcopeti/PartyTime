@@ -6,10 +6,10 @@
 <%#THIS IS OTHER USERS PROFILE PAGE%>
  <div class="event-title">
 
-    <% if current_user.nickname.nil? %>
+    <% if @user.nickname.nil? %>
       <h1>Profile</h1>
     <% else %>
-      <h1>@<%= current_user.nickname %></h1>
+      <h1>@<%= @user.nickname %></h1>
     <% end %>
   </div>
 <div class="container">
