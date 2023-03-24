@@ -5,6 +5,6 @@ class ChatroomsController < ApplicationController
   end
 
   def index
-    @chatrooms = Chatroom.where("users @> ARRAY[?]::varchar[]", current_user.id.to_s)
+    @chatrooms = Chatroom.where("devise @> ARRAY[?]::varchar[]", current_user.id.to_s)
   end
 end
