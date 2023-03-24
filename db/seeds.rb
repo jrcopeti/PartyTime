@@ -56,7 +56,6 @@ mainuser.save!
     email: Faker::Internet.email,
     nickname: Faker::Name.first_name,
     password: 123456,
-    # avatar_url: Faker::Avatar.image,
     address: "Köpenicker Str. 70, 10179 Berlin"
   )
   file = URI.open("https://source.unsplash.com/random?face")
@@ -78,23 +77,6 @@ Venue.create!(
   logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Tresor-Logo.svg/1200px-Tresor-Logo.png",
   image_url: "https://images.unsplash.com/photo-1630395822970-acd6a691d97e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
 )
-
-event = Event.new(
-
-  title: Faker::Fantasy::Tolkien.poem,
-  description: Faker::Quote.famous_last_words,
-  status: status.sample,
-  category: "party",
-  capacity: rand(10..30),
-  dresscode: "naked",
-  start_date: start + rand(0..2),
-  end_date: start + rand(3..8).hours,
-  user_id: User.all.sample.id,
-  venue_id: Venue.all.sample.id
-)
-file = URI.open("https://source.unsplash.com/random?party")
-event.photo.attach(io: file, filename: event.title, content_type: "image/jpg")
-event.save!
 
 
 Venue.create!(
@@ -310,7 +292,7 @@ Venue.create!(
   address:
   "Obentrautstr. 19-21 10963 Berlin",
   logo:
-  "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2RlLWJlcmxpbmdyZXRjaGVuY2x1Yi5qcGc_ZGF0ZVVwZGF0ZWQ9MTQ0NDkyNDQ5MjA5Mw=="
+  "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2RlLWJlcmxpbmdyZXRjaGVuY2x1Yi5qcGc_ZGF0ZVVwZGF0ZWQ9MTQ0NDkyNDQ5MjA5Mw==",
   image_url:
   "https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2xnL2RlLWdyZXRjaGVuLmpwZz9kYXRlVXBkYXRlZD0xNDQ0OTI0NDkyMDkz"
 )
@@ -323,7 +305,7 @@ Venue.create!(
   address:
   "Revaler Str 99, 10245 Berlin",
   logo:
-  "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2RlLWNhc3NvcGVkaWEuanBnP2RhdGVVcGRhdGVkPTE0NDQ4Mzc1NDIxMTM="
+  "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2RlLWNhc3NvcGVkaWEuanBnP2RhdGVVcGRhdGVkPTE0NDQ4Mzc1NDIxMTM=",
   image_url:
   "https://images.unsplash.com/photo-1574847052651-02b57f7f5a4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
 )
@@ -337,22 +319,22 @@ Venue.create!(
   "Falckensteinstrasse, 49 10997 Berlin",
   logo:
   "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL2RlLWJlcmxpbi13YXRlcmdhdGUuanBnP2RhdGVVcGRhdGVkPTE2MTAyMTE4MDM4NjM=",
-   image_url:
-   "https://images.unsplash.com/photo-1618176581124-72177645bd15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-  )
+  image_url:
+  "https://images.unsplash.com/photo-1618176581124-72177645bd15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+)
 
   Venue.create!(
-    name:
-    "Paloma",
-    definition:
-    "Dance floors on 2 levels & music by guest DJs, plus cocktails in a cool club with a gritty vibe.",
-    address:
-    "Skalitzer Str. 135, 10999 Berlin",
-    logo:
-    "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL3BhbG9tYWJhcnJhbG9nby5qcGc_ZGF0ZVVwZGF0ZWQ9MTUzNjI0MDIwOTE5Nw=="
-    image_url:
-    "https://images.unsplash.com/photo-1519111887837-a48ccf9edc00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-  )
+  name:
+  "Paloma",
+  definition:
+  "Dance floors on 2 levels & music by guest DJs, plus cocktails in a cool club with a gritty vibe.",
+  address:
+  "Skalitzer Str. 135, 10999 Berlin",
+  logo:
+  "https://imgproxy.ra.co/_/quality:66/h:180/w:180/extend:1/rt:fill/enlarge:1/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL2NsdWJzL3BhbG9tYWJhcnJhbG9nby5qcGc_ZGF0ZVVwZGF0ZWQ9MTUzNjI0MDIwOTE5Nw==",
+  image_url:
+  "https://images.unsplash.com/photo-1519111887837-a48ccf9edc00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+)
 
 
 puts "done seeding #{Venue.count} venues"
@@ -364,19 +346,18 @@ categories = %w[Party Concert Gathering Techno Jazz Pop House Eletronica Alterna
 dresscode = %w[Naked Fetish Street Chic Pole Casual Sport Funky Funny Black White Summer Short Half-Naked Dressed]
 
 event1 = Event.new(
-
   title: "XFORM x Ilian Tape with Skee Mask",
   description: Faker::Quote.famous_last_words,
   status: status.sample,
   category: "Techno",
-  capacity: rand(10..30),
+  capacity: 100,
   dresscode: dresscode.sample,
-  start_date: Time.now + rand(0..2).hours,
+  start_date: Time.now + rand(0..1).hours,
   end_date: Time.now + rand(3..8).hours,
   user_id: User.all.sample.id,
   venue_id: Venue.find_by_name("RSO.BERLIN").id
 )
-file1 = URI.open("https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9pbWFnZXMucmEuY28vOTFhNzFlODU1ZWZlOWY0YWFmNDVhYWI1NjQyODIzMjY5MWFiMTAwMC5wbmc=")
+file1 = URI.open("https://source.unsplash.com/random?club-party")
 event1.photo.attach(io: file1, filename: event1.title, content_type: "image/jpg")
 event1.save!
 
@@ -385,13 +366,21 @@ Chatroom.create!(
   event_id: event1.id
 )
 
+65.times do
+  Rsvp.create!(
+    user_id: User.all.sample.id,
+    event_id: event1.id,
+    current_attending: true
+  )
+end
+
 event2 = Event.new(
 
   title: "Tresor meets Giant Swan",
   description: Faker::Quote.famous_last_words,
   status: status.sample,
   category: "Techno",
-  capacity: rand(10..30),
+  capacity: 100,
   dresscode: dresscode.sample,
   start_date: Time.now + rand(0..2).hours,
   end_date: Time.now + rand(3..8).hours,
@@ -399,7 +388,7 @@ event2 = Event.new(
   venue_id: Venue.find_by_name("Tresor").id
 )
 file2 = URI.open(
-"https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9pbWFnZXMucmEuY28vNjdkODU4NmYwNDlhNGE2OTc3ZDU4MjE1MjY1MzUyZGM3OTRmZWZkNS5qcGc=")
+  "https://source.unsplash.com/random?club-party")
 event2.photo.attach(io: file2, filename: event2.title, content_type: "image/jpg")
 event2.save!
 
@@ -408,28 +397,13 @@ Chatroom.create!(
   event_id: event2.id
 )
 
-event3 = Event.new(
-
-  title: "SESH",
-  description: Faker::Quote.famous_last_words,
-  status: status.sample,
-  category: "Techno",
-  capacity: rand(10..30),
-  dresscode: dresscode.sample,
-  start_date: Time.now + rand(0..2).hours,
-  end_date: Time.now + rand(3..8).hours,
-  user_id: User.all.sample.id,
-  venue_id: Venue.find_by_name("Tresor").id
-)
-file3 = URI.open(
-"https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9pbWFnZXMucmEuY28vZGFmMzhjN2E0NDVjOTYzYmRmNjZmYzdmZTdmYjJmOTY4YjY3MjRlYy5wbmc=")
-event3.photo.attach(io: file3, filename: event3.title, content_type: "image/jpg")
-event2.save!
-
-Chatroom.create!(
-  name: event3.title,
-  event_id: event3.id
-)
+65.times do
+  Rsvp.create!(
+    user_id: User.all.sample.id,
+    event_id: event2.id,
+    current_attending: true
+  )
+end
 
 event3 = Event.new(
 
@@ -445,40 +419,287 @@ event3 = Event.new(
   venue_id: Venue.find_by_name("Tresor").id
 )
 file3 = URI.open(
-"https://imgproxy.ra.co/_/quality:66/w:1500/rt:fill/aHR0cHM6Ly9pbWFnZXMucmEuY28vZGFmMzhjN2E0NDVjOTYzYmRmNjZmYzdmZTdmYjJmOTY4YjY3MjRlYy5wbmc=")
+  "https://source.unsplash.com/random?club-party")
 event3.photo.attach(io: file3, filename: event3.title, content_type: "image/jpg")
-event2.save!
+event3.save!
 
 Chatroom.create!(
   name: event3.title,
   event_id: event3.id
 )
 
+event4 = Event.new(
+
+  title: "Fetched party",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Gretchen").id
+)
+file4 = URI.open(
+  "https://source.unsplash.com/random?club-party")
+  event4.photo.attach(io: file4, filename: event4.title, content_type: "image/jpg")
+event4.save!
+
+Chatroom.create!(
+  name: event4.title,
+  event_id: event4.id
+)
+
+event5 = Event.new(
+
+  title: "Buttons",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Alternative",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Zenner").id
+)
+file5 = URI.open(
+  "https://scontent-fra3-1.xx.fbcdn.net/v/t39.30808-6/330629139_183613524385024_5246827530631253861_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a26aad&_nc_ohc=d5PgSFqdt94AX-VBbZo&_nc_ht=scontent-fra3-1.xx&oh=00_AfDeqNjxtEFR6IjYH0hqRXzUTpprcKhaWgf0Y--f0zR3aA&oe=6423C2EE")
+event5.photo.attach(io: file5, filename: event5.title, content_type: "image/jpg")
+event5.save!
+
+Chatroom.create!(
+  name: event5.title,
+  event_id: event5.id
+)
+
+event6 = Event.new(
+
+  title: "Nia Archives - UP YA ARCHIVES",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Trauma Bar und Kino").id
+)
+file6 = URI.open(
+  "https://source.unsplash.com/random?club-party")
+  event6.photo.attach(io: file6, filename: event6.title, content_type: "image/jpg")
+event6.save!
+
+Chatroom.create!(
+  name: event6.title,
+  event_id: event6.id
+)
+
+event7 = Event.new(
+
+  title: "Klubnacht",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Berghain").id
+)
+file7 = URI.open(
+  "https://assets.evntsvc.net/images/placeholder/84f826f30ffe77511dae.jpg")
+event7.photo.attach(io: file7, filename: event7.title, content_type: "image/jpg")
+event7.save!
+
+Chatroom.create!(
+  name: event7.title,
+  event_id: event7.id
+)
+
+event8 = Event.new(
+
+  title: "Fornicate Rave",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Suicide Club").id
+)
+file8 = URI.open(
+"https://cdn.evntsvc.net/r/e/ev_krCT3W3ZtUOkLpr7rH7N8g-243_lm.jpg")
+  event8.photo.attach(io: file8, filename: event8.title, content_type: "image/jpg")
+event8.save!
+
+Chatroom.create!(
+  name: event8.title,
+  event_id: event8.id
+)
+
+event9 = Event.new(
+
+  title: "Slow Life 10th Anniversary Weekender",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Hoppetosse").id
+)
+file9 = URI.open(
+  "https://source.unsplash.com/random?club-party")
+  event9.photo.attach(io: file9, filename: event9.title, content_type: "image/jpg")
+event9.save!
+
+Chatroom.create!(
+  name: event9.title,
+  event_id: event9.id
+)
+
+event10 = Event.new(
+
+  title: "Ride - with Bashkka, Cryptofauna, DJ AYA, Mohajer, Monty Luke, Olivia Mendez",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("OXI").id
+)
+file10 = URI.open(
+  "https://cdn.evntsvc.net/r/e/ev_4jgRFwny1UKe4Np9xzhC6w-938_lm.jpg")
+event10.photo.attach(io: file10, filename: event10.title, content_type: "image/jpg")
+event10.save!
+
+Chatroom.create!(
+  name: event10.title,
+  event_id: event10.id
+)
+
+event12 = Event.new(
+
+  title: "Enorm in Form",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: "Sport",
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Kater Blau").id
+)
+file12 = URI.open(
+  "https://cdn.evntsvc.net/r/e/ev_S3MUAkgehEWQaAu_4g-ntg-949_lm.jpg")
+event12.photo.attach(io: file12, filename: event12.title, content_type: "image/jpg")
+event12.save!
+
+Chatroom.create!(
+  name: event12.title,
+  event_id: event12.id
+)
+
+event13 = Event.new(
+
+  title: "Happy Days Bambule (House & Techno, Hip Hop, 80s 90s & Pop)",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Pop",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Cassiopeia").id
+)
+file13 = URI.open(
+  "https://cdn.evntsvc.net/r/e/ev_VTpwZTcADE2Au1MH94UmaQ-936_lm.jpg")
+event13.photo.attach(io: file13, filename: event13.title, content_type: "image/jpg")
+event13.save!
+
+Chatroom.create!(
+  name: event13.title,
+  event_id: event13.id
+)
+
+event14 = Event.new(
+
+  title: "The Spell: Fejká LIVE, Jos & Eli, Madmotormiquel, Niki Sadeki, Rey&Kjavik, Zaharaa Drekk",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Watergate").id
+)
+file14 = URI.open(
+  "https://cdn.evntsvc.net/r/e/ev_aso0Lt0xqUyrWXYKqUUexg-222_lm.jpg")
+event14.photo.attach(io: file14, filename: event14.title, content_type: "image/jpg")
+event14.save!
+
+Chatroom.create!(
+  name: event14.title,
+  event_id: event14.id
+)
+
+event15 = Event.new(
+
+  title: "All night long with INVERNO",
+  description: Faker::Quote.famous_last_words,
+  status: status.sample,
+  category: "Techno",
+  capacity: rand(10..30),
+  dresscode: dresscode.sample,
+  start_date: Time.now + rand(0..2).hours,
+  end_date: Time.now + rand(3..8).hours,
+  user_id: User.all.sample.id,
+  venue_id: Venue.find_by_name("Paloma").id
+)
+file15 = URI.open(
+  "https://storage.googleapis.com/leitmotiv-multi/regio-image-2023-03/2861025/large//image.jpg")
+event15.photo.attach(io: file15, filename: event15.title, content_type: "image/jpg")
+event15.save!
+
+Chatroom.create!(
+  name: event15.title,
+  event_id: event15.id
+)
 
 
-
-
-50.times do
+100.times do
   start = Time.now
-  # + rand(10).day + rand(10).hours
   event = Event.new(
 
-    title: Faker::Fantasy::Tolkien.poem,
+    title: Faker::Music::RockBand.song,
     description: Faker::Quote.famous_last_words,
     status: status.sample,
-    category: "party",
-    capacity: rand(10..30),
-    dresscode: "naked",
-    start_date: start + rand(0..2),
-    end_date: start + rand(3..8).hours,
+    category: categories.sample,
+    capacity: rand(10..100),
+    dresscode: dresscode.sample,
+    start_date: start + rand(0..10).hours,
+    end_date: start + rand(10..20).hours,
     user_id: User.all.sample.id,
     venue_id: Venue.all.sample.id
   )
   file = URI.open("https://source.unsplash.com/random?party")
   event.photo.attach(io: file, filename: event.title, content_type: "image/jpg")
   event.save!
-
-
 
   Chatroom.create!(
     name: event.title,
@@ -491,15 +712,15 @@ end
 puts "created #{Event.count} events"
 
 
-# 20.times do
-#   Artist.create!(
-#     name: Faker::Music.band,
-#     about: Faker::Quote.famous_last_words,
-#     genre: Faker::Music.genre,
-#     link: "https://soundcloud.com/woym",
-#     image_url: "https://cdn.prod.www.spiegel.de/images/a71d32b1-de0a-495d-b615-8872ed34faf0_w948_r1.778_fpx50_fpy48.webp"
-#   )
-# end
+20.times do
+  Artist.create!(
+    name: Faker::Music.band,
+    about: Faker::Quote.famous_last_words,
+    genre: Faker::Music.genre,
+    link: "https://soundcloud.com/woym",
+    image_url: "https://cdn.prod.www.spiegel.de/images/a71d32b1-de0a-495d-b615-8872ed34faf0_w948_r1.778_fpx50_fpy48.webp"
+  )
+end
 
 artist1 = Artist.create!(
   name: "Lady Gaga",
@@ -576,6 +797,8 @@ puts "created #{Artist.count} artists"
   )
 end
 
+
+
 1000.times do
   Rsvp.create!(
     user_id: User.all.sample.id,
@@ -584,7 +807,7 @@ end
   )
 end
 
-puts "created #{Lineup.count} lineups"
+puts "created #{Rsvp.count} rsvps"
 
 
 puts "created #{Chatroom.count} chatrooms"
