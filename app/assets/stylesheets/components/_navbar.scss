@@ -2,45 +2,23 @@
 
 .navbar-bottom {
   backdrop-filter: blur(9px);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), #000000 );
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 100%, #000000 0% );
   position: fixed;
   bottom: 0;
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  padding: 24px 0;
-}
-
-.navbar-top {
-  flex-direction: row;
-  display: flex;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  backdrop-filter: blur(9px);
-  background: linear-gradient(180deg, #000000, rgba(0, 0, 0, 0.8));
-  padding: 24px 32px;
   justify-content: space-between;
+  padding: 24px 32px;
 }
 
-.navbar-top-in-between {
+.navbar-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: right;
-  align-items: center;
-  padding: 8px 0px;
-  gap: 24px;
-
-  position: center;
-}
-
-.home {
-  width: 100%;
-  color: #DFDEDE;
-}
-
-.home-text {
-  margin-bottom: 0;
-  text-align: center;
+  background-color: #060606;
+  justify-content: space-between;
+  padding: 24px 32px;
 }
