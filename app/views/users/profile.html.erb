@@ -7,14 +7,10 @@
   <div class="event-title">
 
     <% if current_user.nickname.nil? %>
-      <h1>Profil</h1>
+      <h1>Profile</h1>
     <% else %>
       <h1>@<%= current_user.nickname %></h1>
     <% end %>
-    <div class="event-icon">
-      <i class="fa-solid fa-bell fa-lg"></i>
-      <i class="fa-solid fa-comments fa-lg"></i>
-    </div>
   </div>
 <div class="container">
 
@@ -22,8 +18,8 @@
     <%= cl_image_tag current_user.photo.key, height: 75, width: 75, crop: :fill, class: "avatar" unless current_user.photo.nil?%>
     <div class="profil-follower">
       <div class="header-item">
-        <p>25</p>
-        <p>Events</p>
+        <p><%=current_user.rsvps.count%></p>
+        <p><%= link_to "Events", profile_user_path(current_user)%></p>
       </div>
       <div class="header-item">
         <p><%=current_user.followers.count%></p>
@@ -74,14 +70,11 @@
   <hr/>
   <% end  %>
 
-  <%# if current_user.mutual_following_with?(@user)%>
-    <%#= link_to "chatroom", chatroom_path(@chatroom) %>
-  <%# end %>
 
 
   <div>
     <h3>My upcoming Events</h3>
-      <% @user.rsvps.future.each do |rsvp| %>
+      <% current_user.rsvps.future.each do |rsvp| %>
       <ul>
         <li><%= link_to rsvp.event.title, venue_event_path(rsvp.event.venue_id, rsvp.event.id) %></li>
       </ul>
@@ -109,7 +102,7 @@
 
   <div>
     <h3>My past Events</h3>
-      <% @user.rsvps.past.each do |rsvp| %>
+      <% current_user.rsvps.past.each do |rsvp| %>
       <ul>
         <li><%= link_to rsvp.event.title, venue_event_path(rsvp.event.venue_id, rsvp.event.id) %></li>
       </ul>
@@ -118,9 +111,6 @@
 
 
 
-  <%= link_to "Search for devise", users_path  %> <br/>
-  <%= link_to "Edit Profile", edit_user_path(current_user) %><br/>
-  <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>
 
 
 

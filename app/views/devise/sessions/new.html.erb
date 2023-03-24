@@ -1,53 +1,22 @@
-<body class="Login">
-  <div class="star-container">
-    <svg class="star" width="265" height="519" viewBox="0 0 265 519" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M287.5 0L287.743 283.482L322.154 2.09619L288.226 283.541L356.303 8.35422L288.697 283.657L389.449 18.6828L289.152 283.83L421.108 32.9314L289.582 284.055L450.819 50.8921L289.982 284.332L478.148 72.3032L290.346 284.654L502.697 96.8522L290.668 285.018L524.108 124.181L290.945 285.418L542.069 153.892L291.17 285.848L556.317 185.551L291.343 286.303L566.646 218.697L291.459 286.774L572.904 252.846L291.518 287.257L575 287.5L291.518 287.743L572.904 322.154L291.459 288.226L566.646 356.303L291.343 288.697L556.317 389.449L291.17 289.152L542.069 421.108L290.945 289.582L524.108 450.819L290.668 289.982L502.697 478.148L290.346 290.346L478.148 502.697L289.982 290.668L450.819 524.108L289.582 290.945L421.108 542.069L289.152 291.17L389.449 556.317L288.697 291.343L356.303 566.646L288.226 291.459L322.154 572.904L287.743 291.518L287.5 575L287.257 291.518L252.846 572.904L286.774 291.459L218.697 566.646L286.303 291.343L185.551 556.317L285.848 291.17L153.892 542.069L285.418 290.945L124.181 524.108L285.018 290.668L96.8522 502.697L284.654 290.346L72.3032 478.148L284.332 289.982L50.8921 450.819L284.055 289.582L32.9314 421.108L283.83 289.152L18.6828 389.449L283.657 288.697L8.35422 356.303L283.541 288.226L2.09619 322.154L283.482 287.743L0 287.5L283.482 287.257L2.09619 252.846L283.541 286.774L8.35422 218.697L283.657 286.303L18.6828 185.551L283.83 285.848L32.9314 153.892L284.055 285.418L50.8921 124.181L284.332 285.018L72.3032 96.8522L284.654 284.654L96.8522 72.3032L285.018 284.332L124.181 50.8921L285.418 284.055L153.892 32.9314L285.848 283.83L185.551 18.6828L286.303 283.657L218.697 8.35422L286.774 283.541L252.846 2.09619L287.257 283.482L287.5 0Z" fill="#585858"/>
-    </svg>
+<h2>Log in</h2>
+
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :email,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "email" } %>
+    <%= f.input :password,
+                required: false,
+                input_html: { autocomplete: "current-password" } %>
+    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
   </div>
-    <div class="logo-frame">
-      <h1 class="logo">PartyTime</h1>
-    </div>
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
-      <div class="form-inputs">
-        <%= f.input :email,
-                    label:false,
-                    required: false,
-                    autofocus: true,
-                    input_html: { autocomplete: "email" },
-                    placeholder: "Email Address"
-        %>
-        <%= f.input :password,
-                    label: false,
-                    placeholder: "Password",
-                    required: false,
-                    input_html: { autocomplete: "current-password" } %>
-      </div>
-      <div class="form-actions-container">
-        <div class="form-actions">
-          <%= f.button :submit, "Log in" %>
-        </div>
-      </div>
-  <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-    <% end %>
 
-    <%= render "devise/shared/links" %>
-</body>
+  <div class="form-actions">
+    <%= f.button :submit, "Log in" %>
+  </div>
+<% end %>
 
+  <%= render "devise/shared/links" %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>

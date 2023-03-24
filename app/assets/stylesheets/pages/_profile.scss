@@ -63,7 +63,30 @@
   margin-left: 10px;
 }
 
-.btn-section a:hover {
+// .btn-section a:hover {
+//   background: white;
+//   border: 1px solid  white;
+//   color: black !important;
+//   transition: 0.5s;
+// }
+
+// .btn-section form {
+//   border: 1px solid #cdcdcd;
+//   border-radius: 16px;
+//   padding: 0 10px;
+//   margin: 10px 0;
+//   background: rgba(255, 255, 255, 0);
+//   color: white !important;
+
+//   height: 35px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 10px;
+//   transition: 0.5s;
+// }
+
+.btn-section form:hover {
   background: white;
   border: 1px solid  white;
   color: black !important;

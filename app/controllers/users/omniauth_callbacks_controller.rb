@@ -45,7 +45,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #   super
   # end
 
-  # GET|POST /devise/auth/twitter/callback
+  # GET|POST /users/auth/twitter/callback
   # def failure
   #   super
   # end

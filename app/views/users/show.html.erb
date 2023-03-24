@@ -4,59 +4,52 @@
 
 
 <%#THIS IS OTHER USERS PROFILE PAGE%>
-  <div class="event-title">
-    <h1>User Page</h1>
-    <div class="event-icon">
-      <i class="fa-solid fa-bell fa-lg"></i>
-      <i class="fa-solid fa-comments fa-lg"></i>
-    </div>
+ <div class="event-title">
+
+    <% if @user.nickname.nil? %>
+      <h1>Profile</h1>
+    <% else %>
+      <h1>@<%= @user.nickname %></h1>
+    <% end %>
   </div>
 <div class="container">
-  <% if @user.photo.attached? %>
-      <%= cl_image_tag @user.photo.key, width: 250, height: 250, radius:"max", crop: "fill"%>
-  <% else %>
-      <%= image_tag(@user.avatar_url, width: "250", height: "250") unless @user.avatar_url.nil?%>
-  <%end %>
+
+  <div class="profil-container">
+    <%= cl_image_tag @user.photo.key, height: 75, width: 75, crop: :fill, class: "avatar" unless current_user.photo.nil?%>
+    <div class="profil-follower">
+      <div class="header-item">
+        <p><%=@user.rsvps.count%></p>
+        <p><%= link_to "Events", profile_user_path(current_user)%></p>
+      </div>
+      <div class="header-item">
+        <p><%=@user.followers.count%></p>
+        <p><%=link_to "Followers", followers_user_path(current_user)%></p>
+      </div>
+      <div class="header-item">
+        <p><%=@user.following.count%></p>
+        <p><%=link_to "Following", following_user_path(current_user)%></p>
+      </div>
+    </div>
+  </div>
+
+    <div class="profil-description">
+    <h5> <%= @user.full_name %></h5>
+    <p><%= @user.bio %></p>
+  </div>
 
 
-  <h2> <%= @user.nickname %></h2>
-  <h3> <%= @user.full_name %></h3>
-  <p><%= @user.bio %></p>
-
-  <hr/>
-
+  <div class="btn-confirmation"">
   <% if current_user.following?(@user) %>
-    <%= button_to "Unfollow", unfollow_user_path(@user)  %>
+    <%= button_to "Unfollow", unfollow_user_path(@user), class: "event-interested"  %>
   <% elsif current_user.sent_follow_request_to?(@user) %>
-    <%= button_to "Cancel Follow Resquest", cancel_user_path(@user) %>
+    <%= button_to "Cancel Follow Request", cancel_user_path(@user), class: "event-interested"  %>
   <% else  %>
-    <%= button_to "Follow", follow_user_path(@user) unless current_user == @user %>
+    <%= button_to "Follow", follow_user_path(@user), class: "event-interested"  %>
   <% end %>
-
+  </div>
 
   <hr/>
 
-    <h4><%=link_to "Followers", followers_user_path(@user)  %> (<%=@user.followers.count%>)</h4><% @user.followers.sample(3).each do |follower| %>
-    <% if follower.photo.attached? %>
-        <%= cl_image_tag follower.photo.key, height: 100, width: 100, crop: "thumb", radius: "max"%>
-    <% else %>
-        <%= image_tag(follower.avatar_url, height: "100", width: "100", crop: "fill") unless follower.avatar_url.nil?%>
-    <%end %>
-  <ul>
-  <li><%= link_to follower.nickname, user_path(follower.id) %></li>
-  </ul>
-  <% end %>
-  <br/>
-  <h4><%= link_to "Following", following_user_path(@user) %> (<%=@user.following.count%>)</h4><% @user.following.sample(3).each do |following| %>
-      <% if following.photo.attached? %>
-        <%= cl_image_tag following.photo.key, height: 100, width: 100, crop: "thumb", radius: "max"%>
-    <% else %>
-        <%= image_tag(following.avatar_url, height: "100", width: "100", crop: "thumb", radius: "max")  unless following.avatar_url.nil?%>
-    <%end %>
-  <ul>
-  <li><%= link_to following.nickname, user_path(following.id) %></li>
-  </ul>
-  <% end  %>
 
   <div>
     <h3>Upcoming Events</h3>
