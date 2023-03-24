@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= meta_title.slice(0, 20) %></title>
+    <title><%= meta_title %>. Find your Event!</title>
     <meta name="description" content="<%= meta_description %>">
 
     <!-- Facebook Open Graph data -->
     <meta property="og:title" content="<%= meta_title.slice(0, 20) %>" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="<%= request.original_url %>" />
-    <meta property="og:image" content="<%= meta_image %>" />
+    <meta property="og:image" content="<%= content_for :meta_image, asset_url('/assets/logo.png') %>" />
     <meta property="og:description" content="<%= meta_description %>" />
     <meta property="og:site_name" content="<%= meta_title %>" />
 
@@ -24,13 +24,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+
     <%= favicon_link_tag %>
+    <%= render 'shared/ios_pwa_links' %>
 
   </head>
 
@@ -40,5 +43,6 @@
      <%= yield %>
 
   <%= render "shared/navbar" %>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
   </body>
 </html>
