@@ -11,13 +11,15 @@ class Event < ApplicationRecord
   scope :events_by_date, -> { where("end_date >= ?", Time.now).order("start_date ASC").group_by(&:start_date) }
   scope :popular_events, -> { where("end_date >= ?", Time.now).sort_by { |event| -event.total_rsvps }.first(6) }
 
-  # validate :end_date_after_start_date
+  # validates :start_date, :end_date, presence: true
+  # validates :title, presence: true, uniqueness: true
+  # CATEGORIES = %w[Party Concert Gathering Techno Jazz Pop House Eletronica Alternative]
+  # validates :category, inclusion: { in: CATEGORIES }
 
-  # def end_date_after_start_date
-  #   if end_date.present? && start_date.present? && end_date < start_date
-  #     errors.add(:end_date, "must be after the start date")
-  #   end
-  # end
+  # validate :start_date_must_be_after_now
+
+  # validate :end_date_is_after_start_date
+
 
   include PgSearch::Model
 
@@ -45,4 +47,19 @@ class Event < ApplicationRecord
       self.photo.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.jpg")), filename: 'default.jpg' , content_type: "image/jpg")
     end
   end
+
+  # def end_date_is_after_start_date
+  #   return if end_date.blank? || start_date.blank?
+
+  #   if end_date < start_date
+  #     errors.add(:end_date, "cannot be before the start date")
+  #   end
+  # end
+
+
+  # def start_date_must_be_after_now
+  #   if start_date.present? && start_date <= Time.now
+  #     errors.add(:start_date, "must be after current time")
+  #   end
+  # end
 end

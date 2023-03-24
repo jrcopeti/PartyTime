@@ -21,8 +21,8 @@ export default class extends Controller {
     });
     this.#addMarkersToMap()
     // this.#fitMapToMarkers()
-    this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl }))
+    // this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+    //   mapboxgl: mapboxgl }))
   }
 
   #addMarkersToMap() {
@@ -37,6 +37,7 @@ export default class extends Controller {
     if (this.centerValue.length > 0) {
       const userMarker = new mapboxgl.Marker({ color: "red" })
           .setLngLat(this.centerValue)
+
           .addTo(this.map)
     }
   }
