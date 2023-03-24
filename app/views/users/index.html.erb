@@ -7,7 +7,7 @@
 
   <div class="event-search" data-controller="refresh-list">
     <%= form_with url: users_path, method: :get, html: { class: "d-flex", data: { refresh_list_target: 'form' } } do %>
-      <%= text_field_tag :query, params[:query], class: "form-control-event", placeholder: "Search for devise...", data: {refresh_list_target: 'searchInput', action: "keyup->refresh-list#update"} %>
+      <%= text_field_tag :query, params[:query], class: "form-control-event", placeholder: "Search for users...", data: {refresh_list_target: 'searchInput', action: "keyup->refresh-list#update"} %>
       <%#= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
     </div>

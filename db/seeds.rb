@@ -27,9 +27,9 @@ User.all.each do |user|
   user.photo.purge
 end
 
-puts "deleting all photos of devise in cloudnary"
+puts "deleting all photos of users in cloudnary"
 
-puts "deleting all devise from the database"
+puts "deleting all users from the database"
 User.all.delete_all
 
 puts "deleting all Venues from the database"
@@ -63,7 +63,7 @@ mainuser.save!
   user.photo.attach(io: file, filename: user.full_name, content_type: "image/jpg")
 end
 
-puts "created #{User.count} devise"
+puts "created #{User.count} users"
 
 puts "Seeding venues"
 
