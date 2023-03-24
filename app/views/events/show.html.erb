@@ -88,7 +88,7 @@
         <h5>Description:</h5>
         <p><%= @event.description %></p>
         <h5>Venue:</h5>
-        <p><%= link_to @event.venue.name, venue_path(@venue) %><br><%= @venue.address %></p>
+        <p><%= link_to @event.venue.name, venue_path(@venue), class: "link-club" %><br><%= @venue.address %></p>
         <h5>Date:</h5>
         <p><%=@event.start_date.strftime("%a, %d %b %Y")%> <br><%= @event.start_date.strftime("%H:%M") %> - <%= @event.end_date.strftime("%H:%M") %></p>
         <h5>LineUp:</h5>
