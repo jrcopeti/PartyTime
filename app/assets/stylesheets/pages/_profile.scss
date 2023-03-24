@@ -17,6 +17,27 @@
   }
 }
 
+.btn {
+  /* Sign In */
+
+
+
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+
+  color: #DFDEDE;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
 .btn-section {
   display: flex;
   justify-content: space-between;
