@@ -352,7 +352,7 @@ event1 = Event.new(
   description: Faker::Quote.famous_last_words,
   status: status.sample,
   category: "Techno",
-  capacity: 64,
+  capacity: 80,
   dresscode: dresscode.sample,
   start_date: Time.now + rand(0..1).hours,
   end_date: Time.now + rand(3..8).hours,
@@ -382,7 +382,7 @@ event2 = Event.new(
   description: Faker::Quote.famous_last_words,
   status: status.sample,
   category: "Techno",
-  capacity: 64,
+  capacity: 80,
   dresscode: dresscode.sample,
   start_date: Time.now + rand(0..2).hours,
   end_date: Time.now + rand(3..8).hours,
@@ -709,6 +709,32 @@ Chatroom.create!(
   )
 end
 
+30.times do
+  start = Time.now
+  event = Event.new(
+
+    title: Faker::Music::RockBand.song,
+    description: Faker::Quote.famous_last_words,
+    status: status.sample,
+    category: categories.sample,
+    capacity: rand(10..100),
+    dresscode: dresscode.sample,
+    start_date: start + rand(1..5).days,
+    end_date: start + rand(1..8).days,
+    user_id: User.all.sample.id,
+    venue_id: Venue.all.sample.id
+  )
+  file = URI.open("https://source.unsplash.com/random?party")
+  event.photo.attach(io: file, filename: event.title, content_type: "image/jpg")
+  event.save!
+
+  Chatroom.create!(
+    name: event.title,
+    event_id: event.id
+  )
+end
+
+
 
 
 puts "created #{Event.count} events"
@@ -801,7 +827,7 @@ end
 
 
 
-1000.times do
+1200.times do
   Rsvp.create!(
     user_id: User.all.sample.id,
     event_id: Event.all.sample.id,
