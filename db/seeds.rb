@@ -43,6 +43,7 @@ mainuser = User.create!(
   email: "user@user.com",
   password: 123456,
   nickname: Faker::Name.first_name,
+  bio: Faker::Quote.jack_handey,
   full_name: "Max Mustermann",
   address: "Rudi-Dutschke-Strasse 26, 10969 Berlin"
 )
@@ -50,11 +51,12 @@ file = URI.open("https://source.unsplash.com/random?face")
 mainuser.photo.attach(io: file, filename: mainuser.full_name, content_type: "image/jpg")
 mainuser.save!
 
-20.times do
+120.times do
   user = User.new(
     full_name: Faker::Name.name,
     email: Faker::Internet.email,
     nickname: Faker::Name.first_name,
+    bio: Faker::Quote.jack_handey,
     password: 123456,
     address: "Köpenicker Str. 70, 10179 Berlin"
   )
@@ -350,7 +352,7 @@ event1 = Event.new(
   description: Faker::Quote.famous_last_words,
   status: status.sample,
   category: "Techno",
-  capacity: 100,
+  capacity: 64,
   dresscode: dresscode.sample,
   start_date: Time.now + rand(0..1).hours,
   end_date: Time.now + rand(3..8).hours,
@@ -380,7 +382,7 @@ event2 = Event.new(
   description: Faker::Quote.famous_last_words,
   status: status.sample,
   category: "Techno",
-  capacity: 100,
+  capacity: 64,
   dresscode: dresscode.sample,
   start_date: Time.now + rand(0..2).hours,
   end_date: Time.now + rand(3..8).hours,
