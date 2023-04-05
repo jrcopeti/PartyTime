@@ -16,7 +16,7 @@
         <div class="" data-controller="favorite">
         <div class="icon-box">
           <div class="<%=current_user.favorited?(@artist) ? "un" : "" %>favorite">
-            <%= link_to unfavorite_artist_path(@artist), data: { favorite_target: "link" } do %>
+            <%= link_to favoriter_artist_path(@artist), data: { favorite_target: "link" } do %>
             <i class="<%=current_user.favorited?(@artist) ? "fas" : "far" %> fa-heart" data-action="click->favorite#toggled"></i>
               <% end %>
           </div>

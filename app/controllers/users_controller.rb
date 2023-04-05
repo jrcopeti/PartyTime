@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def profile
     # current_user profile page
+    @favorite_events = current_user.favorited_by_type("Event")
     @rsvps = current_user.rsvps
   end
 

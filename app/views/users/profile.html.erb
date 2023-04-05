@@ -109,8 +109,16 @@
     <% end %>
   </div>
 
-
-
+ <div>
+    <h3>Events that I liked</h3>
+      <%@favorite_events.each do |event|%>
+        <ul>
+          <li><%=link_to event.title, venue_event_path(event.venue_id, event.id)%></li>
+          <%= link_to event.venue.name, venue_path(event.venue_id) %> <br/>
+          <p>from <%= event.start_date.strftime("%H:%M") %> to <%= event.end_date.strftime("%H:%M") %></p>
+        </ul>
+        <% end %>
+  </div>
 
 
 

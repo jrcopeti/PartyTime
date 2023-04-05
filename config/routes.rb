@@ -9,8 +9,7 @@ Rails.application.routes.draw do
   resources :venues, only: %i[index show] do
     resources :events, only: %i[show edit]
     member do
-      get :favorite
-      get :unfavorite
+      get :favoriter
     end
   end
 
@@ -25,8 +24,7 @@ Rails.application.routes.draw do
 
   resources :artists, only: %i[index show] do
     member do
-      get :favorite
-      get :unfavorite
+      get :favoriter
     end
   end
 

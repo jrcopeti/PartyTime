@@ -10,20 +10,17 @@
           <i class="fa-regular fa-angle-left"></i>
         </div>
       </a>
-  <% if current_user.favorited?(@venue)%>
-        <div class="icon-box">
-          <a href="<%=unfavorite_venue_path(@venue)%>">
-            <i class="fa-sharp fa-solid fa-heart fa-lg red-heart"></i>
-          </a>
+      <div class="" data-controller="favorite">
+      <div class="icon-box">
+        <div class="<%=current_user.favorited?(@venue) ? "un" : "" %>favorite">
+          <%= link_to favoriter_venue_path(@venue), data: { favorite_target: "link" } do %>
+          <i class="<%=current_user.favorited?(@venue) ? "fas" : "far" %> fa-heart" data-action="click->favorite#toggled"></i>
+            <% end %>
+          </div>
         </div>
-  <% else %>
-        <div class="icon-box">
-          <a href="<%=favorite_venue_path(@venue)%>">
-           <i class="fa-regular fa-heart"></i>
-          </a>
-       </div>
-  <% end %>
+      </div>
     </div>
+
     <div class="club-box">
       <div class="club-text">
         <div class="club-head">
