@@ -38,8 +38,12 @@ class UsersController < ApplicationController
   def unfollow
     current_user.unfollow(@user)
     @chatroom = Chatroom.find_by_users([current_user.id, @user.id]) || Chatroom.find_by_users([@user.id, current_user.id])
-    @chatroom.destroy
-    redirect_to user_path(@user), status: :see_other, notice: "Chatroom with #{@user.nickname} was deleted."
+    if @chatroom.nil?
+      redirect_to user_path(@user)
+    else
+      @chatroom.destroy
+      redirect_to user_path(@user), status: :see_other, notice: "Chatroom with #{@user.nickname} was deleted."
+    end
   end
 
   def accept
@@ -49,10 +53,11 @@ class UsersController < ApplicationController
       @chatroom.users = [current_user.id, @user.id]
       @chatroom.name = "#{current_user.nickname} and #{@user.nickname}'s chat"
       @chatroom.save!
-      redirect_to chatroom_path(@chatroom)
+      redirect_to profile_user_path(current_user)
     else
       redirect_to profile_user_path(current_user)
     end
+
 
     # ChatroomChannel.broadcast_to(
     #   {
