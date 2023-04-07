@@ -3,7 +3,8 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :rsvps, dependent: :destroy
   has_many :lineups, dependent: :destroy
-  has_many :artists, through: :lineups, dependent: :destroy
+  has_many :artists, through: :lineups
+  has_one :chatroom, dependent: :destroy
   has_one_attached :photo
   acts_as_favoritable
 

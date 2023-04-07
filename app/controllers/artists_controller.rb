@@ -7,18 +7,19 @@ class ArtistsController < ApplicationController
     @artist = Artist.find(params[:id])
   end
 
-  def favorite
-    @artist = Artist.find(params[:id])
-    @user = current_user
-    current_user.favorite(@artist)
-    redirect_to artist_path(@artist)
+  def favoriter
+    set_artist
+    if current_user.favorited?(@artist)
+      current_user.unfavorite(@artist)
+    else
+      current_user.favorite(@artist)
+    end
   end
 
-  def unfavorite
+  private
+
+  def set_artist
     @artist = Artist.find(params[:id])
-    @user = current_user
-    current_user.unfavorite(@artist)
-    redirect_to artist_path(@artist)
   end
 
 end

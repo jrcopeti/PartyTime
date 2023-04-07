@@ -23,11 +23,11 @@
       </div>
       <div class="header-item">
         <p><%=@user.followers.count%></p>
-        <p><%=link_to "Followers", followers_user_path(current_user)%></p>
+        <p><%=link_to "Followers", followers_user_path(@user)%></p>
       </div>
       <div class="header-item">
         <p><%=@user.following.count%></p>
-        <p><%=link_to "Following", following_user_path(current_user)%></p>
+        <p><%=link_to "Following", following_user_path(@user)%></p>
       </div>
     </div>
   </div>

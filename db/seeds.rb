@@ -5,11 +5,11 @@ end
 
 puts "deleting photos of events in cloudnary"
 
-puts "deleting all messages"
-Message.all.delete_all
+# puts "deleting all messages"
+# Message.all.delete_all
 
-puts "deleting all chatrooms"
-Chatroom.all.delete_all
+# puts "deleting all chatrooms"
+# Chatroom.all.delete_all
 
 puts "deleting all lineups"
 Lineup.all.delete_all
@@ -21,51 +21,51 @@ puts "deleting all rsvsp"
 Rsvp.all.delete_all
 
 puts "deleting all Events from the database"
-Event.all.delete_all
+Event.all.destroy_all
 
-User.all.each do |user|
-  user.photo.purge
-end
+# User.all.each do |user|
+#   user.photo.purge
+# end
 
-puts "deleting all photos of users in cloudnary"
+# puts "deleting all photos of users in cloudnary"
 
-puts "deleting all users from the database"
-User.all.delete_all
+# puts "deleting all users from the database"
+# User.all.delete_all
 
 puts "deleting all Venues from the database"
 Venue.all.delete_all
 
 puts "Seeding Database"
 
-puts "Seeding Users"
+# puts "Seeding Users"
 
-mainuser = User.create!(
-  email: "user@user.com",
-  password: 123456,
-  nickname: Faker::Name.first_name,
-  bio: Faker::Quote.jack_handey,
-  full_name: "Max Mustermann",
-  address: "Rudi-Dutschke-Strasse 26, 10969 Berlin"
-)
-file = URI.open("https://source.unsplash.com/random?face")
-mainuser.photo.attach(io: file, filename: mainuser.full_name, content_type: "image/jpg")
-mainuser.save!
+# mainuser = User.create!(
+#   email: "user@user.com",
+#   password: 123456,
+#   nickname: Faker::Name.first_name,
+#   bio: Faker::Quote.jack_handey,
+#   full_name: "Max Mustermann",
+#   address: "Rudi-Dutschke-Strasse 26, 10969 Berlin"
+# )
+# file = URI.open("https://source.unsplash.com/random?face")
+# mainuser.photo.attach(io: file, filename: mainuser.full_name, content_type: "image/jpg")
+# mainuser.save!
 
-120.times do
-  user = User.new(
-    full_name: Faker::Name.name,
-    email: Faker::Internet.email,
-    nickname: Faker::Name.first_name,
-    bio: Faker::Quote.jack_handey,
-    password: 123456,
-    address: "Köpenicker Str. 70, 10179 Berlin"
-  )
-  file = URI.open("https://source.unsplash.com/random?face")
-  user.save!
-  user.photo.attach(io: file, filename: user.full_name, content_type: "image/jpg")
-end
+# 120.times do
+#   user = User.new(
+#     full_name: Faker::Name.name,
+#     email: Faker::Internet.email,
+#     nickname: Faker::Name.first_name,
+#     bio: Faker::Quote.jack_handey,
+#     password: 123456,
+#     address: "Köpenicker Str. 70, 10179 Berlin"
+#   )
+#   file = URI.open("https://source.unsplash.com/random?face")
+#   user.save!
+#   user.photo.attach(io: file, filename: user.full_name, content_type: "image/jpg")
+# end
 
-puts "created #{User.count} users"
+# puts "created #{User.count} users"
 
 puts "Seeding venues"
 
@@ -467,7 +467,7 @@ event5 = Event.new(
   venue_id: Venue.find_by_name("Zenner").id
 )
 file5 = URI.open(
-  "https://scontent-fra3-1.xx.fbcdn.net/v/t39.30808-6/330629139_183613524385024_5246827530631253861_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a26aad&_nc_ohc=d5PgSFqdt94AX-VBbZo&_nc_ht=scontent-fra3-1.xx&oh=00_AfDeqNjxtEFR6IjYH0hqRXzUTpprcKhaWgf0Y--f0zR3aA&oe=6423C2EE")
+  "https://source.unsplash.com/random?club-party")
 event5.photo.attach(io: file5, filename: event5.title, content_type: "image/jpg")
 event5.save!
 
@@ -491,7 +491,7 @@ event6 = Event.new(
 )
 file6 = URI.open(
   "https://source.unsplash.com/random?club-party")
-  event6.photo.attach(io: file6, filename: event6.title, content_type: "image/jpg")
+event6.photo.attach(io: file6, filename: event6.title, content_type: "image/jpg")
 event6.save!
 
 Chatroom.create!(
@@ -674,7 +674,7 @@ event15 = Event.new(
   venue_id: Venue.find_by_name("Paloma").id
 )
 file15 = URI.open(
-  "https://storage.googleapis.com/leitmotiv-multi/regio-image-2023-03/2861025/large//image.jpg")
+"https://source.unsplash.com/random?club-party")
 event15.photo.attach(io: file15, filename: event15.title, content_type: "image/jpg")
 event15.save!
 
@@ -694,8 +694,8 @@ Chatroom.create!(
     category: categories.sample,
     capacity: rand(10..100),
     dresscode: dresscode.sample,
-    start_date: start + rand(0..10).hours,
-    end_date: start + rand(10..20).hours,
+    start_date: start + rand(1..10).days,
+    end_date: start + rand(10..12).days,
     user_id: User.all.sample.id,
     venue_id: Venue.all.sample.id
   )
@@ -708,32 +708,6 @@ Chatroom.create!(
     event_id: event.id
   )
 end
-
-30.times do
-  start = Time.now
-  event = Event.new(
-
-    title: Faker::Music::RockBand.song,
-    description: Faker::Quote.famous_last_words,
-    status: status.sample,
-    category: categories.sample,
-    capacity: rand(10..100),
-    dresscode: dresscode.sample,
-    start_date: start + rand(1..5).days,
-    end_date: start + rand(1..8).days,
-    user_id: User.all.sample.id,
-    venue_id: Venue.all.sample.id
-  )
-  file = URI.open("https://source.unsplash.com/random?party")
-  event.photo.attach(io: file, filename: event.title, content_type: "image/jpg")
-  event.save!
-
-  Chatroom.create!(
-    name: event.title,
-    event_id: event.id
-  )
-end
-
 
 
 
