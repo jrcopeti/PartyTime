@@ -5,11 +5,11 @@ end
 
 puts "deleting photos of events in cloudnary"
 
-# puts "deleting all messages"
-# Message.all.delete_all
+puts "deleting all messages"
+Message.all.delete_all
 
-# puts "deleting all chatrooms"
-# Chatroom.all.delete_all
+puts "deleting all chatrooms"
+Chatroom.all.delete_all
 
 puts "deleting all lineups"
 Lineup.all.delete_all
