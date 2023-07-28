@@ -23,49 +23,49 @@ Rsvp.all.delete_all
 puts "deleting all Events from the database"
 Event.all.destroy_all
 
-# User.all.each do |user|
-#   user.photo.purge
-# end
+User.all.each do |user|
+  user.photo.purge
+end
 
-# puts "deleting all photos of users in cloudnary"
+puts "deleting all photos of users in cloudnary"
 
-# puts "deleting all users from the database"
-# User.all.delete_all
+puts "deleting all users from the database"
+User.all.delete_all
 
 puts "deleting all Venues from the database"
 Venue.all.delete_all
 
 puts "Seeding Database"
 
-# puts "Seeding Users"
+puts "Seeding Users"
 
-# mainuser = User.create!(
-#   email: "user@user.com",
-#   password: 123456,
-#   nickname: Faker::Name.first_name,
-#   bio: Faker::Quote.jack_handey,
-#   full_name: "Max Mustermann",
-#   address: "Rudi-Dutschke-Strasse 26, 10969 Berlin"
-# )
-# file = URI.open("https://source.unsplash.com/random?face")
-# mainuser.photo.attach(io: file, filename: mainuser.full_name, content_type: "image/jpg")
-# mainuser.save!
+mainuser = User.create!(
+  email: "user@user.com",
+  password: 123456,
+  nickname: Faker::Name.first_name,
+  bio: Faker::Quote.jack_handey,
+  full_name: "Max Mustermann",
+  address: "Rudi-Dutschke-Strasse 26, 10969 Berlin"
+)
+file = URI.open("https://source.unsplash.com/random?face")
+mainuser.photo.attach(io: file, filename: mainuser.full_name, content_type: "image/jpg")
+mainuser.save!
 
-# 120.times do
-#   user = User.new(
-#     full_name: Faker::Name.name,
-#     email: Faker::Internet.email,
-#     nickname: Faker::Name.first_name,
-#     bio: Faker::Quote.jack_handey,
-#     password: 123456,
-#     address: "Köpenicker Str. 70, 10179 Berlin"
-#   )
-#   file = URI.open("https://source.unsplash.com/random?face")
-#   user.save!
-#   user.photo.attach(io: file, filename: user.full_name, content_type: "image/jpg")
-# end
+120.times do
+  user = User.new(
+    full_name: Faker::Name.name,
+    email: Faker::Internet.email,
+    nickname: Faker::Name.first_name,
+    bio: Faker::Quote.jack_handey,
+    password: 123456,
+    address: "Köpenicker Str. 70, 10179 Berlin"
+  )
+  file = URI.open("https://source.unsplash.com/random?face")
+  user.save!
+  user.photo.attach(io: file, filename: user.full_name, content_type: "image/jpg")
+end
 
-# puts "created #{User.count} users"
+puts "created #{User.count} users"
 
 puts "Seeding venues"
 
