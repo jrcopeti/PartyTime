@@ -23,6 +23,9 @@ Rsvp.all.delete_all
 puts "deleting all Events from the database"
 Event.all.destroy_all
 
+puts "deleted all relationships"
+Followability::Relationship.delete_all
+
 User.all.each do |user|
   user.photo.purge
 end
@@ -66,6 +69,31 @@ mainuser.save!
 end
 
 puts "created #{User.count} users"
+
+
+puts "Creating followers"
+
+users = User.all
+
+users.each do |user|
+
+  # Excluding the current user from the list of potential users to follow
+  potential_followees = users.reject { |u| u.id == user.id }
+
+  # Randomly decide how many users this user will follow
+  number_of_users_to_follow = rand(20..potential_followees.size)
+
+  users_to_follow = potential_followees.sample(number_of_users_to_follow)
+
+  users_to_follow.each do |followee|
+    # Use the followability gem's methods to follow users
+    unless followee.followers.include?(user)
+      followee.followerable_relationships.create(followerable: followee, followable: user, status: [0, 2].sample)
+    end
+  end
+end
+
+puts "finish seeding followers"
 
 puts "Seeding venues"
 
